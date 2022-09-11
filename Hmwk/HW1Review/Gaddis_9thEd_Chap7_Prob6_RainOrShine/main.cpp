@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
     ifstream inputFile; //Input file stream object
     int month, day; //loop counters
     char c; //character for weather on a given day
-    string months[NUM_MONTHS];
+    string months[NUM_MONTHS];  // string for month name
     
     //Open the file
     inputFile.open("RainOrShine.txt");
