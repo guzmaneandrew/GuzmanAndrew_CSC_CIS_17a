@@ -60,8 +60,8 @@ int main(int argc, char** argv) {
     //Read data from file, add char c from file to 2d array one by one
     for(month = 0; month <= NUM_MONTHS; month++) {
         for(day = 0; day <= NUM_DAYS; day++) {
-            inputFile.get(c);
-            weather[month][day] = c;
+            inputFile.get(c);   //save char from file to c variable
+            weather[month][day] = c;    //set element at [month][day] to char c
         }
     }
 
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
     //Loop through array to determine num days rainy, sunny, cloudy
     for(month = 0; month < NUM_MONTHS; month++) {
         for(day = 0; day < NUM_DAYS; day++) {
-            c = weather[month][day];
+            c = weather[month][day];    
             
             switch(month) {
                 case jun:
