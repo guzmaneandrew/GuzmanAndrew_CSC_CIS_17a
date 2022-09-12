@@ -16,7 +16,10 @@ using namespace std;
 //Physics/Chemistry/Math/Conversion Higher Dimension Only
 
 //Function Prototypes
-int binarySearch(const int[], int, int);
+void selectionSort(string[], int);
+void swap(string &, string &);
+int binarySearch(const string [], int, string);
+void prntArr(string[], int);
 
 //Program Execution Begins Here!!!
 
@@ -25,6 +28,8 @@ int main(int argc, char** argv) {
 
     //Declare Variables
     const int NUM_NAMES = 20;
+    string name;    //name to search for
+    int position; //position name found at
 
     //Initial Variables
     string names[NUM_NAMES] = {
@@ -36,33 +41,77 @@ int main(int argc, char** argv) {
         "Javens, Renee", "Harrison, Rose", "Setzer, Cathy",
         "Pike, Gordon", "Holland, Beth"
     };
-
+    
+    selectionSort(names, NUM_NAMES);    //Sort array for binary search
+    cout << "SORTED LIST OF NAMES" << endl;
+    prntArr(names, NUM_NAMES);
+    
     //Map the Inputs to the Outputs
+    cout << "Enter a name to search: ";
+    getline(cin, name);
+    //Determine position name is in array
+    position = binarySearch(names, NUM_NAMES, name);
 
     //Display the Inputs and Outputs
-
+    if(position == -1) {
+        cout << name << " was not found." << endl;
+    } else {
+        cout << names[position] << " was found at position " << position << "." << endl;
+    }
 
     //Exit the code
     return 0;
 }
 
-int binarySearch(const int array[], int numElems, int value) {
-    int first = 0,            //first array element
-        last = numElems - 1, //last array element
-        middle,              //midpoint of search
-        position = -1;      //position of search value
-    bool found = false;     //flag
+void selectionSort(string array[], int size) {
+    int minIndex;   //Index of minimum string
+    string minStr;  //String with smallest value
     
-    while(!found && first <= last) {
-        middle = (first + last) / 2; //calculate midpoint
-        if(array[middle] == value) {  //if value is found at mid
+    for(int i = 0; i < size; i++) {
+        minIndex = i;   //Start with index 0 as min index
+        minStr = array[minIndex];
+        for(int j = i + 1; j < size; j++) {
+            if(minStr > array[j]) { //Compare strings
+                minIndex = j;
+                minStr = array[minIndex];       
+            }
+        }
+        swap(array[minIndex], array[i]);//swap current min string with new min string
+    }
+}
+
+void swap(string &str1, string &str2) {
+    string temp;
+    
+    temp = str1; 
+    str1 = str2;
+    str2 = temp;
+}
+
+int binarySearch(const string array[], int size, string name) {
+    int first = 0,          //First array element
+        last = size - 1,    //Last array element
+        middle,             //Mid point
+        position = -1;      //Position of string to search
+    bool found = false;     //Flag
+    
+    while(found==false && first<=last) {
+        middle = (first + last) / 2; //calculate mid point
+        if(array[middle] == name) {         //If string found at mid point
             found = true;
             position = middle;
-        } else if(array[middle] > value) { //if value is in lower half
+        } else if(array[middle] > name) {   //If string is in lower half
             last = middle - 1;
         } else {
-            first = middle + 1;
+            first = middle + 1;             //If string is in upper half
         }
-        return position;
     }
+    return position;
+}
+
+void prntArr(string array[], int size) {
+    for(int i = 0; i < size; i++) {
+        cout << array[i] << endl;
+    }
+    cout << "----------"<< endl;
 }
