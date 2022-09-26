@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created on September 20, 2022, 8:27 PM
- * Purpose:  
+ * Purpose: 1D and 2D arrays
  */
 
 //System Libraries
@@ -17,8 +17,8 @@ using namespace std;
 //Physics/Chemistry/Math/Conversion Higher Dimension Only
 
 //Function Prototypes
-int *filArr(int);               //Create and return 1d array
-int **filArr(int,int);          //Create and return 1d array
+int *fillArr(int);               //Create and return 1d array
+int **fillArr(int,int);          //Create and return 2d array
 void prntArr(int *,int,int);    //Print 1d array
 void prntArr(int **,int,int);  //Print 2d array
 void destroy(int **,int *,int);  //Cleans up/De-allocate dynamic memory
@@ -35,14 +35,14 @@ int main(int argc, char** argv) {
     //Initial Variables
     rows=5;
     cols=20;
-    a1D=filArr(rows*cols);  //Fill 1d arr same size as 2D array
-    a2D=filArr(rows,cols);
+    a1D=fillArr(rows*cols);      //Fill 1d arr same size as 2D array
+    a2D=fillArr(rows,cols);
     
     //Map the Inputs to the Outputs
 
     //Display the Inputs and Outputs
     prntArr(a1D,rows*cols,cols);    //Give size and number of elem per line
-    prntArr(a2D,rows,cols);       
+    prntArr(a2D,rows,cols);
     
     //De-allocate memory
     destroy(a2D,a1D,rows);
@@ -51,61 +51,65 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-void destroy(int **a2d,int *a1d,int rows) {
-    delete []a1d;   //Destroy 1d array
+int *fillArr(int n) {
+    n = n>2&&n<1001?n:2;
     
-    //For 2d array, delete in opposite order of what it was created
-    //Delete all rows before we delete the pointer array
-    for(int r=0; r<rows;r++) {
-        delete []a2d[r];    //1 Destroy all row arrays
-    }
-    delete[]a2d;            //2 Destroy array of pointers
-}
-
-int *filArr(int n) {
-    n = n>2&&n<1001?n:2;    //2<n<1001
+    //Allocate the array
+    int *array=new int[n];    
     
-    int *array = new int[n];    //Allocate the array
-    
+    //Fill the array
     for(int i=0;i<n;i++) {
-        array[i]=rand()%90+10;   //0-89 -> 10-99
+        array[i]=rand()%90+10;  //0-89 -> 10-99
     }
     
     return array;
 }               
 
-int **filArr(int row,int col) {
+int **fillArr(int row,int col) {
     row = row>2&&row<1001?row:2;
     col = col>2&&col<1001?col:2;
     
-    int **array=new int*[row];  //1 Create the array of pointers
-    
+    //1 Create the array of pointers
+    int **array=new int*[row];
+    //2 Create each row array with 1d array of pointers
     for(int r=0;r<row;r++) {
-        array[r]=filArr(col);   //2 Create each row array with 1d array of pointers
+        //array[r]=fillArr(col);
         //same as
-        //array[r]=new int[col];
-    }  
+        *(array+r)=new int[col];
+        for(int c=0;c<col;c++) {
+            array[r][c]=rand()%90+10;
+        }
+    }
     return array;
 }    
 
 void prntArr(int *a,int n,int perLine) {
-    cout<<endl;
     for(int i=0;i<n;i++) {
         cout<<a[i]<<" ";
-        if(i%perLine==(perLine-1)) cout << endl;
+        if(i%perLine==(perLine-1)) cout<<endl;
     }
     cout<<endl;
 } 
 
 void prntArr(int **a,int row,int col) {
-    cout<<endl;
-    for(int r=0; r<row;r++) {
+    for(int r=0;r<row;r++) {
         for(int c=0;c<col;c++) {
             cout<<a[r][c]<<" ";
-            
         }
         cout<<endl;
     }
     cout<<endl;
 } 
 
+void destroy(int **a2d,int *a1d,int rows) {
+    //Destroy 1d array
+    delete [] a1d;
+    
+    //Destroy 2d array
+    //1 Delete all row arrays before deleting pointer array
+    for(int r=0;r<rows;r++) {
+        delete [] a2d[r];
+    }
+    //2 Delete the array of pointers
+    delete [] a2d;
+}
