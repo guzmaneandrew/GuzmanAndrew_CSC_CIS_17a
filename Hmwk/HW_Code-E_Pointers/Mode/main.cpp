@@ -16,15 +16,14 @@ using namespace std;
 int *fillAry(int,int);      //Fill the Array
 void prntAry(int *,int,int);//Print the Array
 void prntMod(int *);        //Print the mode set
-void mrkSort(int *,int);    //Mark Sort
-void minPos(int *,int,int); //Find min Position
 void swap(int *,int *);     //Swap
+void minPos(int *,int,int); //Find min Position
+void mrkSort(int *,int);    //Mark Sort
 int *copy(const int *,int); //Copy the Array
 void shuffle(int *,int,int);//Shuffle the Array
 unsigned int GRB();         //Generate Random Bit
 void GR(unsigned int&);     //Generate Random Number
 int *mode(const int *,int); //Find the mode set
-int freq(const int *,int);        //Find the frequency
 
 //Execution begins here
 int main(int argc, char*argv[]) {
@@ -55,7 +54,6 @@ int main(int argc, char*argv[]) {
     cout<<"The Array after shuffling"<<endl;
     prntAry(ary,arySize,modNum);
     
-    
     //Print the modal information of the array
     cout<<"The Modal Information"<<endl;
     prntMod(modeAry);
@@ -68,27 +66,86 @@ int main(int argc, char*argv[]) {
     return 0;
 }
 
-int *fillAry(int n, int modNum){
-    //Allocate memory
-    int *array=new int[n];
+//This just a stub.  You are to fill in the correct solution
+int *mode(const int *array,int arySize){
+    int maxFreq=1,freq=1,currNum,nextNum,nmodes=0;
     
-    //Fill the array with 2 digit numbers
-    for(int i=0;i<n;i++) {
-        *(array+i)=i%modNum;
-//        *(array+i)=rand()%modNum;
+    //Copy the array
+    int *ary=copy(array,arySize);
+    
+    //Sort the copy
+    mrkSort(ary,arySize);
+    
+    //Find the max Frequency
+    for(int i=0;i<=arySize;i++) {
+        currNum=*(ary+i);
+        nextNum=*(ary+i+1);
+        if(currNum==nextNum) {  //Increment freq if same number
+            freq++;
+        }
+        else {                  //Compare freq to maxFreq
+            if(freq>maxFreq) {
+                maxFreq=freq;  
+            }
+            freq=1;             //Reset freq to 1 for next number
+        }
+    }
+        
+    //Find the number of modes
+    freq=1;                     //Reset freq to 1 to find the number of modes
+    for(int i=0;i<=arySize;i++) {
+        currNum=*(ary+i);
+        nextNum=*(ary+i+1);
+        if(currNum==nextNum) {  //Increment freq if same as next number
+            freq++;
+        }
+        else {                  //Determine if number has max frequency
+            if(freq==maxFreq && freq>1) {
+                nmodes++;       //If this number is a mode, increment nmodes
+            }
+            freq=1;             //Reset freq to 1 for next number
+        }
+    }
+    
+    //Allocate the mode array
+    int *modeAry=new int[nmodes+2];
+    
+    //Fill the mode array
+    modeAry[0]=nmodes;
+    modeAry[1]=maxFreq;
+    
+    freq=1;                     //Reset freq to 1 to fill the mode array
+    int modeIndx=2;             //mode array is offset by 2
+    //Find the number of modes
+    for(int i=0;i<=arySize;i++) {
+        currNum=*(ary+i);
+        nextNum=*(ary+i+1);
+        if(currNum==nextNum) {  //Increment freq if same number
+            freq++;
+        }
+        else {                  //Determine if number has max frequency
+            if(freq==maxFreq && freq>1) {
+                *(modeAry+modeIndx)=currNum;    //Update value in mode array
+                modeIndx++;                     //Next index in mode array
+            }
+            freq=1;             //Reset freq to 1 for next number
+        }
     }
 
-    //Exit function
-    return array;
+    //Delete the allocated copy and return
+    delete []ary;
+    return modeAry;
 }
 
-void prntAry(int *array,int n,int perLine){
-    //Output the array
+int *copy(const int *a,int n){
+    //Declare and allocate an array
+    int *b=new int[n];
+    //Fill with passed array
     for(int i=0;i<n;i++){
-        cout<<*(array+i)<<" ";
-        if(i%perLine==(perLine-1))cout<<endl;
+        b[i]=a[i];
     }
-    cout<<endl;
+    //Return the copy
+    return b;
 }
 
 void prntMod(int *ary){
@@ -102,7 +159,7 @@ void prntMod(int *ary){
     }
     cout<<"The mode set = {";
     for(int i=2;i<ary[0]+1;i++){
-        cout<<ary[i]<<",";
+        cout<<*(ary+i)<<",";
     }
     cout<<ary[ary[0]+1]<<"}"<<endl;
 }
@@ -127,15 +184,27 @@ void swap(int *a,int *b){
     *a=*a^*b;
 }
 
-int *copy(const int *a,int n){
-    //Declare and allocate an array
-    int *b=new int[n];
-    //Fill with passed array
+void prntAry(int *array,int n,int perLine){
+    //Output the array
     for(int i=0;i<n;i++){
-        b[i]=a[i];
+        cout<<*(array+i)<<" ";
+        if(i%perLine==(perLine-1))cout<<endl;
     }
-    //Return the copy
-    return b;
+    cout<<endl;
+}
+
+int *fillAry(int n, int modNum){
+    //Allocate memory
+    int *array=new int[n];
+    
+    //Fill the array with 2 digit numbers
+    for(int i=0;i<n;i++){
+        *(array+i)=i%modNum;
+        //*(array+i)=rand()%modNum;
+    }
+    
+    //Exit function
+    return array;
 }
 
 void shuffle(int *a,int n,int nShuf){
@@ -167,41 +236,4 @@ void GR(unsigned int& value){
             dataPointer[pointerIndex] |= mask;
         }
     }
-}
-
-//This just a stub.  You are to fill in the correct solution
-int *mode(const int *array,int arySize){
-    int maxFreq;
-    
-    //Copy the array
-    int *ary=copy(array,arySize);
-    //Sort the copy
-    mrkSort(ary,arySize);
-    
-    //Print sorted array
-    cout<<"Sorted array: "<<endl;
-    prntAry(ary,arySize,10);
-
-    //Find the max Frequency
-    maxFreq=freq(ary,arySize);
-    
-    //Find the number of modes
-    
-    
-    //Allocate the mode array
-    //Again this is just a stub.
-    int nmodes=0;
-    int *modeAry=new int[nmodes+2];
-    modeAry[0]=0;//Stub returns no modes
-    modeAry[1]=1;//Stub returns Frequency 1
-    
-    //Fill the mode array
-
-    //Delete the allocated copy and return
-    delete []ary;
-    return modeAry;
-}
-
-int freq(const int *ary,int arySize) {
-    return 0;
 }
