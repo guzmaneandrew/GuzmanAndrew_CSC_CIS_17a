@@ -9,11 +9,11 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=marksort_1function_structure
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/marksort_1function_structure
+CND_ARTIFACT_NAME_Debug=marksort_1function_structure_v2
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/marksort_1function_structure_v2
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=marksort1functionstructure.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/marksort1functionstructure.tar
+CND_PACKAGE_NAME_Debug=marksort1functionstructurev2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/marksort1functionstructurev2.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_1-Windows
