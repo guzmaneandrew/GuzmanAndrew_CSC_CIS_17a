@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=dynamic_1_2d_arrays
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/dynamic_1_2d_arrays
+CND_ARTIFACT_NAME_Debug=numbers_diff_bases
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/numbers_diff_bases
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=dynamic12darrays.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/dynamic12darrays.tar
+CND_PACKAGE_NAME_Debug=numbersdiffbases.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/numbersdiffbases.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=dynamic_1_2d_arrays
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/dynamic_1_2d_arrays
+CND_ARTIFACT_NAME_Release=numbers_diff_bases
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/numbers_diff_bases
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=dynamic12darrays.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/dynamic12darrays.tar
+CND_PACKAGE_NAME_Release=numbersdiffbases.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/numbersdiffbases.tar
 #
 # include compiler specific variables
 #

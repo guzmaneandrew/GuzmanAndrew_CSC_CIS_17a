@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Numbers_Diff_Bases
+PROJECTNAME=MarkSort_1Function_Structure_Database
 
 # Active Configuration
 DEFAULTCONF=Debug
