@@ -9,11 +9,11 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=dynamic_1d_2d_arrays_to_vectors
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/dynamic_1d_2d_arrays_to_vectors
+CND_ARTIFACT_NAME_Debug=dynamic_1d_and_2d_arrays
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/dynamic_1d_and_2d_arrays
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=dynamic1d2darraystovectors.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/dynamic1d2darraystovectors.tar
+CND_PACKAGE_NAME_Debug=dynamic1dand2darrays.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/dynamic1dand2darrays.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_1-Windows

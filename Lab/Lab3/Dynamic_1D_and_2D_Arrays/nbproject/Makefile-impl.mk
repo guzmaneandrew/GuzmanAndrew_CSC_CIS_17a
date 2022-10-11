@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Dynamic_1D_2D_Arrays_to_Vectors
+PROJECTNAME=Dynamic_1D_and_2D_Arrays
 
 # Active Configuration
 DEFAULTCONF=Debug

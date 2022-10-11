@@ -13,9 +13,9 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=dylib
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dynamic_1d_2d_arrays_to_vectors
-OUTPUT_BASENAME=dynamic_1d_2d_arrays_to_vectors
-PACKAGE_TOP_DIR=dynamic1d2darraystovectors/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dynamic_1d_and_2d_arrays
+OUTPUT_BASENAME=dynamic_1d_and_2d_arrays
+PACKAGE_TOP_DIR=dynamic1dand2darrays/
 
 # Functions
 function checkReturnCode
@@ -60,15 +60,15 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/dynamic1d2darraystovectors/bin"
+makeDirectory "${NBTMPDIR}/dynamic1dand2darrays/bin"
 copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/dynamic1d2darraystovectors.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/dynamic1dand2darrays.tar
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/dynamic1d2darraystovectors.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/dynamic1dand2darrays.tar *
 checkReturnCode
 
 # Cleanup
