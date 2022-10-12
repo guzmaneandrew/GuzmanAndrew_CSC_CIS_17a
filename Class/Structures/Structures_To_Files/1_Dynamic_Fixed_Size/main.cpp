@@ -76,7 +76,7 @@ Array *readBin(fstream &in,int size,int record){
     Array *a=new Array;//Declare the array to return
     
     //Find the record
-    cursor=record*((size+1)*sizeof(int));
+    cursor=record*((size+1)*sizeof(int)); //size=num of elements
     
     //Fill the structure
     in.seekg(cursor,ios::beg);

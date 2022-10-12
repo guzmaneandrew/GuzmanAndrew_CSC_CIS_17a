@@ -81,10 +81,10 @@ Array *readBin(fstream &in,int record){
     
     //Find the record
     while(++count<=record){
-        in.seekg(cursor,ios::beg);
-        in.read(reinterpret_cast<char *>(&a->size),sizeof(int));
+        in.seekg(cursor,ios::beg);  //Set read position to initial cursor
+        in.read(reinterpret_cast<char *>(&a->size),sizeof(int)); //Read in size
         cursor+=(sizeof(int)+
-                        a->size*sizeof(int)+a->size*sizeof(int));
+                        a->size*sizeof(int)+a->size*sizeof(int));   //Move cursor
     }
     
     //Fill the structure

@@ -86,7 +86,7 @@ Test *readBin(fstream &in,int record){
     
     //Fill the structure
     in.seekg(cursor,ios::beg);  //Set cursor to byte from the beginning of the file
-    in.read(reinterpret_cast<char *>(a),sizeof(Test));  //Read in from cursor
+    in.read(reinterpret_cast<char *>(a),sizeof(Test));  //Read structure from cursor
     return a;   //Return what was read in
 }
 
