@@ -20,18 +20,15 @@ using namespace std;
 //Structure Definitions
 
 //Function Prototypes
+bool opnFile(fstream &,string);
+void filter(fstream &,string,fstream &);
 
 //Program Execution Begins Here!!!
 
 int main(int argc, char** argv) {
-    //Initialize the Random Number Seed
-
     //Declare Variables
     fstream file1,file2;
-    string f1name,f2name,ext=".txt",sntence;    //file names,extension,sentence
-    bool frstLtr=true;  //Flag to track first letter in sentence
-    int indx; //Index of first letter in the sentence(possible multiple spaces)
-
+    string f1name,f2name,ext=".txt";    //file names,extension
     //Initial Variables
     //Ask user for two file names
     cout<<"Enter a name for the first file: ";
@@ -45,52 +42,59 @@ int main(int argc, char** argv) {
     //Open the text files
     file1.open(f1name,ios::in);
     file2.open(f2name,ios::out);
-
+    
     //Map the Inputs to the Outputs
     //Read contents of first file
-    if(file1) {
-        //Read in a sentence from the file
-        getline(file1,sntence,'.');
-        
-        //While the last read operation was successful, continue
-        while(file1) {
-            //Update contents of first file and output to second file
-            for(int i=0;i<sntence.length();i++) {
-                //Uppercase first letter
-                while(sntence[i]!=' '&&frstLtr) {   
-                    file2<<char(toupper(sntence[i]));
-                    frstLtr=false;
-                    indx=i;
-                }
-                //Lowercase remaining letters
-                if(frstLtr==false&&indx!=i) file2<<char(tolower(sntence[i]));
-                
-                //Append period at the end of the sentences
-                if(i==sntence.length()-1) file2<<". ";
-            }
-            frstLtr=true;   //Reset flag for next sentence
-            //Read the next sentence
-            getline(file1,sntence,'.');
-        }
-        
-        //Close the file
+    if(opnFile(file1,f1name)&&opnFile(file2,f2name)) {
+        cout<<"Files opened successfully.\n"<<endl;
+        cout<<"Now filtering sentences from the first file.\n"<<endl;
+        filter(file1,f1name,file2);
+        cout<<"Closing files.\n"<<endl;
+        //Close the files
         file1.close();
-        
+        file2.close();
+        cout<<"Done."<<endl;
     } else {
         cout<<"ERROR Unable to open the file: "<<f1name<<endl;
     }
-    
-    //
-
-    //Display the Inputs and Outputs
-
-    //Clean up the dynamic stuff
-
-    //Close the files
-    file1.close();
-    file2.close();
     
     //Exit the code
     return 0;
 }
 
+bool opnFile(fstream &file,string filName) {
+    if(file) return true;
+    else return false;
+}
+
+void filter(fstream &inFile,string inName,fstream &outFile) {
+        string sntence;
+        bool frstLtr=true;  //Flag to determine if searching for first letter
+        int indx; //Index of first letter in the sentence(possible multiple spaces)
+        
+        cout<<"Outputting filtered sentences to the second file.\n"<<endl;
+        
+        //Read in a sentence from the input file
+        getline(inFile,sntence,'.');
+        
+        //While the last read operation was successful, continue
+        while(inFile) {
+            //Update contents of first file and output to second file
+            for(int i=0;i<sntence.length();i++) {
+                //Uppercase first letter, skip over white spaces
+                while(sntence[i]!=' '&&frstLtr) {   
+                    outFile<<char(toupper(sntence[i]));
+                    frstLtr=false;      //Update flag now that first letter found
+                    indx=i;
+                }
+                //Lowercase remaining letters
+                if(frstLtr==false&&indx!=i) outFile<<char(tolower(sntence[i]));
+                
+                //Append period at the end of the sentences
+                if(i==sntence.length()-1) outFile<<". ";
+            }
+            frstLtr=true;   //Reset flag for next sentence
+            //Read the next sentence
+            getline(inFile,sntence,'.');
+        }
+}
