@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=CppTemplate
+PROJECTNAME=Gaddis_9thEd_Chap12_Prob8_ArrayFileFunctions
 
 # Active Configuration
 DEFAULTCONF=Debug
