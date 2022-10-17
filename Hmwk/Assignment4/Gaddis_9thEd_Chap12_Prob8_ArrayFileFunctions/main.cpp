@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
     //Map the Inputs to the Outputs
     //Write array to binary file
     cout<<"Writing array from memory to binary file..."<<endl;
-    arrayToFile("file.bin",array,SIZE);
+    arrayToFile("file.dat",array,SIZE);
     
 //    Fill array with 0s to confirm the new array printed is from the file
 //    for(int i=0;i<SIZE;i++) {
@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 
     //Read array from file
     cout<<"Reading array from binary file back into memory..."<<endl;
-    fileToArray("file.bin",array,SIZE);
+    fileToArray("file.dat",array,SIZE);
 
     //Display the Inputs and Outputs
     //Display contents of array after it's read from file
