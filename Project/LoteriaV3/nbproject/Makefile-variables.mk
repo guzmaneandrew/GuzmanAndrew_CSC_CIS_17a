@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=loteriav2
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/loteriav2
+CND_ARTIFACT_NAME_Debug=loteriav3
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/loteriav3
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=loteriav2.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/loteriav2.tar
+CND_PACKAGE_NAME_Debug=loteriav3.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/loteriav3.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=loteriav2
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/loteriav2
+CND_ARTIFACT_NAME_Release=loteriav3
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/loteriav3
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=loteriav2.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/loteriav2.tar
+CND_PACKAGE_NAME_Release=loteriav3.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/loteriav3.tar
 #
 # include compiler specific variables
 #

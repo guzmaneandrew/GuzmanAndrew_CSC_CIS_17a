@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
  * Author: Andrew Guzman
- * Created: October 27, 2022 @ 10:36 AM
- * Purpose: v2: Implementation of images, cards, deck of cards, game boards
+ * Created: October 31, 2022 @ 10:00 AM
+ * Purpose: v3: Implementation of shuffle deck feature and random boards generator.
  */
 
 //System Libraries
@@ -11,10 +11,11 @@
 #include <vector>
 #include <fstream>
 #include <cstdlib>
+#include <random>
 using namespace std;
 
 //User Libraries
-enum BrdWin {FULL=1,DIAGS=2,ROW=3,COL=4,CRNRS=5,SQX2=6,SQX3=7};
+enum BrdWin {FULL=1,ROW=2,COL=3,DIAGS=4,CRNRS=5,SQX2=6,SQX3=7};
 
 //Global Constants
 //Physics/Chemistry/Math/Conversion Higher Dimension Only
@@ -77,6 +78,10 @@ void newFil(Player*);           //Create new file to save player game data to
 //REMOVE FOR V2 and keep for v3
 void winPtrn();                 //Sets winning pattern for the game
 int setTkns();                  //Set the number of tokens to give each players
+vector<int> rndCrds(int);       //Needed to generate random cards
+void shufDck(Deck &);           //Shuffles deck of cards
+Board* randBrd(Card **);       //Creates a random board
+
 
 //Program Execution Begins Here!!!
 
@@ -99,7 +104,7 @@ int main(int argc, char** argv) {
     //User sets the number of tokens for each player to use
     tokens=setTkns();
     //User generates a random board for each player
-    //Display boards player boards to their corresponding 
+    //Output boards player boards to their corresponding files
     //User shuffles the deck of cards
     //Caller pulls a card
     //Display pulled card and corresponding riddle on the screen
@@ -109,11 +114,10 @@ int main(int argc, char** argv) {
     //Display on the screen an update on each player after every card pulled
         //-"Sun found a match on their board at R,C"
         //-"Moon didn't have a match"
-    //Append to their game stats file(append not update so we can see history)
-        //-Board
-        //
-    //Repeat at line 103 until:
-        //-no more tokens left
+    //Append to their game stats file after board
+        //Append not update so we can see their board and history
+    //Repeat until:
+        //-players have 0 tokens
         //-a player fills their board
         //-if num of cards called=54, reshuffle the deck line 102.
     
@@ -162,16 +166,26 @@ int main(int argc, char** argv) {
     
     //Create deck of cards
     crtDck(deck,cards);
+//    prntDck(deck);
     //Print deck of cards
-    cout<<"Printing out deck..."<<endl;
-    prntDck(deck);
-    cout<<"Done printing deck..."<<endl;
+//    cout<<"Printing out deck..."<<endl;
+//    prntDck(deck);
+//    cout<<"Done printing deck..."<<endl;
     
-    //Shuffle the deck of cards
+    //Shuffle the deck
+    shufDck(deck);
+    //Print shuffled deck of cards
+//    cout<<"Printing out shuffled deck..."<<endl;
+//    prntDck(deck);
+//    cout<<"Done printing shuffled deck..."<<endl;
+    
+    //Generate random numbers 1 -54
+    rndCrds(16);
+    //Randomize cards before creating a board
             
     //Create 1 player, with it's own random board
     Player* plyr=newPlyr(plyr1);
-    board=newBrd(cards);
+    board=randBrd(cards);
     plyr->board=board;
     prntPlyr(plyr); 
 
@@ -361,7 +375,7 @@ void crtDck(Deck &d,Card **cards) {
 }
 
 void prntDck(const Deck& d) {
-    for(int i=0;i<d.maxSize;i++) {
+    for(int i=0;i<NUMELMS;i++) {
         prntCrd(d.cards[i]);
     }
     cout<<endl;
@@ -396,11 +410,7 @@ void prntBrd(const Board *b) {
     
     for(int r=0;r<4;r++) {
         for(int c=0;c<4;c++) {
-            if(b->board[r][c].found) {
-                cout<<"Found"<<endl;
-            } else {
-                cout<<"Not found"<<endl;
-            }
+            prntCrd(b->board[r][c]);
         }
     }
 
@@ -456,71 +466,55 @@ void newFil(Player* p) {
     cout<<"Done.\n";
 }
 
-//void brdCrd(const Card c) { 
-//    //Print out top border of the card
-//    for(int i=0;i<14;i++) {
-//        cout<<"_";
-//    }
-//    
-//    //Print out starting where an image would be (represented by *)
-//    cout<<endl<<" "<<setw(14);
-//    cout<<setw(3)<<right<<c.num<<endl;
-//    
-//    
-//    //Change into nested array
-//    for(int i=0;i<6;i++) {
-//        cout<<setw(4)<<left<<" ";
-//        cout<<"******"<<endl;
-//        if(i==5) cout<<endl;
-//    }
-//    
-//    //Print out the name
-//    for(int i=0;i<c.img->name.length();i++) {
-//        if(i>=0 && i<=c.img->name.length()) {
-//            cout<<c.img->name[i];
-//        }
-//    }
-//    cout<<endl;
-//    
-//    //Print out bottom border of the card
-//    for(int i=0;i<14;i++) {
-//        cout<<"_";
-//    }
-//    cout<<endl;
-//}
-
-//REMOVE FROM V2 AND keep for V3
 void winPtrn() {
     int option;
     
-    cout<<"Set the Winning Pattern";
-    cout<<"Options: 1=Full, 2=Diagonals, 3=Row, 4=Column\n";
+    cout<<"Set the Winning Pattern\n";
+    cout<<"Options: 1=Full, 2=Row, 3=Column, 4=Diagonals\n";
     
     do{
         cout<<"Enter Pattern #";
         cin>>option;
     } while(option!=1&&option!=2&&option!=3&&option!=4);
     
-    cout<<"Winning Pattern: ";
+    cout<<"Players Must Match One of The Following Patterns to Win\n";
     
     switch(option) {
         case FULL:
           cout<<"Full"<<endl;
-//          for(int r=0;r<ROWS;r++) {
-//              for(int c=0;c<COLS;c++) {
-//                  cout<<"| * |";
-//              }
-//              cout<<endl;
-//          }
+          for(int r=0;r<ROWS;r++) {
+              for(int c=0;c<COLS;c++) {
+                  cout<<"| * |";
+              }
+              cout<<endl;
+          }
+          break;
+        case ROW:
+          for(int i=0;i<4;i++) {
+              cout<<"Row "<<i+1<<":"<<endl;
+            for(int r=0;r<ROWS;r++) {
+              for(int c=0;c<COLS;c++) {
+                  if(r==i) cout<<"| * |";
+                  else     cout<<"|   |";
+              }
+              cout<<endl;
+            }     
+          }
+          break;
+        case COL:
+          for(int i=0;i<4;i++) {
+              cout<<"Column "<<i+1<<":"<<endl;
+            for(int r=0;r<ROWS;r++) {
+              for(int c=0;c<COLS;c++) {
+                  if(c==i) cout<<"| * |";
+                  else     cout<<"|   |";
+              }
+              cout<<endl;
+            }     
+          }
           break;
         case DIAGS:
           cout<<"Diagonals\n";
-          break;
-        case ROW:
-          cout<<"Row\n";
-          break;
-        case COL:
-          cout<<"Columns\n";
           break;
       }
 }
@@ -536,4 +530,67 @@ int setTkns() {
     cout<<"Number of Tokens: "<<numTkns<<endl;
     
     return numTkns;
+}
+
+void shufDck(Deck &d) {
+    Deck shufDck;
+    int rndIndx;
+            
+    while(!d.cards.empty()) {
+        rndIndx=rand()%d.cards.size();
+        shufDck.cards.push_back(d.cards[rndIndx]);
+        d.cards.erase(d.cards.begin()+rndIndx);
+    }
+    
+    d=shufDck;
+}
+
+vector<int> rndCrds(int numCrds) {
+    vector<int> v(numCrds);
+
+    iota(v.begin(),v.end(),0);
+
+//    for(int i=0;i<numCrds;i++) {
+//        cout<<v[i]+1<<' ';
+//    }
+//    cout<<endl;
+    
+    random_device rd;   //random number generator
+    mt19937 g(rd());    //needed for the shuffle function
+
+    shuffle(v.begin(),v.end(),g);
+
+//    for(int i=0;i<numCrds;i++) {
+//        cout<<v[i]+1<<' ';
+//    }
+    
+    return v;
+}
+
+Board* randBrd(Card **cards) {
+    cout<<"Random card numbers for board..."<<endl;
+    vector<int> v=rndCrds(54);
+    for(int i=0;i<16;i++) {
+        cout<<v[i]+1<<' ';
+    }
+    cout<<endl;
+
+    Board *b=new Board;
+    int index=0;
+    for(int r=0;r<4;r++) {
+        for(int c=0;c<4;c++) {
+            b->board[r][c]=*(*(cards+v[index]));
+            b->board[r][c].found=false;
+            prntCrd(b->board[r][c]);
+            index++;
+//            cout<<(*(cards+v[index]))->num<<endl;
+//            prntCrd(*(cards+v[index]));
+            //b->board[r][c]=*(cards+v[i]);
+//                b->board[r][c]=*(*(cards)+v[index]);
+//                b->board[r][c].found=false; //Found flag false at beg of game    
+        }
+    }
+    cout<<"Done random card numbers for board..."<<endl;
+    
+    return b;
 }

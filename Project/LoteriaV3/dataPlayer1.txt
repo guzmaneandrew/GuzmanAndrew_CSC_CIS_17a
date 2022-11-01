@@ -1,0 +1,2 @@
+Player Name: Player1
+Number of Beans: 16

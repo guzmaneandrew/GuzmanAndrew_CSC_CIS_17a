@@ -2,8 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: October 27, 2022 @ 10:36 AM
- * Purpose: v3: Implement randomization for shuffling cards and creating boards
- * of random cards.
+ * Purpose: v2: Implementation of images, cards, deck of cards, game boards.
  */
 
 //System Libraries
@@ -75,7 +74,6 @@ Player* newPlyr(string);        //Creates 1 player
 void prntPlyr(const Player *);  //Displays player game data to the screen
 void newFil(Player*);           //Create new file to save player game data to
 //void brdCrd(const Card);       //Prints 1 card
-//REMOVE FOR V2 and keep for v3
 void winPtrn();                 //Sets winning pattern for the game
 int setTkns();                  //Set the number of tokens to give each players
 
@@ -172,7 +170,7 @@ int main(int argc, char** argv) {
     cout<<"Done printing deck..."<<endl;
     
     //Shuffle the deck of cards
-            
+          
     //Create 1 player, with it's own random board
     Player* plyr=newPlyr(plyr1);
     board=newBrd(cards);
