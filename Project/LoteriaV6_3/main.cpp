@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: November 1, 2022 @ 10:00 AM
- * Purpose: v6: Implementation of game logic for a 2 player game.
+ * Purpose: v6: Implementation of game logic for a 2 player game. C- strings
  */
 
 //System Libraries
@@ -20,6 +20,7 @@ enum BrdWin {FULL=1,ROW=2,COL=3,DIAGS=4};   //Winning board patterns
 //Global Constants
 //Physics/Chemistry/Math/Conversion Higher Dimension Only
 const int NUMELMS=54;   //# of elements(lines in files,names,riddles,images,cards/deck)
+//Can make this user input, need to figure out how to print board
 const int ROWS=4;       //Number of rows in board
 const int COLS=4;       //Number of columns in board
 
@@ -56,24 +57,26 @@ struct Player {
 //Function Prototypes
 bool openFil(fstream &,string); //Opens a file for input
 string* filToAr(fstream &);     //Saves file contents to memory
-Image* newImg(string,string);   //Creates 1 new image
-Image** newImgs(string *,string *); //Creates array of pointers to pointers to all images
-Card* newCrd(Image *,int);      //Creates 1 new card
-void prntCrd(const Card);       //Prints 1 card 
-Card** newCrds(Image **);       //Creates array of pointers to pointers to all cards
+char* strToC(string);          //Converts str to cstr, return pointer to char array
+Image* newImg(string,string);   //Creates 1 new image struct
+Image** newImgs(string *,string *); //Creates array of pointers to pointers to all image structs
+Card* newCrd(Image *,int);      //Creates 1 new card struct
+void prntCrd(const Card);       //Prints 1 card struct
+Card** newCrds(Image **);       //Creates array of pointers to pointers to all card structs
 void crtDck(Deck &,Card **);    //Creates a deck of cards from cards created
 void prntDck(const Deck &);     //Print deck of cards
 void shufDck(Deck &);           //Shuffles deck of cards
 vector<int> rndCrds();          //Generates 16 random card numbers for board
 Board* newBrd(Card **,int);     //Creates a random board
-void prntBrd(const Board *);    //Prints a board
-Player* newPlyr(string);    //Creates 1 player
+void prntBrd(const Board *);    //Prints 1 board
+Player* newPlyr(string);        //Creates 1 player
 void prntPlyr(Player *);        //Displays player game data to the screen
 void brd2Fil(const Board *,ofstream &); //Prints a board to a file
 ofstream plyrFil(Player*);      //Create new file to save player game data to
 int winPtrn();                  //Sets winning pattern for the game
-int setTkns(int);                  //Set the number of tokens to give each players
-void chkBrd(string,Player *,int &); //Checks board and updates if match found
+int setTkns(int);               //Set the number of tokens for players to share
+void chkBrd(string,Player *,int &); //Checks board and updates player if match found
+bool chkEzRid(string);              //Checks if a riddle is "easy" word in riddle
 void dispBrd(const Player *);    //Display player's mini boards on screen
 
 //Program Execution Begins Here!!!
@@ -82,7 +85,7 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
     
     //Declare Variables
-    fstream dataFile;
+    fstream dataFile;       //Input files
     ofstream p1File,p2File; //Player files to output to
     string p1Name,p2Name;   //Name of players
     Image **images;         //Pointers to pointers to images
@@ -90,36 +93,42 @@ int main(int argc, char** argv) {
         topCrd;             //Card pulled from top of the deck
     Deck deck;              //Deck of cards
     int input,              //Input for user
-        pattern,            //Winning pattern set
-        gamTkns,             //Number of tokens available for the game
-        numRnds;            //Number of rounds in game
+        pattern,            //Winning pattern for game
+        gamTkns,            //Number of tokens available for the game
+        numRnds;            //Number of rounds for game
         
     //Initial Variables
-    char game[]="LOTERÍA";  //Store  of game in c-string
+    char game[]="LOTERÍA";  //Store name of game in c-string
     p1Name="Player1";
     p2Name="Player2";
-    string *riddles,  //String array used to create images
-           *names;    //String array used create images and cards
+//    char *riddle;      //Char array to hold a riddle
+    string *riddles,
+           *names;      //String array of names used create images and cards
     Board *board1=nullptr,*board2=nullptr;  //Pointers to boards
     Player *plyr1=nullptr,*plyr2=nullptr;   //Pointers to players
     numRnds=0;
     
 //Set up for the game
-    //Get names from cardNames.txt file and save to names array   
-    if(openFil(dataFile,"cardNames.txt")) {
+    //Get card names from cardNames.txt file and save to names array   
+    if(openFil(dataFile,"cardNamesEN.txt")) {
         names=filToAr(dataFile);    //Dynamically allocated
         dataFile.close();
     } else {
         cout<<"File open error!"<<endl;
     }
    
-    //Get riddles from cardRiddles.txt file and save to riddles array
-    if(openFil(dataFile,"cardRiddles.txt")) {
+    //Get card riddles from cardRiddles.txt file and save to riddles array
+    if(openFil(dataFile,"cardRiddlesEN.txt")) {
         riddles=filToAr(dataFile);  //Dynamically allocated
         dataFile.close();
     } else {
         cout<<"File open error!"<<endl;
     }
+        
+//    for(int i=0;i<NUMELMS;i++) {
+//        riddle=strToC(riddles[i]);
+//        cout<<endl;
+//    }
 
     //Create all images
     images=newImgs(names,riddles);
@@ -141,58 +150,54 @@ int main(int argc, char** argv) {
     
     //Display game prompt
     cout<<"This is a game of Lotería with 2 computer players and 1 caller.\n"
-          "You are the caller of this game.\n"<<endl;
+          "You are the caller of this game."<<endl;
     
     //User sets the winning pattern
     pattern=winPtrn();
     
-    //User sets the number of tokens for each player to use
+    //User sets the number of tokens for player to use during game
     //pass in pattern because number depends on what pattern is set
     gamTkns=setTkns(pattern);
     
     //User shuffles the deck of cards
     shufDck(deck);
     //Print shuffled deck
-//    prntDck(deck);
+//    prntDck(deck); 
+
+    //Player 1
+    plyr1=newPlyr(p1Name);       //Create player1
+    board1=newBrd(cards,1);     //Create a random board for player1
+    plyr1->board=board1;        //Assign board to player1
+    p1File=plyrFil(plyr1);      //Create new file to save player1 data to
     
-    //Create player 1, with it's own random board
-    plyr1=newPlyr(p1Name);
-    board1=newBrd(cards,1);
-    plyr1->board=board1;
-    //Create new file to save player 1 data to
-    p1File=plyrFil(plyr1);
-    
-    //Create player 2, with it's own random board
-    plyr2=newPlyr(p2Name);
-    board2=newBrd(cards,2);
-    plyr2->board=board2;
-    //Create new file to save player 1 data to
-    plyrFil(plyr2);
-    
-    //Display player 1 board to the screen
-    do {
+        do {                    //Display player 1 board to the screen
         cout<<"Press 1 to View Player 1's Board: ";
         cin>>input;
     } while(input!=1);
-    
+    prntPlyr(plyr1);
     cout<<"------------------------------------------------------------"<<endl;
-    prntPlyr(plyr1); 
-    
-    //Display player 2 board to the screen
-    do {
+    //Create player2
+    plyr2=newPlyr(p2Name);      //Create player2
+    board2=newBrd(cards,2);     //Create a random board for player2   
+    plyr2->board=board2;        //Assign board to player2
+    plyrFil(plyr2);             //Create new file to save player2 data to 
+    do {                        //Display player 2 board to the screen
         cout<<"Press 2 to View Player 2's Board: ";
         cin>>input;
     } while(input!=2);
-    cout<<"------------------------------------------------------------"<<endl;
     prntPlyr(plyr2);
       
-    //Game continue while deck is not empty, players still have tokens,and no win
+    //Game continue while deck is not empty, tokens still available,and no win
     while(!deck.cards.empty()&&gamTkns>0) {
         numRnds++;
-        cout<<"Round "<<numRnds<<": "<<endl;
-        cout<<"Number of tokens Remaining: "<<gamTkns<<endl;
-        cout<<"Press 1 to Pull a Card From the Deck: ";
-        cin>>input;
+        cout<<"------------------------------------------------------------"<<endl;
+        cout<<"ROUND "<<numRnds<<": "<<endl;
+        cout<<"Number of Tokens Remaining: "<<gamTkns<<endl<<endl;
+        do {
+            cout<<"Press 1 to Pull a Card From the Deck: ";
+            cin>>input;
+        }while(input!=1);
+        
         if(input==1) {
             //Caller pulls a card from the deck     
             topCrd=deck.cards.front();
@@ -221,24 +226,21 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-bool openFil(fstream &file,string name) {
-    //Open file for input
-    file.open(name,ios::in);
-    
-    if(file.fail()) {
-        return false;
-    } else
-        return true;
-}
+char* strToC(string str) {
+    char *cStr=new char[str.length()+1];
+    int index=0;
 
-string* filToAr(fstream &file) {
-    string *items=new string[NUMELMS];
-    string line;
-    for(int i=0;i<NUMELMS;i++) {
-        getline(file,line,'\n');
-        *(items+i)=line;
+    for(int index=0;index<str.length();index++){
+      cStr[index]=str[index];              //Copy string to cstring
     }
-    return items;
+    cStr[str.length()]='\0';              //Append null character to cstring
+    
+//    while(cStr[index]!='\0') {              //Print out cstring
+//      cout<<cStr[index];
+//      index++;
+//    }
+    
+    return cStr;
 }
 
 Image* newImg(string name,string riddle) {
@@ -247,11 +249,6 @@ Image* newImg(string name,string riddle) {
     img->name=name;
     img->riddle=riddle;
     return img;
-}
-
-void prntImg(const Image *img) {
-    cout<<"Name: "<<img->name<<endl;
-    cout<<"Riddle: "<<img->riddle<<endl;
 }
 
 Image** newImgs(string* names,string* riddles) {
@@ -273,7 +270,193 @@ Card* newCrd(Image *img,int num) {
     return card;
 }
 
-void prntCrd(const Card c) { 
+Card** newCrds(Image **imgs) {
+    Card **cards=nullptr;
+    
+    cards=new Card*[NUMELMS];
+    for(int i=0;i<NUMELMS;i++) {
+        *(cards+i)=newCrd(*(imgs+i),i);
+    }
+    
+    return cards;
+}
+
+void crtDck(Deck &d,Card **cards) {
+    d.maxSize=NUMELMS;
+    for(int i=0;i<d.maxSize;i++) {
+        Card card=*(*(cards+i));
+        d.cards.push_back(card);
+    }
+}
+
+Player* newPlyr(string name) {
+    Player* player=new Player;
+    player->name=name;
+    player->plyrTkn=0;  //starts at 0 before game
+    return player;
+}
+
+int setTkns(int pattern) {
+    int numTkns,
+        minTk=2*ROWS,             //Minimum amount of tokens for non-full pattern
+        maxTk=2*ROWS*COLS-ROWS,
+        minTkFu=ROWS*COLS,
+        maxTkFu=2*ROWS*COLS;        //Use only when pattern set to full
+    cout<<"------------------------------------------------------------"<<endl;
+    cout<<"SET THE NUMBER OF TOKENS\nTokens are Shared Among Players.\n";
+    do {
+        if(pattern!=1) { //win pattern not set to FULL (min tokens 2*ROWS or 2*COLS
+            cout<<"Enter Number of tokens("<<minTk<<" to "<<maxTk<<"): ";
+            cin>>numTkns;
+        } else {        //win pattern not set to FULL(needs 2*ROWS*COLS tokens)
+            cout<<"Enter Number of tokens("<<minTkFu<<" to "<<maxTkFu<<"): ";
+            cin>>numTkns;
+        }
+    }while(((numTkns<minTk||numTkns>maxTk)&&pattern!=1)||((numTkns<minTkFu||numTkns>maxTkFu)&&pattern==1));
+    cout<<"------------------------------------------------------------"<<endl;
+    return numTkns;
+}
+
+void shufDck(Deck &d) {
+    Deck shufDck;
+    int rndIndx;
+    int option;
+    
+    do {
+        cout<<"Press 1 to Shuffle The Deck of Cards: ";
+        cin>>option;
+    } while(option!=1);
+    cout<<"------------------------------------------------------------"<<endl;
+    
+    while(!d.cards.empty()) {
+        srand(time(NULL));
+        rndIndx=rand()%d.cards.size();  //generate random index
+        shufDck.cards.push_back(d.cards[rndIndx]);  //push to card at random index
+                                                    //to shuffled deck
+        d.cards.erase(d.cards.begin()+rndIndx);     //remove card from original deck
+    }
+    
+    d=shufDck;      //deck is passed by reference
+}
+
+vector<int> rndCrds() {
+    vector<int> crdNums(NUMELMS);   //vector to hold card numbers
+
+    iota(crdNums.begin(),crdNums.end(),0);  //fill the range with values 0-54
+    
+    random_device rd;   //uniform random number generator
+    mt19937 g(rd());    //needed for the shuffle function
+    shuffle(crdNums.begin(),crdNums.end(),g);   //randomly rearrange the elements in the range 
+    
+    return crdNums;
+}
+
+Board* newBrd(Card **cards,int num) {
+    int index;
+    Board *b=new Board;
+    vector<int> v;      //vector of random card numbers
+    
+    b->brdNum=num;
+    v=rndCrds();    //random card numbers to be used to make random board
+
+    index=0;
+    for(int r=0;r<ROWS;r++) {
+        for(int c=0;c<COLS;c++) {
+            //De-reference pointer to pointer to get card to be placed in board
+            b->board[r][c]=*(*(cards+v[index]));
+            //Set the found flag of the card on the board to false
+            b->board[r][c].found=false;
+            index++;   //Index 0-15
+        }
+    }    
+    return b;
+}
+
+void chkBrd(string riddle,Player *p,int &gamTkns) {
+    bool ezRiddle;        //Set to true if "easy riddle", the word is in the riddle
+    //string word;          //Set word that matches from word array
+    
+    //ezRiddle=
+    ezRiddle=chkEzRid(riddle);
+                //Check the riddle has the name from our names array - flag, 
+            //Use c-string tokenizer to tokenize the riddle get word
+    for(int r=0;r<ROWS;r++) {
+        for(int c=0;c<COLS;c++) {
+            if(ezRiddle) {
+                
+            } else {
+                
+            }
+            //If ezString
+                //check board for the word
+            //Else if not
+                //Check with riddle
+            if(p->board->board[r][c].img->riddle==riddle) {
+                cout<<p->name<<" found a match at "<<r+1<<", "<<c+1<<"."<<endl; 
+                p->board->board[r][c].found=true;   //set found to true
+                p->plyrTkn++;   //Increment number of tokens used by player
+                gamTkns--;     //Decrement number of tokens available for game 
+            }
+        }
+    }
+}
+
+bool chkEzRid(string ridStr) {
+    char *ridCstr=strToC(ridStr);       //Returns pointer to string conv 2 cstring
+    int index=0;
+    char *wordPtr=strtok(ridCstr," ");  //Returns pointer to first word in riddle
+    vector<char*> wrdPtrs;              //Vector of char array pointers
+   
+    while(wordPtr!=nullptr) {
+        wrdPtrs.push_back(wordPtr);
+        wordPtr=strtok(nullptr," ");
+    }
+    
+//    while(ridCstr[index]!='\0') {     //Print out cstring
+//      cout<<ridCstr[index]<<endl;
+//      index++;
+//    }
+    
+    for(int i=0;i<wrdPtrs.size();i++) { //Print out tokens
+        cout<<wrdPtrs[i]<<endl;
+    }
+    
+    
+    //go through names array and check if any matches a word in vector
+//    
+//    for(int i=0;i<wrdPtrs.size();i++) {
+//        
+//    }
+    
+    return true;
+}
+
+bool openFil(fstream &file,string name) {
+    //Open file for input
+    file.open(name,ios::in);
+    
+    if(file.fail()) {
+        return false;
+    } else
+        return true;
+}
+
+string* filToAr(fstream &file) {
+    string *items=new string[NUMELMS];
+    string line;
+    for(int i=0;i<NUMELMS;i++) {
+        getline(file,line,'\n');
+        *(items+i)=line;
+    }
+    return items;
+}
+
+void prntImg(const Image *img) {
+    cout<<"Name: "<<img->name<<endl;
+    cout<<"Riddle: "<<img->riddle<<endl;
+}
+
+void prntCrd(const Card c) {
     //Print out top border of the card
     for(int i=0;i<14;i++) {
         cout<<"_";
@@ -302,25 +485,6 @@ void prntCrd(const Card c) {
     }
     cout<<endl;
     cout<<endl<<"Riddle: "<<c.img->riddle<<endl<<endl;
-}
-
-Card** newCrds(Image **imgs) {
-    Card **cards=nullptr;
-    
-    cards=new Card*[NUMELMS];
-    for(int i=0;i<NUMELMS;i++) {
-        *(cards+i)=newCrd(*(imgs+i),i);
-    }
-    
-    return cards;
-}
-
-void crtDck(Deck &d,Card **cards) {
-    d.maxSize=NUMELMS;
-    for(int i=0;i<d.maxSize;i++) {
-        Card card=*(*(cards+i));
-        d.cards.push_back(card);
-    }
 }
 
 void prntDck(const Deck& d) {
@@ -376,18 +540,10 @@ void prntBrd(const Board *b) {
             }
         }
     cout<<endl;
-
-}
-
-Player* newPlyr(string name) {
-    Player* player=new Player;
-    player->name=name;
-    player->plyrTkn=0;  //starts at 0 before game
-    return player;
 }
 
 void prntPlyr(Player *p) {
-    cout<<"Player Name: "<<p->name<<endl;
+    cout<<"\nPlayer Name: "<<p->name<<endl;
     cout<<"Number of Tokens to Win: "<<p->plyrTkn<<endl;
     prntBrd(p->board);
 }
@@ -452,9 +608,10 @@ void brd2Fil(const Board *b,ofstream &file) {
 }
 
 int winPtrn() {
-    int option; 
-    cout<<"Set the Pattern Needed to Win\n";
-    cout<<"Options: #1=Full, #2=Row, #3=Column, #4=Diagonals\n";
+    int option;
+    cout<<"------------------------------------------------------------"<<endl;
+    cout<<"SET THE WINNING PATTERN\n";
+    cout<<"Options: #1=Full, #2=Row, #3=Column, #4=Diagonals\n\n";
     do{
         cout<<"Enter Pattern #: ";
         cin>>option;
@@ -523,91 +680,8 @@ int winPtrn() {
     return option;
 }
 
-int setTkns(int pattern) {
-    int numTkns;
-    cout<<"Set the Number of tokens for This Game. They are Shared Among Players.\n";
-    do {
-        if(pattern!=1) { //win pattern not set to FULL(needs 16 tokens)
-            cout<<"Enter Number of tokens(16 to 50): ";
-            cin>>numTkns;
-        } else {
-            cout<<"Enter Number of tokens(32 to 50): ";
-            cin>>numTkns;
-        }
-    }while(((numTkns<16||numTkns>50)&&pattern!=1)||((numTkns<32||numTkns>50)&&pattern==1));
-    
-    cout<<endl;
-    return numTkns;
-}
-
-void shufDck(Deck &d) {
-    Deck shufDck;
-    int rndIndx;
-    int option;
-    
-    do {
-        cout<<"Press 1 to Shuffle The Deck of Cards: ";
-        cin>>option;
-    } while(option!=1);
-    
-    while(!d.cards.empty()) {
-        srand(time(NULL));
-        rndIndx=rand()%d.cards.size();  //generate random index
-        shufDck.cards.push_back(d.cards[rndIndx]);  //push to card at random index
-                                                    //to shuffled deck
-        d.cards.erase(d.cards.begin()+rndIndx);     //remove card from original deck
-    }
-    
-    d=shufDck;      //deck is passed by reference
-}
-
-vector<int> rndCrds() {
-    vector<int> crdNums(NUMELMS);   //vector to hold card numbers
-
-    iota(crdNums.begin(),crdNums.end(),0);  //fill the range with values 0-54
-    
-    random_device rd;   //uniform random number generator
-    mt19937 g(rd());    //needed for the shuffle function
-    shuffle(crdNums.begin(),crdNums.end(),g);   //randomly rearrange the elements in the range 
-    
-    return crdNums;
-}
-
-Board* newBrd(Card **cards,int num) {
-    int index;
-    Board *b=new Board;
-    vector<int> v;      //vector of random card numbers
-    
-    b->brdNum=num;
-    v=rndCrds();    //random card numbers to be used to make random board
-
-    index=0;
-    for(int r=0;r<ROWS;r++) {
-        for(int c=0;c<COLS;c++) {
-            //De-reference pointer to pointer to get card to be placed in board
-            b->board[r][c]=*(*(cards+v[index]));
-            //Set the found flag of the card on the board to false
-            b->board[r][c].found=false;
-            index++;   //Index 0-15
-        }
-    }    
-    return b;
-}
-
-void chkBrd(string riddle,Player *p,int &gamTkns) {
-    for(int r=0;r<ROWS;r++) {
-        for(int c=0;c<COLS;c++) {
-            if(p->board->board[r][c].img->riddle==riddle) {
-                cout<<p->name<<" found a match at "<<r+1<<", "<<c+1<<"."<<endl; 
-                p->board->board[r][c].found=true;   //set found to true
-                p->plyrTkn++;   //Increment number of tokens used by player
-                gamTkns--;     //Decrement number of tokens available for game 
-            }
-        }
-    }
-}
-
 void dispBrd(const Player *p) {
+    cout<<p->name<<endl;
     for(int r=0;r<ROWS;r++) {
         for(int c=0;c<COLS;c++) {
             if(p->board->board[r][c].found==true) {

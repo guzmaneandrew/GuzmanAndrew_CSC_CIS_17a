@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: November 1, 2022 @ 10:00 AM
- * Purpose: v6: Implementation of game logic for a 2 player game.
+ * Purpose: v6: Implement game logic for 2 computer players
  */
 
 //System Libraries
@@ -31,7 +31,7 @@ struct Image {
 
 struct Card { 
     int num;        //Number displayed on card
-    int xIndex;     //X Index in the board
+    int xIndex;      //X Index in the board
     int yIndex;     //Y Index in the board 
     bool found;     //Flag to mark if card is found on board
     Image* img;     //Pointer to image in card structure
@@ -49,7 +49,7 @@ struct Board {
 
 struct Player {
     string name;    //Name of the player
-    int plyrTkn;    //Number of tokens player used before winning
+    int tokens;     //Number of tokens
     Board* board;   //Pointer to a board in player structure
 };
 
@@ -67,13 +67,13 @@ void shufDck(Deck &);           //Shuffles deck of cards
 vector<int> rndCrds();          //Generates 16 random card numbers for board
 Board* newBrd(Card **,int);     //Creates a random board
 void prntBrd(const Board *);    //Prints a board
-Player* newPlyr(string);    //Creates 1 player
+Player* newPlyr(string,int);    //Creates 1 player
 void prntPlyr(Player *);        //Displays player game data to the screen
 void brd2Fil(const Board *,ofstream &); //Prints a board to a file
 ofstream plyrFil(Player*);      //Create new file to save player game data to
 int winPtrn();                  //Sets winning pattern for the game
-int setTkns(int);                  //Set the number of tokens to give each players
-void chkBrd(string,Player *,int &); //Checks board and updates if match found
+int setTkns(int);               //Set the number of tokens to give each players
+void chkBrd(string,Player *,ofstream &); //Checks board and updates if match found
 void dispBrd(const Player *);    //Display player's mini boards on screen
 
 //Program Execution Begins Here!!!
@@ -89,20 +89,16 @@ int main(int argc, char** argv) {
     Card **cards,           //Pointers to pointers to cards
         topCrd;             //Card pulled from top of the deck
     Deck deck;              //Deck of cards
-    int input,              //Input for user
-        pattern,            //Winning pattern set
-        gamTkns,             //Number of tokens available for the game
-        numRnds;            //Number of rounds in game
+    int input, pattern;     //Input for user
+    int tokens;             //Number of tokens given to each player
         
     //Initial Variables
-    char game[]="LOTERÍA";  //Store  of game in c-string
     p1Name="Player1";
     p2Name="Player2";
     string *riddles,  //String array used to create images
            *names;    //String array used create images and cards
     Board *board1=nullptr,*board2=nullptr;  //Pointers to boards
     Player *plyr1=nullptr,*plyr2=nullptr;   //Pointers to players
-    numRnds=0;
     
 //Set up for the game
     //Get names from cardNames.txt file and save to names array   
@@ -131,24 +127,23 @@ int main(int argc, char** argv) {
     crtDck(deck,cards);
              
 //Game Begins
-    //Display game title
-    int index=0;
-    while(game[index]!='\0') {
-        cout<<game[index];
-        index++;
-    }
-    cout<<endl;
-    
-    //Display game prompt
-    cout<<"This is a game of Lotería with 2 computer players and 1 caller.\n"
-          "You are the caller of this game.\n"<<endl;
+    //Game Prompt
+    cout<<"LOTERÍA GAME\n"<<endl;
+    cout<<"This is a game of Lotería with 2 computer players and 1 caller.\n\n"
+        "You are the caller of this game. You will set the winning pattern for\n"
+        "the game and the number of tokens each player gets(up to 16).\n\n"
+        "You will shuffle the deck of cards and call out cards one-by-one.\n"
+        "Instead of calling out the name on the card, you will call out a riddle.\n"
+        "The players solve the riddle and search their boards for the matching image.\n\n"
+        "The goal is to be the first to fill the winning pattern on the board \n"
+        "before running out of tokens.\n"<<endl;
     
     //User sets the winning pattern
     pattern=winPtrn();
     
     //User sets the number of tokens for each player to use
     //pass in pattern because number depends on what pattern is set
-    gamTkns=setTkns(pattern);
+    tokens=setTkns(pattern);
     
     //User shuffles the deck of cards
     shufDck(deck);
@@ -156,14 +151,14 @@ int main(int argc, char** argv) {
 //    prntDck(deck);
     
     //Create player 1, with it's own random board
-    plyr1=newPlyr(p1Name);
+    plyr1=newPlyr(p1Name,tokens);
     board1=newBrd(cards,1);
     plyr1->board=board1;
     //Create new file to save player 1 data to
     p1File=plyrFil(plyr1);
     
     //Create player 2, with it's own random board
-    plyr2=newPlyr(p2Name);
+    plyr2=newPlyr(p2Name,tokens);
     board2=newBrd(cards,2);
     plyr2->board=board2;
     //Create new file to save player 1 data to
@@ -187,10 +182,7 @@ int main(int argc, char** argv) {
     prntPlyr(plyr2);
       
     //Game continue while deck is not empty, players still have tokens,and no win
-    while(!deck.cards.empty()&&gamTkns>0) {
-        numRnds++;
-        cout<<"Round "<<numRnds<<": "<<endl;
-        cout<<"Number of tokens Remaining: "<<gamTkns<<endl;
+    while(!deck.cards.empty()&&plyr1->tokens>0&&plyr2->tokens>0) {
         cout<<"Press 1 to Pull a Card From the Deck: ";
         cin>>input;
         if(input==1) {
@@ -199,8 +191,8 @@ int main(int argc, char** argv) {
             //Display pulled card and corresponding riddle on the screen
             prntCrd(topCrd);
             //Send the cards riddle to the computer players to check their boards
-            chkBrd(topCrd.img->riddle,plyr1,gamTkns);
-            chkBrd(topCrd.img->riddle,plyr2,gamTkns);
+            chkBrd(topCrd.img->riddle,plyr1,p1File);
+            chkBrd(topCrd.img->riddle,plyr2,p2File);
             //Display mini board pattern on screen
             dispBrd(plyr1);
             dispBrd(plyr2);
@@ -209,8 +201,6 @@ int main(int argc, char** argv) {
         }
     }
    
-    prntPlyr(plyr1);
-    prntPlyr(plyr2);
     //Clean up the dynamic stuff
     delete plyr1;
     delete plyr2;
@@ -238,6 +228,7 @@ string* filToAr(fstream &file) {
         getline(file,line,'\n');
         *(items+i)=line;
     }
+    
     return items;
 }
 
@@ -350,14 +341,36 @@ void prntBrd(const Board *b) {
         cout<<endl;
 
         //Print out rows 2-7 containing stars in place of images
-        for(int n=0;n<4;n++) {
-            for(int i=0;i<4;i++) {
-                cout<<setw(4)<<left<<" "
-                <<setw(6)<<"------"
-                <<setw(4)<<left<<" "
-                <<"|";
-            } cout<<endl;
-        }
+        for(int i=0;i<4;i++) {
+            cout<<setw(4)<<left<<" "
+            <<setw(6)<<"------"
+            <<setw(4)<<left<<" "
+            <<"|";
+        } cout<<endl;
+        for(int i=0;i<4;i++) {
+            cout<<setw(4)<<left<<" "
+            <<setw(6)<<"------"
+            <<setw(4)<<left<<" "
+            <<"|";
+        } cout<<endl;
+        for(int i=0;i<4;i++) {
+            cout<<setw(4)<<left<<" "
+            <<setw(6)<<"------"
+            <<setw(4)<<left<<" "
+            <<"|";
+        } cout<<endl;
+        for(int i=0;i<4;i++) {
+            cout<<setw(4)<<left<<" "
+            <<setw(6)<<"------"
+            <<setw(4)<<left<<" "
+            <<"|";
+        } cout<<endl;
+        for(int i=0;i<4;i++) {
+            cout<<setw(4)<<left<<" "
+            <<setw(6)<<"------"
+            <<setw(4)<<left<<" "
+            <<"|";
+        } cout<<endl;
 
         //Print out blank row 9
         for(int i=0;i<4;i++) {
@@ -368,6 +381,9 @@ void prntBrd(const Board *b) {
     //Print out bottom border of board
         for(int i=0;i<brdWdth;i++) cout<<"_";
         cout<<endl;
+    
+    
+    //Goal was to print the name on the cards in the board
     //Print the card names and numbers underneath the board
         for(int r=0;r<ROWS;r++) {
             for(int c=0;c<COLS;c++) {
@@ -379,16 +395,16 @@ void prntBrd(const Board *b) {
 
 }
 
-Player* newPlyr(string name) {
+Player* newPlyr(string name,int tokens) {
     Player* player=new Player;
     player->name=name;
-    player->plyrTkn=0;  //starts at 0 before game
+    player->tokens=tokens;
+    
     return player;
 }
 
 void prntPlyr(Player *p) {
     cout<<"Player Name: "<<p->name<<endl;
-    cout<<"Number of Tokens to Win: "<<p->plyrTkn<<endl;
     prntBrd(p->board);
 }
 
@@ -397,9 +413,11 @@ ofstream plyrFil(Player* p) {
     string filName;
     
     filName="data"+p->name+".txt";
+
     // Open the file in output mode.
     dataFile.open(filName, ios::out);
     dataFile<<"Player Name: "<<p->name<<endl;
+    dataFile<<"Number of Beans: "<<p->tokens<<endl;
     brd2Fil(p->board,dataFile);
     dataFile.close();						
     
@@ -407,8 +425,9 @@ ofstream plyrFil(Player* p) {
 }
 
 void brd2Fil(const Board *b,ofstream &file) {
-    //Set width to 60 variable for width
+        //Set width to 60 variable for width
     int brdWdth=60;
+    
     file<<endl;
     file<<"LOTERIA"<<setw(brdWdth-8)<<"BOARD "<<b->brdNum<<endl;
     for(int j=0;j<4;j++) {
@@ -421,6 +440,7 @@ void brd2Fil(const Board *b,ofstream &file) {
                 <<setw(1)<<right<<"|";       
         }
         file<<endl;
+
         //Print out rows 2-7 containing stars in place of images
         for(int n=0;n<6;n++) {  //5 rows
             for(int i=0;i<4;i++) {
@@ -430,6 +450,8 @@ void brd2Fil(const Board *b,ofstream &file) {
                 <<"|";
             } file<<endl;         
         }
+
+
         //Print out blank row 9
         for(int i=0;i<4;i++) {
             file<<setw(15)<<right<<"|";
@@ -439,7 +461,8 @@ void brd2Fil(const Board *b,ofstream &file) {
     //Print out bottom border of board
         for(int i=0;i<brdWdth;i++) file<<"_";
         file<<endl;
-
+    
+    
     //Goal is to print the name on the board
     //Temporarily print the card names and numbers underneath the board
         for(int r=0;r<ROWS;r++) {
@@ -449,16 +472,20 @@ void brd2Fil(const Board *b,ofstream &file) {
             }
         }
     file<<endl;
+
 }
 
 int winPtrn() {
-    int option; 
+    int option;
+    
     cout<<"Set the Pattern Needed to Win\n";
     cout<<"Options: #1=Full, #2=Row, #3=Column, #4=Diagonals\n";
+    
     do{
         cout<<"Enter Pattern #: ";
         cin>>option;
     } while(option!=1&&option!=2&&option!=3&&option!=4);
+    
     cout<<"Players Must Match One of The Following Patterns to Win:\n";
     
     switch(option) {
@@ -519,22 +546,24 @@ int winPtrn() {
           }
           break;
       }
+    
     cout<<endl;
     return option;
 }
 
 int setTkns(int pattern) {
     int numTkns;
-    cout<<"Set the Number of tokens for This Game. They are Shared Among Players.\n";
+    
     do {
         if(pattern!=1) { //win pattern not set to FULL(needs 16 tokens)
-            cout<<"Enter Number of tokens(16 to 50): ";
-            cin>>numTkns;
+        cout<<"Give Each Player Up To 16 Tokens to Play With\n"
+              "Enter Number of Tokens: ";
+        cin>>numTkns;
         } else {
-            cout<<"Enter Number of tokens(32 to 50): ";
-            cin>>numTkns;
+            cout<<"Since You Picked Full, Each Player Gets 16 Tokens.\n";
+            numTkns=16;
         }
-    }while(((numTkns<16||numTkns>50)&&pattern!=1)||((numTkns<32||numTkns>50)&&pattern==1));
+    }while(numTkns>16);
     
     cout<<endl;
     return numTkns;
@@ -546,7 +575,7 @@ void shufDck(Deck &d) {
     int option;
     
     do {
-        cout<<"Press 1 to Shuffle The Deck of Cards: ";
+        cout<<"To Begin the Game Press 1 to Shuffle The Deck of Cards: ";
         cin>>option;
     } while(option!=1);
     
@@ -594,20 +623,20 @@ Board* newBrd(Card **cards,int num) {
     return b;
 }
 
-void chkBrd(string riddle,Player *p,int &gamTkns) {
+void chkBrd(string riddle,Player *p, ofstream &file) {
     for(int r=0;r<ROWS;r++) {
         for(int c=0;c<COLS;c++) {
             if(p->board->board[r][c].img->riddle==riddle) {
                 cout<<p->name<<" found a match at "<<r+1<<", "<<c+1<<"."<<endl; 
                 p->board->board[r][c].found=true;   //set found to true
-                p->plyrTkn++;   //Increment number of tokens used by player
-                gamTkns--;     //Decrement number of tokens available for game 
+                p->tokens--;    //decrement number of tokens player has left     
             }
         }
     }
 }
 
 void dispBrd(const Player *p) {
+    cout<<p->name<<" ("<<p->tokens<<" Tokens Remaining)"<<endl;
     for(int r=0;r<ROWS;r++) {
         for(int c=0;c<COLS;c++) {
             if(p->board->board[r][c].found==true) {
