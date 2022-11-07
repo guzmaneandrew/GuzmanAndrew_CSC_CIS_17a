@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Mode
+PROJECTNAME=0_ReadWriteClassToBinaryFile
 
 # Active Configuration
 DEFAULTCONF=Debug
