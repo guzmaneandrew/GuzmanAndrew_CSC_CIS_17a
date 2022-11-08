@@ -2,8 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: October 24, 2022 @ 1:15 PM
- * Purpose: Card Elements: Create functions to get/set suits, face values, and 
- * numerical values
+ * Purpose: Card Elements: Create class for card
  */
 
 //System Libraries
@@ -12,6 +11,7 @@
 using namespace std;
 
 //User Libraries
+#include "Card.h"
 
 //Global Constants
 //Physics/Chemistry/Math/Conversion Higher Dimension Only
@@ -19,9 +19,6 @@ using namespace std;
 //Structure Definitions
 
 //Function Prototypes
-char fVal(int); //Face value
-char sVal(int); //Suit value
-int nVal(int); //Numerical value
 
 //Program Execution Begins Here!!!
 
@@ -32,8 +29,10 @@ int main(int argc, char** argv) {
 
     //Initial Variables
     for(int i=0;i<52;i++) {
-        cout<<"Card "<<setw(2)<<i+1<<": "<<fVal(i)<<sVal(i)<<" ";
-        cout<<"Card Count Value= "<<nVal(i)<<endl; 
+        Card card;
+        card.setNum(i);
+        cout<<"Card "<<setw(2)<<i+1<<": "<<card.fVal()<<card.sVal()<<" ";
+        cout<<"Card Count Value= "<<card.nVal()<<endl; 
     }
 
     //Map the Inputs to the Outputs
@@ -44,19 +43,4 @@ int main(int argc, char** argv) {
 
     //Exit the code
     return 0;
-}
-
-char fVal(int i) {
-    char faceVal[]={'A','2','3','4','5','6','7','8','9','10','J','Q','K'};
-    return faceVal[i%13];
-}
-
-char sVal(int i) {
-    char suits[]={'S','D','C','H'};
-    return suits[i/13];
-}
-
-int nVal(int i) {
-    int val=i%13+1;
-    return val>10?10:val;
 }
