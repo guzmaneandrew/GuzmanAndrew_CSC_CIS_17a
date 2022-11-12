@@ -34,10 +34,10 @@ int main(int argc, char** argv) {
     const int numCrds=52;
     Card cards[numCrds];    //Created an array of card elements
     const int nHand=5;      //number of cards in a hand
-    Card hand[nHand];   
+    Card hand[nHand];       //Created an array of cards in hand
 
     //Initial Variables
-    //Set each of the card elements and print
+    //Set each of the card elements in original array/deck and print
     cout<<"The Original Deck of Cards"<<endl<<endl;
     for(int i=0;i<52;i++) {
         cards[i].setNum(i+1);
@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
         cout<<"Card Count Value= "<<cards[i].nVal()<<endl; 
     }
     
-    //Shuffle the array of card elements
+    //Shuffle the deck/array of card elements
     shuffle(cards,numCrds);
     //Print shuffled cards
     cout<<"The Shuffled Deck of Cards"<<endl<<endl;
@@ -54,8 +54,17 @@ int main(int argc, char** argv) {
         cout<<"Card Count Value= "<<cards[i].nVal()<<endl; 
     }
     
-    //Deal cards
+    //Deal cards twice
     int nDealt=0;
+    deal(cards,numCrds,hand,nHand,nDealt);
+    //Print dealt cards
+    cout<<"The Hand Dealt from Shuffled Deck "<<nDealt<<endl;
+    cout<<"Number Dealt = "<<nDealt<<endl;
+    for(int i=0;i<nHand;i++) {
+        cout<<"Card "<<setw(2)<<i+1<<": "<<hand[i].fVal()<<hand[i].sVal()<<" ";
+        cout<<"Card Count Value= "<<hand[i].nVal()<<endl; 
+    }
+    
     deal(cards,numCrds,hand,nHand,nDealt);
     //Print dealt cards
     cout<<"The Hand Dealt from Shuffled Deck "<<nDealt<<endl;
