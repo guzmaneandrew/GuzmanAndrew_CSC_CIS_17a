@@ -18,28 +18,26 @@ using namespace std;
 
 class Card {
     private:
+        static int cardCnt; //Static variable count of card objects
         int num;       //Number displayed on card
+        Image* img;    //Card  HAS-A image
         int xIndx;     //X Index in the board
         int yIndx;     //Y Index in the board 
         bool found;    //Flag to mark if card is found on board
-        Image* img;    //Card  HAS-A image
-//        static int cardCnt; //Static variable count of card objects
     public:
+        Card();                         //Default Card constructor
         Card(int,Image *);              //Card constructor
+        void display();                 //Display Card data
         void setNum(int);               //Set card number
         void setXIdx(int);              //Set card X index
         void setYIdx(int);              //Set card Y index
         void setFnd(bool found) {this->found=found;}  //Set found flag
-        void display();                 //Display Card info
-//        int getCnt() const {return cardCnt;} //Get count of card objects
+        int getCnt() const {return cardCnt;} //Get count of card objects
         int getNum() {return num;}       //Get card number
         int getXIdx(){return xIndx;}     //Get card X index
         int getYIdx(){return yIndx;}     //Get card Y index
         bool getFnd(){return found;}     //Get value of found flag
 };
-
-//Define static variables outside of the claßss
-//int Card::cardCnt=0;
 
 #endif /* CARD_H */
 

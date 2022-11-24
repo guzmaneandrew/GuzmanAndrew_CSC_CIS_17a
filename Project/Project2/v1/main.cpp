@@ -21,11 +21,12 @@ const int NUMELMS=54;   //# of elements(lines in files,names,riddles,images,card
 //Structure Definitions
 
 //Function Prototypes
+void crtArr(fstream &,string,string *);     //Create arrays from file input
 bool openFil(fstream &,string);             //Opens a file for input
+void filToAr(fstream &,string *);           //Saves file contents to memory
 string* filToAr(fstream &);                 //Saves file contents to memory
 void freeMmr(Image **);                     //De-allocates memory
 void freeMmr(Card **);                      //De-allocates memory
-
 
 //Program Execution Begins Here!!!
 
@@ -34,59 +35,60 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
     
     //Declare Variables
-    fstream dataFile;                   //Input files
-    string *riddles=nullptr,            //Array of riddle strings for images
-           *names=nullptr;              //Array of names for images
+    fstream file;                       //Input file
+    string *names=new string[NUMELMS],  //Array of name strings for images
+           *riddles=new string[NUMELMS];//Array of riddle strings for images
+    Image **imgs=new Image*[NUMELMS];   //Array of Image objects
+    Card **cards=new Card*[NUMELMS];    //Array of Card objects
     
     //Initial Variables
-    //Get card names from cardNames.txt file and save to names array   
-    if(openFil(dataFile,"cardNames.txt")) {
-        names=filToAr(dataFile);    
-        dataFile.close();
-    } else {
-        cout<<"File open error!"<<endl;
-    }
-
-    //Get card riddles from cardRiddles.txt file and save to riddles array
-    if(openFil(dataFile,"cardRiddles.txt")) {
-        riddles=filToAr(dataFile);  
-        dataFile.close();
-    } else {
-        cout<<"File open error!"<<endl;
-    }
+    //Get card names and riddles from files and save to arrays 
+    crtArr(file,"cardNames.txt",names);
+    crtArr(file,"cardRiddles.txt",riddles);
 
     //Map the Inputs to the Outputs
-    //Create array of Image objects
-    Image **imgs=new Image*[NUMELMS];
+    //Fill array of Image objects
     for(int i=0;i<NUMELMS;i++) {
-        imgs[i]=new Image(riddles[i],names[i]); //Instantiate and initialize image
+        imgs[i]=new Image(riddles[i],names[i]); //Instantiate and initialize each image
     }
     
-    //Create array of Card objects
-    Card **cards=new Card*[NUMELMS];
+    //Fill array of Card objects
     for(int i=0;i<NUMELMS;i++) {
-        cards[i]=new Card(i+1,imgs[i]); //Instantiate and initialize image
+        cards[i]=new Card(i+1,imgs[i]); //Instantiate and initialize each card
     }
 
     //Display the Inputs and Outputs
+    //Print out contents of arrays and static variables
     cout<<"Contents of Images Array"<<endl;
     for(int i=0;i<NUMELMS;i++) {
         imgs[i]->display();
         cout<<endl;
     }
-    
     cout<<endl<<"Contents of Cards Array"<<endl;
     for(int i=0;i<NUMELMS;i++) {
         cards[i]->display();
         cout<<endl;
     }
+    cout<<"Total Number of Images: "<<imgs[0]->getCnt()<<endl;
+    cout<<"Total Number of Cards: "<<cards[0]->getCnt()<<endl;
 
     //Clean up the dynamic stuff
+    delete []riddles;
+    delete []names;
     freeMmr(imgs);
     freeMmr(cards);
 
     //Exit the code
     return 0;
+}
+
+void crtArr(fstream &file,string filName,string *array) {
+    if(openFil(file,filName)) {
+        filToAr(file,array);
+        file.close();
+    } else {
+        cout<<"File open error!"<<endl;
+    } 
 }
 
 bool openFil(fstream &file,string name) {
@@ -98,14 +100,12 @@ bool openFil(fstream &file,string name) {
         return true;
 }
 
-string* filToAr(fstream &file) {
-    string *items=new string[NUMELMS];
+void filToAr(fstream &file,string *array) {
     string line;
     for(int i=0;i<NUMELMS;i++) {
         getline(file,line,'\n');    //Get a line from text file
-        *(items+i)=line;            //Add line to array of strings
+        *(array+i)=line;            //Add line to array of strings
     }
-    return items;
 }
 
 void freeMmr(Image **imgs) {
