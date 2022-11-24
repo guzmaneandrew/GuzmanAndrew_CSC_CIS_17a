@@ -9,8 +9,13 @@
 #include "Image.h"
 using namespace std;
 
-void Image::create(string riddle,string name) {
+Image::Image(string riddle,string name) {
     this->setRddl(riddle);
     this->setName(name);
 //    imgCnt++;     //Increment static variable count of Image objects
+}
+
+void Image::display() {
+    cout<<this->getRddl()<<endl;
+    cout<<this->getName()<<endl;
 }

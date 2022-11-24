@@ -6,8 +6,7 @@
 /* 
  * File:   Card.h
  * Author: andrewguzman
- * Purpose: Card Class Specification: no constructor used
- * so I can create an array of Card objects
+ * Purpose: Card Class Specification
  * Created on November 22, 2022, 8:33 PM
  */
 
@@ -26,7 +25,7 @@ class Card {
         Image* img;    //Card  HAS-A image
 //        static int cardCnt; //Static variable count of card objects
     public:
-        void create(int,Image *);      //Create new card
+        Card(int,Image *);              //Card constructor
         void setNum(int);               //Set card number
         void setXIdx(int);              //Set card X index
         void setYIdx(int);              //Set card Y index

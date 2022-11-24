@@ -22,10 +22,11 @@ class Image {
         string name;
 //        static int imgCnt;     //Static variable count of Image objects
     public:
-        void create(string,string);                 //Create Image object
+        Image(string,string);                       //Image Constructor
         void setRddl(string riddle){this->riddle=riddle;} //Set Image object riddle
         void setName(string name){this->name=name;} //Set Image object name
 //        int getCnt() const {return imgCnt;}       //Get count of Image objects
+        void display();                           //Display Image riddle and name
         string getRddl() {return riddle;}           //Get riddle
         string getName() {return name;}             //Get name
 };
