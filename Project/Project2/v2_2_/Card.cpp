@@ -1,18 +1,16 @@
 /*
  * Card Class Implementation
  */
-#include <iostream>
-using namespace std;
 
-#include "Constants.h"
+#include <iostream>
 #include "Card.h"
-#include "Board.h"
+#include "Image.h"
 
 //Define static variables outside of the class
 int Card::cardCnt=0;
 
 Card::Card() {
-    cardCnt++;      
+    cardCnt++;
     num=0;
     img=nullptr;
     xIndx=0;
@@ -23,22 +21,15 @@ Card::Card() {
 Card::Card(int num,Image* img) {
     cardCnt++;        //Increment static variable count of Card objects
     this->num=num;
-    this->img=new Image;
-    this->img->setRddl(img->getRddl());
-    this->img->setName(img->getName());
+    this->img=new Image(img->getRddl(),img->getName());
     this->found=false;
-}
-
-Card::Card(int x,int y) {
-    cardCnt++;
-    xIndx=x;
-    yIndx=y;
 }
 
 Card::Card(Card *crdPtr) {
     cardCnt++;
     num=crdPtr->num;
-    this->img=new Image(crdPtr->img->getRddl(),crdPtr->img->getName());
+    img=crdPtr->getImg();
+//    this->img=new Image(crdPtr->img->getRddl(),crdPtr->img->getName());
 //    this->img=new Image;
 //    this->img->setRddl(crdPtr->img->getRddl());
 //    this->img->setName(crdPtr->img->getName());
@@ -50,18 +41,20 @@ Card::Card(Card *crdPtr) {
 Card::Card(const Card &obj) {
     cardCnt++;
     num=obj.num;
-//    this->img=new Image(obj.img->getRddl(),obj.img->getName());
-    this->img=new Image;
-    this->img->setRddl(obj.img->getRddl());
-    this->img->setName(obj.img->getName());
+    img=new Image(obj.img->getRddl(),obj.img->getName());
+//    this->img=new Image;
+//    this->img->setRddl(obj.img->getRddl());
+//    this->img->setName(obj.img->getName());
     xIndx=obj.xIndx;
     yIndx=obj.yIndx;
     found=obj.found;
 }
 
-//Card::~Card() { 
-//    delete []img;
-//}
+Card::~Card() {
+    cardCnt--;
+    delete img;
+    img=nullptr;
+}
 
 void Card::display() {
     cout<<"Name: "<<img->getName()<<endl;
@@ -76,6 +69,10 @@ void Card::setNum(int num) {
         cout<<"Invalid card number."<<endl;
         exit(EXIT_FAILURE);
     }
+}
+
+void Card::setImg(Image *img) {
+    this->img=new Image(img);
 }
 
 void Card::setXIdx(int x) {
@@ -96,12 +93,21 @@ void Card::setYIdx(int y) {
     }
 }
 
-const Card Card::operator=(const Card &rhs) {
-    num=rhs.num;
-    img=rhs.img;
-    xIndx=rhs.xIndx;
-    yIndx=rhs.yIndx;
-    found=rhs.found;        
+Image* Card::getImg() const{
+    return img;
+}
 
+const Card Card::operator=(const Card &rhs) {
+    if(this!=&rhs) {
+        delete img;
+        num=rhs.num;
+        setImg(rhs.img);
+//        img=rhs.img;
+//        img=new Image(rhs.img->getRddl(),rhs.img->getName());
+        xIndx=rhs.xIndx;
+        yIndx=rhs.yIndx;
+        found=rhs.found;
+    }
+    
     return *this;
 }

@@ -7,6 +7,7 @@
 
 #ifndef IMAGE_H
 #define IMAGE_H
+#include "Constants.h"
 #include <string>
 using namespace std;
 
@@ -16,16 +17,17 @@ class Image {
         string riddle;
         string name;
     public:
-        Image();                                    //Default Image constructor
-        Image(string,string);                       //Image constructor
-        Image(const Image &);                       //Image copy constructor
+        Image();                                    //Default constructor
+        Image(string,string);                       //Constructor
+        ~Image() {imgCnt--;}                        //Destructor
         void display();                             //Display Image data
-        void setRddl(string riddle){this->riddle=riddle;} //Set Image object riddle
         void setName(string name){this->name=name;} //Set Image object name
+        void setRddl(string riddle){this->riddle=riddle;} //Set Image object riddle
         int getCnt() const {return imgCnt;}         //Get count of Image objects
-        string getRddl() const {return riddle;}     //Get riddle
-        string getName() const {return name;}       //Get name
-        const Image operator=(const Image &rhs);    //Overloaded equality operator
+        string getRddl() {return riddle;}           //Get riddle
+        string getName() {return name;}             //Get name
+//        Image(const Image &);                       //Copy constructor
+//        const Image operator=(const Image &rhs);    //Overloaded equality operator
 };
 
 #endif /* IMAGE_H */
