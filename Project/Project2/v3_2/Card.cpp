@@ -12,7 +12,8 @@ int Card::cardCnt=0;
 Card::Card() {
     cardCnt++;
     num=0;
-    img=nullptr;
+//    img=nullptr;
+    img=new Image();
     xIndx=0;
     yIndx=0;
     found=false;

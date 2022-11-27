@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: November 22, 2022 @ 8:12 PM
- * Purpose: v2.2: Create Deck object
+ * Purpose: v3.2: Fix bugs with Deck class.
  */
 
 //System Libraries
@@ -39,9 +39,9 @@ int main(int argc, char** argv) {
     string *names=new string[NUMELMS],  //Array of name strings for images
            *riddles=new string[NUMELMS];//Array of riddle strings for images
     Image **imgs=new Image*[NUMELMS];   //Array of Image objects
-    Card **cards=new Card*[NUMELMS];    //Array of Card objects
-    Deck deck;                          //Deck of cards for game
+    Card **cards=new Card*[NUMELMS];    //Array of Card objects used for creating deck and boards
 //         brdCrds;                    //Deck of cards used for creating boards
+    Deck *deck1=nullptr,*deck2=nullptr;              //Pointer to deck of cards for game
     
     //Initial Variables
     //Get card names and riddles from files and save to arrays 
@@ -63,8 +63,8 @@ int main(int argc, char** argv) {
     }
     
     //3Create a deck of cards
-    deck.setDeck(cards);
-    deck.display();
+    deck1=new Deck(cards);                     
+    deck1->display();
 
     //Display the Inputs and Outputs
     //Print out contents of arrays and static variables
@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 //    }
     cout<<"Total Number of Images: "<<imgs[0]->getCnt()<<endl;
     cout<<"Total Number of Cards: "<<cards[0]->getCnt()<<endl;
-//    cout<<"Total Number of Decks: "<<deck.getCnt()<<endl;
+    cout<<"Total Number of Decks: "<<deck1->getCnt()<<endl;
 
     //Clean up the dynamic stuff
     delete []riddles;

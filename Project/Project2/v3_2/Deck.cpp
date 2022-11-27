@@ -14,18 +14,20 @@ int Deck::deckCnt=0;        //Define static variables outside of the class
 
 Deck::Deck() {
     deckCnt++;
-    numCards=0;
-    for(int i=0;i<MAX;i++) {
-        Image img=new Image();
-        Image *imgPtr=&img;
-        Card card=new Card(i,imgPtr);
-        deck[i]=card;
-    }
+    //deck in Deck class of type Card, default constructor for Card creates
+    //deck of empty cards pointing to nullptr
+    //code below creates bugs with making more cards and images than we need
+//    for(int i=0;i<MAX;i++) {
+//        Image img=new Image();
+//        Image *imgPtr=&img;
+//        Card card=new Card(i+1,imgPtr);
+//        Card card=new Card();
+//        deck[i]=card;
+//    }
 }
 
-Deck::Deck(int num,Card **cards) {
+Deck::Deck(Card **cards) {
     deckCnt++;
-    numCards=num;
     for(int i=0;i<MAX;i++) {
         deck[i]=*(*(cards+i));
     }
@@ -37,10 +39,6 @@ void Deck::display() {
         deck[i].display();
     }
     cout<<endl;
-}
-
-void Deck::setNum(int num) {
-    numCards=num;
 }
 
 void Deck::setDeck(Card **cards) {

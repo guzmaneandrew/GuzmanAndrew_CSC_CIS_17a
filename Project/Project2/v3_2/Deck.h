@@ -14,13 +14,11 @@ class Deck {
     private:
         static const int MAX=54;
         static int deckCnt;
-        int numCards;
         Card deck[MAX];
     public:
         Deck();                     //Default constructor
-        Deck(int num,Card **);      //Constructor
+        Deck(Card **);      //Constructor
         void display();             //Display deck
-        void setNum(int);           //Set number of cards in deck
         void setDeck(Card **);      //Create deck of cards from cards
         int getCnt(){ return deckCnt;}//Get count of Deck objects
 //        Card getCrd();             //Gets a card from the deck
