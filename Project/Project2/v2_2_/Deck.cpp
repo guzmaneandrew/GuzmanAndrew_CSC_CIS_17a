@@ -15,6 +15,12 @@ int Deck::deckCnt=0;        //Define static variables outside of the class
 Deck::Deck() {
     deckCnt++;
     numCards=0;
+    for(int i=0;i<MAX;i++) {
+        Image img=new Image();
+        Image *imgPtr=&img;
+        Card card=new Card(i,imgPtr);
+        deck[i]=card;
+    }
 }
 
 Deck::Deck(int num,Card **cards) {

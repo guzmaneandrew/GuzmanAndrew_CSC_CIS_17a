@@ -34,14 +34,14 @@ int main(int argc, char** argv) {
     //Random number seed
     srand(static_cast<unsigned int>(time(0)));
     
-    //Declare Variables
+    //0Declare Variables
     fstream file;                       //Input file
     string *names=new string[NUMELMS],  //Array of name strings for images
            *riddles=new string[NUMELMS];//Array of riddle strings for images
     Image **imgs=new Image*[NUMELMS];   //Array of Image objects
     Card **cards=new Card*[NUMELMS];    //Array of Card objects
-    Deck deck,                          //Deck of cards for game
-         brdCrds;                    //Deck of cards used for creating boards
+    Deck deck;                          //Deck of cards for game
+//         brdCrds;                    //Deck of cards used for creating boards
     
     //Initial Variables
     //Get card names and riddles from files and save to arrays 
@@ -56,10 +56,10 @@ int main(int argc, char** argv) {
     
     //2Fill array of Card objects
     for(int i=0;i<NUMELMS;i++) {
-        Image img=*(*(imgs+i));
-        Image *imgPtr=&img;
+        Image img=*(*(imgs+i));         //Don't need to create a new image
+        Image *imgPtr=&img;             //Need pointer to an Image for card
         cards[i]=new Card(i+1,imgPtr); //Instantiate and initialize each card
-//        cards[i]=new Card(i+1,imgs[i]);//Don't use - makes copy of image
+//        cards[i]=new Card(i+1,imgs[i]);//Don't use - makes copy of image, need pointer
     }
     
     //3Create a deck of cards
@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 //    }
     cout<<"Total Number of Images: "<<imgs[0]->getCnt()<<endl;
     cout<<"Total Number of Cards: "<<cards[0]->getCnt()<<endl;
-    cout<<"Total Number of Decks: "<<deck.getCnt()<<endl;
+//    cout<<"Total Number of Decks: "<<deck.getCnt()<<endl;
 
     //Clean up the dynamic stuff
     delete []riddles;
