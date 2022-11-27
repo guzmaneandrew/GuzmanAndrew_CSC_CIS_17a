@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: November 22, 2022 @ 8:12 PM
- * Purpose: v3.2: Fix bugs with Deck class. Create Deck class functions.
+ * Purpose: v4: Create Board class and objects.
  */
 
 //System Libraries
