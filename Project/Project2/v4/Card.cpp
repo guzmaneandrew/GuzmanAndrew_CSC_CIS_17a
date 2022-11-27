@@ -58,9 +58,9 @@ Card::~Card() {
 }
 
 void Card::display() {
+    cout<<"Card Number: "<<num<<endl;
     cout<<"Name: "<<img->getName()<<endl;
     cout<<"Riddle: "<<img->getRddl()<<endl;
-    cout<<"Card Number: "<<num<<endl;
 }
 
 void Card::setNum(int num) {

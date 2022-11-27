@@ -58,6 +58,11 @@ Card Deck::pick(int &index) {
     return card;
 }
 
+Card Deck::getCrd(int index) {
+    Card card=deck[index];
+    return card;
+}
+
 //
 void Deck::check(int &index) {
     if(index==MAX) {
@@ -71,7 +76,6 @@ void Deck::check(int &index) {
 void Deck::shuffle() {
     int rndIndx;        //Random card index
     
-    cout<<"Shuffled ";
     for(int shffl=1;shffl<7;shffl++) {
         for(int index=0;index<NUMELMS;index++) {
             do {        //Random index must not equal to current index

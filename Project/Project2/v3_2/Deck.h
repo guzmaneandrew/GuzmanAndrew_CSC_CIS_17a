@@ -22,7 +22,8 @@ class Deck {
         void display();             //Display deck
         void setDeck(Card **);      //Create deck of cards from cards
         int getCnt(){ return deckCnt;}//Get count of Deck objects
-        Card pick(int &);    //Gets a card from the deck
+        Card pick(int &);           //Gets a card from the deck, increments reference variable
+        Card getCrd(int);             //Gets a card at index in board cards
         void check(int &);             //Check if deck is empty
         void shuffle();             //Shuffle the deck
 };

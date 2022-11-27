@@ -14,6 +14,7 @@ using namespace std;
 #include "Image.h"
 #include "Card.h"
 #include "Deck.h"
+#include "Board.h"
 
 //Global Constants
 //Physics/Chemistry/Math/Conversion Higher Dimension Only
@@ -40,9 +41,12 @@ int main(int argc, char** argv) {
     Image **imgs=new Image*[NUMELMS];   //Array of Image objects
     Card **cards=new Card*[NUMELMS];    //Array of Card objects used for creating deck and boards
 //         brdCrds;                    //Deck of cards used for creating boards
-    Deck *deck=nullptr;              //Pointer to deck of cards for game
+    Deck *deck=nullptr,              //Pointer to deck of cards for game
+         *brdDeck=nullptr;              //Pointer to deck of cards used to create boards
     Card topCard;   
     int cardIdx=0;                      //Index of card at the "top"
+    Board *gameBrd=nullptr;               //Pointer to a board
+    Board **boards=new Board*[MAXBRDS]; //Array of Image objects
     
     //Initial Variables
     //Get card names and riddles from files and save to arrays 
@@ -65,23 +69,23 @@ int main(int argc, char** argv) {
     
     //3Create a deck of cards and display it
     deck=new Deck(cards);                     
-    deck->display();
+//    deck->display();
     
-    //4 Display first card in deck and check if deck is empty
-    topCard=deck->pick(cardIdx);
-    cout<<"Top Card\n";
-    topCard.display();
-    deck->check(cardIdx);
-    
-    //5 Pick top card from the deck successfully until reach end of deck
-    for(int i=cardIdx;i<NUMELMS;i++) {
-        topCard=deck->pick(cardIdx);
-    } 
-    
-    //6 Display last card in deck and check if deck is empty
-    cout<<"Last Card\n";
-    topCard.display();
-    deck->check(cardIdx);
+//    //4 Display first card in deck and check if deck is empty
+//    topCard=deck->pick(cardIdx);
+//    cout<<"Top Card\n";
+//    topCard.display();
+//    deck->check(cardIdx);
+//    
+//    //5 Pick top card from the deck successfully until reach end of deck
+//    for(int i=cardIdx;i<NUMELMS;i++) {
+//        topCard=deck->pick(cardIdx);
+//    } 
+//    
+//    //6 Display last card in deck and check if deck is empty
+//    cout<<"Last Card\n";
+//    topCard.display();
+//    deck->check(cardIdx);
     
     //7 Shuffle the deck of cards and display it
     deck->shuffle();
@@ -104,21 +108,42 @@ int main(int argc, char** argv) {
     topCard.display();
     deck->check(cardIdx);
     
+    //11 Create a new deck of cards to be used for generating boards
+    brdDeck=new Deck(cards);
+    brdDeck->shuffle();
+    brdDeck->display();
+    
+    //12 Create a board
+    gameBrd=new Board();
+    cout<<gameBrd->getNum()<<endl;
+//    gameBrd->display();
+    
+    //12 Create new deck of cards for creating boards
+//    brdDeck=new Deck(cards);
+//    gameBrd=new Board(1,brdDeck);
+//    gameBrd->display();
+    
+    //Fill array of BOARD objects
+//    for(int i=0;i<MAXBRDS;i++) {
+//        boards[i]=new Board();
+//    }
+    
     //Display the Inputs and Outputs
     //Print out contents of arrays and static variables
-    cout<<"Contents of Images Array"<<endl;
-    for(int i=0;i<3;i++) {
-        imgs[i]->display();
-        cout<<endl;
-    }
-    cout<<endl<<"Contents of Cards Array"<<endl;
-    for(int i=0;i<3;i++) {
-        cards[i]->display();
-        cout<<endl;
-    }
+//    cout<<"Contents of Images Array"<<endl;
+//    for(int i=0;i<3;i++) {
+//        imgs[i]->display();
+//        cout<<endl;
+//    }
+//    cout<<endl<<"Contents of Cards Array"<<endl;
+//    for(int i=0;i<3;i++) {
+//        cards[i]->display();
+//        cout<<endl;
+//    }
     cout<<"Total Number of Images: "<<imgs[0]->getCnt()<<endl;
     cout<<"Total Number of Cards: "<<cards[0]->getCnt()<<endl;
     cout<<"Total Number of Decks: "<<deck->getCnt()<<endl;
+    cout<<"Total Number of Boards: "<<gameBrd->getCnt()<<endl;
 
     //Clean up the dynamic stuff
     delete []riddles;

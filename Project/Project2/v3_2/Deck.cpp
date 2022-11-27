@@ -58,6 +58,11 @@ Card Deck::pick(int &index) {
     return card;
 }
 
+Card Deck::getCrd(int index) {
+    Card card=deck[index];
+    return card;
+}
+
 //
 void Deck::check(int &index) {
     if(index==MAX) {
