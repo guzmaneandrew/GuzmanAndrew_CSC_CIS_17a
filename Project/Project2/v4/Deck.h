@@ -8,6 +8,7 @@
 #ifndef DECK_H
 #define DECK_H
 #include "Card.h"
+#include "BrdCard.h"
 #include <string>
 
 class Deck {
@@ -19,6 +20,7 @@ class Deck {
     public:
         Deck();                     //Default constructor
         Deck(Card **);              //Constructor
+        Deck(BrdCard **);           //Constructor
         void display();             //Display deck
         void setDeck(Card **);      //Create deck of cards from cards
         int getCnt(){ return deckCnt;}//Get count of Deck objects

@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Andrew Guzman
  * Created: November 22, 2022 @ 8:12 PM
- * Purpose: v4: Create Board class and objects.
+ * Purpose: v4: Create Board Card class and objects.
  */
 
 //System Libraries
@@ -14,6 +14,7 @@ using namespace std;
 #include "Image.h"
 #include "Card.h"
 #include "Deck.h"
+#include "BrdCard.h"
 #include "Board.h"
 
 //Global Constants
@@ -40,10 +41,10 @@ int main(int argc, char** argv) {
            *riddles=new string[NUMELMS];//Array of riddle strings for images
     Image **imgs=new Image*[NUMELMS];   //Array of Image objects
     Card **cards=new Card*[NUMELMS];    //Array of Card objects used for creating deck and boards
-//         brdCrds;                    //Deck of cards used for creating boards
+    BrdCard **brdCrds=new BrdCard*[NUMELMS]; //Array of cards used for creating boards
     Deck *deck=nullptr,              //Pointer to deck of cards for game
          *brdDeck=nullptr;              //Pointer to deck of cards used to create boards
-    Card topCard;   
+//    Card topCard;   
     int cardIdx=0;                      //Index of card at the "top"
     Board *gameBrd=nullptr;               //Pointer to a board
     Board **boards=new Board*[MAXBRDS]; //Array of Image objects
@@ -59,7 +60,7 @@ int main(int argc, char** argv) {
         imgs[i]=new Image(riddles[i],names[i]); //Instantiate and initialize each image
     }
     
-    //2Fill array of Card objects
+    //2Fill array of cards to be used for game deck
     for(int i=0;i<NUMELMS;i++) {
         Image img=*(*(imgs+i));         //Don't need to create a new image
         Image *imgPtr=&img;             //Need pointer to an Image for card
@@ -67,9 +68,25 @@ int main(int argc, char** argv) {
 //        cards[i]=new Card(i+1,imgs[i]);//Don't use - makes copy of image, need pointer
     }
     
-    //3Create a deck of cards and display it
-    deck=new Deck(cards);                     
-//    deck->display();
+    //3Fill brdCrds array to be used for creating boards
+    for(int i=0;i<NUMELMS;i++) {
+          brdCrds[i]=new BrdCard(i+1,imgs[i]);//Use this to make copy of images
+//        Image img=*(*(imgs+i));         //Dont use- this skips creating a new image
+//        Image *imgPtr=&img;             //and gets pointer to an Image for card
+//        brdCrds[i]=new BrdCard(i+1,imgPtr); //Instantiates and initializes each card
+    }
+    
+    //4Create a deck of cards for game and display it
+    deck=new Deck(cards);    
+    deck->shuffle();
+    cout<<"Shuffled Game Cards Deck\n";
+    deck->display();
+    
+    //5Create a deck of cards for boards and display it
+    brdDeck=new Deck(brdCrds);    
+    brdDeck->shuffle();
+    cout<<"Shuffled Board Cards Deck\n";
+    brdDeck->display();
     
 //    //4 Display first card in deck and check if deck is empty
 //    topCard=deck->pick(cardIdx);
@@ -88,34 +105,34 @@ int main(int argc, char** argv) {
 //    deck->check(cardIdx);
     
     //7 Shuffle the deck of cards and display it
-    deck->shuffle();
-    deck->display();
-   
-    //8 Display first card in shuffled deck and check if deck is empty
-    cardIdx=0;              //Reset cardIdx=0
-    topCard=deck->pick(cardIdx);
-    cout<<"Top Card\n";
-    topCard.display();
-    deck->check(cardIdx);
-    
-    //9 Pick top card from the deck successfully until reach end of deck
-    for(int i=cardIdx;i<NUMELMS;i++) {
-        topCard=deck->pick(cardIdx);
-    } 
-    
-    //10 Display last card in shuffled deck and check if deck is empty
-    cout<<"Last Card\n";
-    topCard.display();
-    deck->check(cardIdx);
-    
-    //11 Create a new deck of cards to be used for generating boards
-    brdDeck=new Deck(cards);
-    brdDeck->shuffle();
-    brdDeck->display();
-    
-    //12 Create a board
-    gameBrd=new Board();
-    cout<<gameBrd->getNum()<<endl;
+//    deck->shuffle();
+//    deck->display();
+//   
+//    //8 Display first card in shuffled deck and check if deck is empty
+//    cardIdx=0;              //Reset cardIdx=0
+//    topCard=deck->pick(cardIdx);
+//    cout<<"Top Card\n";
+//    topCard.display();
+//    deck->check(cardIdx);
+//    
+//    //9 Pick top card from the deck successfully until reach end of deck
+//    for(int i=cardIdx;i<NUMELMS;i++) {
+//        topCard=deck->pick(cardIdx);
+//    } 
+//    
+//    //10 Display last card in shuffled deck and check if deck is empty
+//    cout<<"Last Card\n";
+//    topCard.display();
+//    deck->check(cardIdx);
+//    
+//    //11 Create a new deck of cards to be used for generating boards
+//    brdDeck=new Deck(cards);
+//    brdDeck->shuffle();
+//    brdDeck->display();
+//    
+//    //12 Create a board
+//    gameBrd=new Board();
+//    cout<<gameBrd->getNum()<<endl;
 //    gameBrd->display();
     
     //12 Create new deck of cards for creating boards
@@ -142,6 +159,7 @@ int main(int argc, char** argv) {
 //    }
     cout<<"Total Number of Images: "<<imgs[0]->getCnt()<<endl;
     cout<<"Total Number of Cards: "<<cards[0]->getCnt()<<endl;
+    cout<<"Total Number of Board Cards: "<<brdCrds[0]->getCnt()<<endl;
     cout<<"Total Number of Decks: "<<deck->getCnt()<<endl;
     cout<<"Total Number of Boards: "<<gameBrd->getCnt()<<endl;
 

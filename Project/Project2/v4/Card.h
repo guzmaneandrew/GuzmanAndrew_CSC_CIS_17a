@@ -21,9 +21,9 @@ class Card {
         static int cardCnt; //Static variable count of card objects
         int num;       //Number displayed on card
         Image* img;    //Card  HAS-A image
-        int xIndx;     //X Index in the board
-        int yIndx;     //Y Index in the board 
-        bool found;    //Flag to mark if card is found on board
+//        int xIndx;     //X Index in the board
+//        int yIndx;     //Y Index in the board 
+//        bool found;    //Flag to mark if card is found on board
     public:
         Card();                         //Default Constructor
         Card(int,Image *);              //Constructor
@@ -33,16 +33,16 @@ class Card {
         void display();                 //Display Card data
         void setNum(int);               //Set card number
         void setImg(Image *);           //Set Image member
-        void setXIdx(int);              //Set card X index
-        void setYIdx(int);              //Set card Y index
-        void setFnd(bool found) {this->found=found;}  //Set found flag
         int getCnt() const {return cardCnt;} //Get count of card objects
         int getNum() const {return num;}       //Get card number
-        Image* getImg() const;                  //Returns pointer to Image object
-        int getXIdx() const {return xIndx;}     //Get card X index
-        int getYIdx() const {return yIndx;}     //Get card Y index
-        bool getFnd() const {return found;}     //Get value of found flag
+        Image* getImg() const;                  //Returns pointer to Image object       
         const Card operator=(const Card &);   //Overloaded assignment operator
+//        void setXIdx(int);              //Set card X index
+//        void setYIdx(int);              //Set card Y index
+//        void setFnd(bool found) {this->found=found;}  //Set found flag
+//        int getXIdx() const {return xIndx;}     //Get card X index
+//        int getYIdx() const {return yIndx;}     //Get card Y index
+//        bool getFnd() const {return found;}     //Get value of found flag
 };
 
 #endif /* CARD_H */

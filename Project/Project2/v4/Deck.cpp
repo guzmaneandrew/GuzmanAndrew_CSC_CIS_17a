@@ -36,6 +36,15 @@ Deck::Deck(Card **cards) {
     isEmpty=false;
 }
 
+Deck::Deck(BrdCard **cards) {
+    deckCnt++;
+    for(int i=0;i<MAX;i++) {
+        BrdCard card(*(cards+i));
+        deck[i]=card;
+    }
+    isEmpty=false;
+}
+
 void Deck::display() {
     cout<<"Deck"<<endl;
     for(int i=0;i<MAX;i++) {

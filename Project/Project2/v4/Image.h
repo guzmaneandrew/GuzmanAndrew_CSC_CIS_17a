@@ -28,7 +28,7 @@ class Image {
         string getRddl() {return riddle;}           //Get riddle
         string getName() {return name;}             //Get name
 //        Image(const Image &);                       //Copy constructor
-        const Image operator=(const Image &rhs);    //Overloaded equality operator
+//        const Image operator=(const Image &rhs);    //Overloaded equality operator
 };
 
 #endif /* IMAGE_H */

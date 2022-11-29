@@ -43,9 +43,9 @@ void Image::display() {
 //    this->riddle=obj.riddle;
 //    this->name=obj.name;
 //}
-const Image Image::operator=(const Image &rhs) {
-    riddle=rhs.riddle;
-    name=rhs.name;      
-
-    return *this;
-}
+//const Image Image::operator=(const Image &rhs) {
+//    riddle=rhs.riddle;
+//    name=rhs.name;      
+//
+//    return *this;
+//}
