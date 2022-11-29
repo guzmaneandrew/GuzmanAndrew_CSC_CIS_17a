@@ -9,7 +9,7 @@
 #define BOARD_H
 #include <vector>
 #include "Constants.h"
-#include "Card.h"
+#include "BrdCard.h"
 #include "Deck.h"
 
 class Board {
@@ -18,11 +18,11 @@ private:
 //    static const ROWS=4;
 //    static const COLS=4;
     int brdNum;                 //Number printed on the board
-    Card **board;     //Dynamic allocated 2d array of cards makes up the board
+    BrdCard **board;     //Dynamic allocated 2d array of cards makes up the board
 public:
     Board();                        //Default Board constructor
-//    Board(int,Deck *);            //Constructor
-    Board(int, Card **);            //Constructor
+    Board(int,Deck *);            //Constructor
+    Board(int,BrdCard **);            //Constructor
     ~Board();                        //Destructor
     void display();                 //Display board
     void setNum(int n) {brdNum=n;}  //Set board number 

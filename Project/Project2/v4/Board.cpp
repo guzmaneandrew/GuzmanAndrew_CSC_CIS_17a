@@ -13,11 +13,11 @@ int Board::brdCnt=0;
 
 Board::Board() {
     brdCnt++;
-    brdNum=12;
+    brdNum=1;
     
-    board=new Card*[ROWS];
+    board=new BrdCard*[ROWS];
     for(int i=0;i<ROWS;i++) {
-        board[i]=new Card[COLS];
+        board[i]=new BrdCard[COLS];
     }
     
 //    for(int i=0;i<54;i++) {
@@ -31,18 +31,21 @@ Board::Board() {
 //    }
 }
 
-//Board::Board(int n,Deck *brdsCrds) {
+//Board::Board(int n,Deck *brdCrds) {
 //    brdCnt++;
 //    brdNum=n;
 //
-//    board=new Card*[ROWS];
+//    board=new BrdCard*[ROWS];
 //    for(int i=0;i<ROWS;i++) {
-//        board[i]=new Card[COLS];
+//        board[i]=new BrdCard[COLS];
 //    }
 //    
 //    int index=0;
 //    for(int r=0;r<4;r++) {
 //        for(int c=0;c<4;c++) {
+//            BrdCard temp=brdCrds->getCrd(index);
+//            board[r][c]=temp;
+//            index++;
 ////            board[r][c]=brdsCrds->getCrd(index);
 //        }
 //    }        

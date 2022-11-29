@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
     BrdCard **brdCrds=new BrdCard*[NUMELMS]; //Array of cards used for creating boards
     Deck *deck=nullptr,              //Pointer to deck of cards for game
          *brdDeck=nullptr;              //Pointer to deck of cards used to create boards
-//    Card topCard;   
+    Card *topCard=nullptr;               //Pointer to top card of the deck   
     int cardIdx=0;                      //Index of card at the "top"
     Board *gameBrd=nullptr;               //Pointer to a board
     Board **boards=new Board*[MAXBRDS]; //Array of Image objects
@@ -85,60 +85,30 @@ int main(int argc, char** argv) {
     //5Create a deck of cards for boards and display it
     brdDeck=new Deck(brdCrds);    
     brdDeck->shuffle();
-    cout<<"Shuffled Board Cards Deck\n";
-    brdDeck->display();
-    
-//    //4 Display first card in deck and check if deck is empty
-//    topCard=deck->pick(cardIdx);
-//    cout<<"Top Card\n";
-//    topCard.display();
-//    deck->check(cardIdx);
-//    
-//    //5 Pick top card from the deck successfully until reach end of deck
-//    for(int i=cardIdx;i<NUMELMS;i++) {
-//        topCard=deck->pick(cardIdx);
-//    } 
-//    
-//    //6 Display last card in deck and check if deck is empty
-//    cout<<"Last Card\n";
-//    topCard.display();
-//    deck->check(cardIdx);
-    
-    //7 Shuffle the deck of cards and display it
-//    deck->shuffle();
-//    deck->display();
-//   
-//    //8 Display first card in shuffled deck and check if deck is empty
-//    cardIdx=0;              //Reset cardIdx=0
-//    topCard=deck->pick(cardIdx);
-//    cout<<"Top Card\n";
-//    topCard.display();
-//    deck->check(cardIdx);
-//    
-//    //9 Pick top card from the deck successfully until reach end of deck
-//    for(int i=cardIdx;i<NUMELMS;i++) {
-//        topCard=deck->pick(cardIdx);
-//    } 
-//    
-//    //10 Display last card in shuffled deck and check if deck is empty
-//    cout<<"Last Card\n";
-//    topCard.display();
-//    deck->check(cardIdx);
-//    
-//    //11 Create a new deck of cards to be used for generating boards
-//    brdDeck=new Deck(cards);
-//    brdDeck->shuffle();
+//    cout<<"Shuffled Board Cards Deck\n";
 //    brdDeck->display();
-//    
-//    //12 Create a board
-//    gameBrd=new Board();
-//    cout<<gameBrd->getNum()<<endl;
-//    gameBrd->display();
     
-    //12 Create new deck of cards for creating boards
-//    brdDeck=new Deck(cards);
-//    gameBrd=new Board(1,brdDeck);
-//    gameBrd->display();
+    //6 Display first card in deck and check if deck is empty
+    topCard=deck->pick(cardIdx);
+    cout<<"Top Card\n";
+    topCard->display();
+    deck->check(cardIdx);
+    
+    //7 Pick top card from the deck successfully until reach end of deck
+    for(int i=cardIdx;i<NUMELMS;i++) {
+        topCard=deck->pick(cardIdx);
+    } 
+    
+    //8 Display last card in deck and check if deck is empty
+    cout<<"Last Card\n";
+    topCard->display();
+    deck->check(cardIdx);
+
+    //9 Create an empty board
+    gameBrd=new Board();
+    gameBrd->display();
+    
+    //10 Create a board using brdDeck 
     
     //Fill array of BOARD objects
 //    for(int i=0;i<MAXBRDS;i++) {

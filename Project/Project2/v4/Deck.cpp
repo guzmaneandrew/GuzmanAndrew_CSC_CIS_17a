@@ -58,14 +58,14 @@ void Deck::setDeck(Card **cards) {
         deck[i]=*(*(cards+i));
     }
 }
-
-Card Deck::pick(int &index) {
-    Card card;
+//* DONT DELETE
+Card* Deck::pick(int &index) {
+    Card *crdPtr=&deck[index];
     
-    card=deck[index];
     index++;                        //Increment curIndx to pick next card 
-    return card;
+    return crdPtr;
 }
+//* DONT DELETE
 
 Card Deck::getCrd(int index) {
     Card card=deck[index];
