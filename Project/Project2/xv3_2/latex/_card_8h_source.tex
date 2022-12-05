@@ -1,0 +1,54 @@
+\hypertarget{_card_8h_source}{}\doxysection{Card.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-\/default.txt to change this license}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.h to edit this template}}
+\DoxyCodeLine{4 \textcolor{comment}{ */}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{comment}{/* }}
+\DoxyCodeLine{7 \textcolor{comment}{ * File:   Card.h}}
+\DoxyCodeLine{8 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{9 \textcolor{comment}{ * Purpose: Card Class Specification}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Created on November 22, 2022, 8:33 PM}}
+\DoxyCodeLine{11 \textcolor{comment}{ */}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#ifndef CARD\_H}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define CARD\_H}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}Image.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{17 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_card}{Card}} \{}
+\DoxyCodeLine{20     \textcolor{keyword}{private}:}
+\DoxyCodeLine{21         \textcolor{keyword}{static} \textcolor{keywordtype}{int} cardCnt; \textcolor{comment}{//Static variable count of card objects}}
+\DoxyCodeLine{22         \textcolor{keywordtype}{int} num;       \textcolor{comment}{//Number displayed on card}}
+\DoxyCodeLine{23         \mbox{\hyperlink{class_image}{Image}}* img;    \textcolor{comment}{//Card  HAS-\/A image}}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} xIndx;     \textcolor{comment}{//X Index in the board}}
+\DoxyCodeLine{25         \textcolor{keywordtype}{int} yIndx;     \textcolor{comment}{//Y Index in the board }}
+\DoxyCodeLine{26         \textcolor{keywordtype}{bool} found;    \textcolor{comment}{//Flag to mark if card is found on board}}
+\DoxyCodeLine{27     \textcolor{keyword}{public}:}
+\DoxyCodeLine{28         \mbox{\hyperlink{class_card}{Card}}();                         \textcolor{comment}{//Default Constructor}}
+\DoxyCodeLine{29         \mbox{\hyperlink{class_card}{Card}}(\textcolor{keywordtype}{int},\mbox{\hyperlink{class_image}{Image}} *);              \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{30         \mbox{\hyperlink{class_card}{Card}}(\mbox{\hyperlink{class_card}{Card}} *);             \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{31         \mbox{\hyperlink{class_card}{Card}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_card}{Card}} \&);             \textcolor{comment}{//Copy constructor 1}}
+\DoxyCodeLine{32         \mbox{\hyperlink{class_card}{\string~Card}}();                        \textcolor{comment}{//Destructor 2}}
+\DoxyCodeLine{33         \textcolor{keywordtype}{void} display();                 \textcolor{comment}{//Display Card data}}
+\DoxyCodeLine{34         \textcolor{keywordtype}{void} setNum(\textcolor{keywordtype}{int});               \textcolor{comment}{//Set card number}}
+\DoxyCodeLine{35         \textcolor{keywordtype}{void} setImg(\mbox{\hyperlink{class_image}{Image}} *);           \textcolor{comment}{//Set Image member}}
+\DoxyCodeLine{36         \textcolor{keywordtype}{void} setXIdx(\textcolor{keywordtype}{int});              \textcolor{comment}{//Set card X index}}
+\DoxyCodeLine{37         \textcolor{keywordtype}{void} setYIdx(\textcolor{keywordtype}{int});              \textcolor{comment}{//Set card Y index}}
+\DoxyCodeLine{38         \textcolor{keywordtype}{void} setFnd(\textcolor{keywordtype}{bool} found) \{this-\/>found=found;\}  \textcolor{comment}{//Set found flag}}
+\DoxyCodeLine{39         \textcolor{keywordtype}{int} getCnt()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} cardCnt;\} \textcolor{comment}{//Get count of card objects}}
+\DoxyCodeLine{40         \textcolor{keywordtype}{int} getNum()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} num;\}       \textcolor{comment}{//Get card number}}
+\DoxyCodeLine{41         \mbox{\hyperlink{class_image}{Image}}* getImg() \textcolor{keyword}{const};                  \textcolor{comment}{//Returns pointer to Image object}}
+\DoxyCodeLine{42         \textcolor{keywordtype}{int} getXIdx()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} xIndx;\}     \textcolor{comment}{//Get card X index}}
+\DoxyCodeLine{43         \textcolor{keywordtype}{int} getYIdx()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} yIndx;\}     \textcolor{comment}{//Get card Y index}}
+\DoxyCodeLine{44         \textcolor{keywordtype}{bool} getFnd()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} found;\}     \textcolor{comment}{//Get value of found flag}}
+\DoxyCodeLine{45         \textcolor{keyword}{const} \mbox{\hyperlink{class_card}{Card}} operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_card}{Card}} \&);   \textcolor{comment}{//Overloaded assignment operator}}
+\DoxyCodeLine{46 \};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CARD\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{49 }
+
+\end{DoxyCode}

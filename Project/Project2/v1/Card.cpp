@@ -15,21 +15,18 @@ int Card::cardCnt=0;
 
 Card::Card() {
     cardCnt++;
-    this->setNum(0);
-    this->img=nullptr;
-    this->setFnd(false);
+    num=0;
+    name="";
 }
 
-Card::Card(int num,Image* img) {
+Card::Card(int num,string name) {
     cardCnt++;        //Increment static variable count of Card objects
-    this->setNum(num);
-    this->img=img;
-    this->setFnd(false);
+    this->num=num;
+    this->name=name;
 }
 
 void Card::display() {
-    cout<<"Name: "<<img->getName()<<endl;
-    cout<<"Riddle: "<<img->getRddl()<<endl;
+    cout<<"Name: "<<getName()<<endl;
     cout<<"Card Number: "<<num<<endl;
 }
 
@@ -38,24 +35,5 @@ void Card::setNum(int num) {
         this->num=num;
     } else {
         cout<<"Invalid card number."<<endl;
-        exit(EXIT_FAILURE);
-    }
-}
-
-void Card::setXIdx(int x) {
-    if(x>0&&x<ROW) {        //Validate input for X index
-        xIndx=x;
-    } else {
-        cout<<"Invalid X index."<<endl;
-        exit(EXIT_FAILURE);
-    }
-}
-
-void Card::setYIdx(int y) {
-    if(y>0&&y<COL) {        //Validate input for Y index
-        yIndx=y;
-    } else {
-        cout<<"Invalid Y index."<<endl;
-        exit(EXIT_FAILURE);
     }
 }
