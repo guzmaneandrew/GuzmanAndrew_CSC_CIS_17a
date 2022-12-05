@@ -12,13 +12,15 @@
 
 class Deck {
     private:
-        static const int MAX=54;
         static int deckCnt;
+        static const int MAX=54;
+        int *index;
         Card deck[MAX];
         bool isEmpty;
     public:
         Deck();                     //Default constructor
         Deck(Card **);              //Constructor
+        ~Deck();                    //Destructor
         void setDeck(Card **);      //Create deck of cards from cards
         int getCnt(){ return deckCnt; }//Get count of Deck objects
         void display();             //Display deck

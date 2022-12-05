@@ -14,11 +14,9 @@ int Deck::deckCnt=0;        //Define static variables outside of the class
 
 Deck::Deck() {
     deckCnt++;
-    index=new int[MAX];
     for(int i=0;i<MAX;i++) {
         Card card(i," ");
         deck[i]=card;
-        index[i]=i;     //save index
     }
 }
 
@@ -29,10 +27,6 @@ Deck::Deck(Card **cards) {
     }
 }
 
-Deck::~Deck(){
-    delete []index;
-}
-
 void Deck::setDeck(Card **cards) {
     for(int i=0;i<MAX;i++) {
         deck[i]=*(*(cards+i));
@@ -40,7 +34,6 @@ void Deck::setDeck(Card **cards) {
 }
 
 void Deck::display() {
-    cout<<"Deck"<<endl;
     for(int i=0;i<MAX;i++) {
         deck[i].display();
     }
@@ -63,30 +56,18 @@ void Deck::check(int &index) {
     }
 }
 
-//void Deck::shuffle() {
-//    int rndIndx;        //Random card index
-//    
-//    cout<<"Shuffled ";
-//    for(int shffl=1;shffl<7;shffl++) {
-//        for(int index=0;index<MAX;index++) {
-//            do {        //Random index must not equal to current index
-//                rndIndx=rand()%MAX;
-//            }while(index==rndIndx);
-//            //Swap card at current index with card at random index
-//            Card temp=deck[index];
-//            deck[index]=deck[rndIndx];
-//            deck[rndIndx]=temp;
-//        }
-//    }
-//}
-
 void Deck::shuffle() {
-    for(int shffl=1;shffl<=7;shffl++) {
-        for(int crd=0;crd<MAX;crd++) {
-            int temp=rand()%MAX;
-            int card=index[crd];
-            index[crd]=index[temp];
-            index[temp]=crd;
+    int rndIndx;        //Random card index
+    
+    for(int shffl=1;shffl<7;shffl++) {
+        for(int index=0;index<MAX;index++) {
+            do {        //Random index must not equal to current index
+                rndIndx=rand()%MAX;
+            }while(index==rndIndx);
+            //Swap card at current index with card at random index
+            Card temp=deck[index];
+            deck[index]=deck[rndIndx];
+            deck[rndIndx]=temp;
         }
     }
 }
