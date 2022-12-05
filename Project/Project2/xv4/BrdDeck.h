@@ -15,7 +15,7 @@
 class BrdDeck:public Deck {
     private:
         static int deckCnt;
-        BrdCard bDeck[NUMELMS];
+        BrdCard bDeck[MAX];
         bool isEmpty;
     public:
         BrdDeck();                      //Default Constructor

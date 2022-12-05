@@ -21,7 +21,7 @@ public:
     BrdCard(int,Image *);
     BrdCard(int,Image *,int,int,bool);    //Constructor
     BrdCard(BrdCard *);                    //Constructor
-    BrdCard(const BrdCard &);             //Copy constructor 
+    BrdCard(const BrdCard &);             //Cop constructor 
     ~BrdCard();                        //Destructor 
     void setXIdx(int);              //Set card X index
     void setYIdx(int);              //Set card Y index
