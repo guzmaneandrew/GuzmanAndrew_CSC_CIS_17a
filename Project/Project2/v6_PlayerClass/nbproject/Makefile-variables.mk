@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=v5_boardclass
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/v5_boardclass
+CND_ARTIFACT_NAME_Debug=v6_playerclass
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/v6_playerclass
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=v5boardclass.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/v5boardclass.tar
+CND_PACKAGE_NAME_Debug=v6playerclass.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/v6playerclass.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=v5_boardclass
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/v5_boardclass
+CND_ARTIFACT_NAME_Release=v6_playerclass
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/v6_playerclass
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=v5boardclass.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/v5boardclass.tar
+CND_PACKAGE_NAME_Release=v6playerclass.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/v6playerclass.tar
 #
 # include compiler specific variables
 #
