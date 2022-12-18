@@ -1,0 +1,42 @@
+\doxysection{Player.\+h}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Player.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Player Class Specification}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 5, 2022, 9:14 PM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include "{}AbsPlayer.h"{}}}
+\DoxyCodeLine{00010 }
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#ifndef PLAYER\_H}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#define PLAYER\_H}}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014 \textcolor{keyword}{class }Player:\textcolor{keyword}{public} AbsPlayer \{}
+\DoxyCodeLine{00015 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00016     \textcolor{keyword}{static} \textcolor{keywordtype}{int} pCnt;        \textcolor{comment}{//Count of Player objects}}
+\DoxyCodeLine{00017     \textcolor{keywordtype}{string} name;            \textcolor{comment}{//Name of player}}
+\DoxyCodeLine{00018     Board *board;           \textcolor{comment}{//Pointer to board}}
+\DoxyCodeLine{00019     \textcolor{keywordtype}{int} numTkns;            \textcolor{comment}{//Number of tokens used}}
+\DoxyCodeLine{00020     \textcolor{keywordtype}{int} nPlyrs;             \textcolor{comment}{//Number of players}}
+\DoxyCodeLine{00021 \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022     Player();                           \textcolor{comment}{//Default constructor}}
+\DoxyCodeLine{00023     Player(\textcolor{keywordtype}{string},Board *);             \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{00024     \string~Player();                          \textcolor{comment}{//Destructor}}
+\DoxyCodeLine{00025     \textcolor{keywordtype}{void} addTkns();                     \textcolor{comment}{//Increment number of tokens}}
+\DoxyCodeLine{00026     \textcolor{keywordtype}{int} getCnt() \{ \textcolor{keywordflow}{return} pCnt; \}       \textcolor{comment}{//Return number of Player objects}}
+\DoxyCodeLine{00027     \textcolor{keywordtype}{string} getName()\{ \textcolor{keywordflow}{return} name; \}    \textcolor{comment}{//Get name of Player}}
+\DoxyCodeLine{00028     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} display();             \textcolor{comment}{//Display's Player's data to the screen}}
+\DoxyCodeLine{00029     \textcolor{keywordtype}{void} dispMBrd();                    \textcolor{comment}{//Same as display() -\/ but with mini board}}
+\DoxyCodeLine{00030     \textcolor{keywordtype}{bool} chkWin();                      \textcolor{comment}{//Checks if board is filled with tokens to win}}
+\DoxyCodeLine{00031     \textcolor{keywordtype}{void} chkBrd(\textcolor{keywordtype}{string});                \textcolor{comment}{//Checks the board using card name}}
+\DoxyCodeLine{00032     \textcolor{keywordtype}{void} setPlyrs(\textcolor{keywordtype}{int} n) \{ nPlyrs=n; \}  \textcolor{comment}{//Set number of players}}
+\DoxyCodeLine{00033     \textcolor{keyword}{class }InvNPlyrs \{\};                 \textcolor{comment}{//Exception class}}
+\DoxyCodeLine{00034 \};}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* PLAYER\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00037 }
+
+\end{DoxyCode}

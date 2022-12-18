@@ -16,8 +16,8 @@ using namespace std;
 class AbsPlayer {
 public:
     virtual void setBrd(Board *) = 0;
-    virtual void setTkns(int) = 0;
-    virtual int getPCnt() = 0;
+    virtual void addTkns() = 0;
+    virtual int getCnt() = 0;
     virtual string getName() = 0;
     virtual void prntBrd() = 0;
 };

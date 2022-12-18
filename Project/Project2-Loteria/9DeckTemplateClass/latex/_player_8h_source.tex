@@ -1,0 +1,38 @@
+\hypertarget{_player_8h_source}{}\doxysection{Player.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   Player.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Player Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on December 5, 2022, 9:14 PM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}AbsPlayer.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef PLAYER\_H}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define PLAYER\_H}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_player}{Player}}:\textcolor{keyword}{public} \mbox{\hyperlink{class_abs_player}{AbsPlayer}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{private}:}
+\DoxyCodeLine{16     \textcolor{keyword}{static} \textcolor{keywordtype}{int} pCnt;        \textcolor{comment}{//Count of Player objects}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{string} name;            \textcolor{comment}{//Name of player}}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_board}{Board}} *board;           \textcolor{comment}{//Pointer to board}}
+\DoxyCodeLine{19     \textcolor{keywordtype}{int} numTkns;            \textcolor{comment}{//Number of tokens used}}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_player}{Player}}();       }
+\DoxyCodeLine{22     \mbox{\hyperlink{class_player}{Player}}(\textcolor{keywordtype}{string},\mbox{\hyperlink{class_board}{Board}} *);}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_player}{\string~Player}}();}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} addTkns();          \textcolor{comment}{//Increment number of tokens}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} getCnt() \{ \textcolor{keywordflow}{return} pCnt; \}   \textcolor{comment}{//Return number of Player objects}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{string} getName()\{ \textcolor{keywordflow}{return} name; \}    \textcolor{comment}{//Get name of Player}}
+\DoxyCodeLine{27     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} display();     \textcolor{comment}{//Display's Player's data -\/ entire board on screen}}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} dispMBrd();     \textcolor{comment}{//Display's data -\/ mini board pattern to screen}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} chkBrd();      \textcolor{comment}{//Checks if board is filled with tokens}}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* PLAYER\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{33 }
+
+\end{DoxyCode}

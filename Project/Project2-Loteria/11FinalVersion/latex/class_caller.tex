@@ -1,0 +1,193 @@
+\doxysection{Caller Class Reference}
+\label{class_caller}\index{Caller@{Caller}}
+
+
+{\ttfamily \#include $<$Caller.\+h$>$}
+
+Inheritance diagram for Caller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_caller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Caller} ()
+\item 
+\textbf{ Caller} (string, \textbf{ Board} $\ast$, fstream \&, string)
+\item 
+\textbf{ $\sim$\+Caller} ()
+\item 
+int \textbf{ get\+Cnt} ()
+\item 
+void \textbf{ display} ()
+\item 
+void \textbf{ disp\+Dck} ()
+\item 
+void \textbf{ disp\+Crd} (int \&)
+\item 
+void \textbf{ shuffle} ()
+\item 
+\textbf{ Card} $\ast$ \textbf{ pick} (int \&)
+\item 
+void \textbf{ check} (int \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Deck}$<$ \textbf{ Card} $>$ $\ast$ \textbf{ deck}
+\item 
+string \textbf{ name}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \textbf{ 15} of file \textbf{ Caller.\+h}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_caller_a04f531f3c7b9be8635f2ceb90d1846ac}} 
+\index{Caller@{Caller}!Caller@{Caller}}
+\index{Caller@{Caller}!Caller@{Caller}}
+\doxysubsubsection{Caller()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Caller\+::\+Caller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 15} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_a514790ea23069cc8a5e43d2cd595042a}} 
+\index{Caller@{Caller}!Caller@{Caller}}
+\index{Caller@{Caller}!Caller@{Caller}}
+\doxysubsubsection{Caller()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Caller\+::\+Caller (\begin{DoxyParamCaption}\item[{string}]{n,  }\item[{\textbf{ Board} $\ast$}]{brd,  }\item[{fstream \&}]{file,  }\item[{string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_ad984cea590ce1f45d90ea10f3ed1d91d}} 
+\index{Caller@{Caller}!````~Caller@{$\sim$Caller}}
+\index{````~Caller@{$\sim$Caller}!Caller@{Caller}}
+\doxysubsubsection{$\sim$Caller()}
+{\footnotesize\ttfamily Caller\+::$\sim$\+Caller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ Caller.\+cpp}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_caller_aecaa55ca7488f8b7fab0a3c588663ef0}} 
+\index{Caller@{Caller}!check@{check}}
+\index{check@{check}!Caller@{Caller}}
+\doxysubsubsection{check()}
+{\footnotesize\ttfamily void Caller\+::check (\begin{DoxyParamCaption}\item[{int \&}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 47} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_ad079b08171c543efa10770b5bba04104}} 
+\index{Caller@{Caller}!dispCrd@{dispCrd}}
+\index{dispCrd@{dispCrd}!Caller@{Caller}}
+\doxysubsubsection{dispCrd()}
+{\footnotesize\ttfamily void Caller\+::disp\+Crd (\begin{DoxyParamCaption}\item[{int \&}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 35} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_a15068f3e25465f11b7bef7680696e9a1}} 
+\index{Caller@{Caller}!dispDck@{dispDck}}
+\index{dispDck@{dispDck}!Caller@{Caller}}
+\doxysubsubsection{dispDck()}
+{\footnotesize\ttfamily void Caller\+::disp\+Dck (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 31} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_a031bb281731d0ff45ef8465b9edd0889}} 
+\index{Caller@{Caller}!display@{display}}
+\index{display@{display}!Caller@{Caller}}
+\doxysubsubsection{display()}
+{\footnotesize\ttfamily void Caller\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Player} \doxyref{}{p.}{class_player_ab8027cabb90c600e038fa8f04dd2f38a}.
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_ae781a49f98e2ded67e1b5590d66fa1c3}} 
+\index{Caller@{Caller}!getCnt@{getCnt}}
+\index{getCnt@{getCnt}!Caller@{Caller}}
+\doxysubsubsection{getCnt()}
+{\footnotesize\ttfamily int Caller\+::get\+Cnt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Abs\+Player} \doxyref{}{p.}{class_abs_player_a4c518cce2de22ee20e78b9de6d04d27f}.
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ Caller.\+h}.
+
+\mbox{\label{class_caller_af2f3b9b244b1973f563b52a46fd2d230}} 
+\index{Caller@{Caller}!pick@{pick}}
+\index{pick@{pick}!Caller@{Caller}}
+\doxysubsubsection{pick()}
+{\footnotesize\ttfamily \textbf{ Card} $\ast$ Caller\+::pick (\begin{DoxyParamCaption}\item[{int \&}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 43} of file \textbf{ Caller.\+cpp}.
+
+\mbox{\label{class_caller_a0ab23885dc59b03f9b679d7ab447287a}} 
+\index{Caller@{Caller}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!Caller@{Caller}}
+\doxysubsubsection{shuffle()}
+{\footnotesize\ttfamily void Caller\+::shuffle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 39} of file \textbf{ Caller.\+cpp}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{class_caller_a8eda03df84682a18eef9e1e9f5b73529}} 
+\index{Caller@{Caller}!deck@{deck}}
+\index{deck@{deck}!Caller@{Caller}}
+\doxysubsubsection{deck}
+{\footnotesize\ttfamily \textbf{ Deck}$<$\textbf{ Card}$>$$\ast$ Caller\+::deck\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ Caller.\+h}.
+
+\mbox{\label{class_caller_a531648a2ef0e48aa7615e145554ce2b0}} 
+\index{Caller@{Caller}!name@{name}}
+\index{name@{name}!Caller@{Caller}}
+\doxysubsubsection{name}
+{\footnotesize\ttfamily string Caller\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ Caller.\+h}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Caller.\+h}\item 
+\textbf{ Caller.\+cpp}\end{DoxyCompactItemize}

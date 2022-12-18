@@ -1,0 +1,39 @@
+\hypertarget{_board_8h_source}{}\doxysection{Board.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   Board.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Board Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on November 26, 2022, 10:39 PM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef BOARD\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define BOARD\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}BrdDeck.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_board}{Board}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{private}:}
+\DoxyCodeLine{16     \textcolor{keyword}{static} \textcolor{keywordtype}{int} brdCnt;}
+\DoxyCodeLine{17     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} ROWS=4;}
+\DoxyCodeLine{18     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} COLS=4;}
+\DoxyCodeLine{19     \textcolor{keywordtype}{int} brdNum;                 \textcolor{comment}{//Number printed on the board}}
+\DoxyCodeLine{20     \mbox{\hyperlink{class_brd_card}{BrdCard}} **board;     \textcolor{comment}{//Dynamic allocated 2d array of cards makes up the board}}
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_board}{Board}}();                        \textcolor{comment}{//Default Board constructor}}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_board}{Board}}(\textcolor{keywordtype}{int},\mbox{\hyperlink{class_brd_deck}{BrdDeck}} *);            \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_board}{Board}}(\textcolor{keywordtype}{int},\mbox{\hyperlink{class_brd_card}{BrdCard}} **);            \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_board}{\string~Board}}();                        \textcolor{comment}{//Destructor}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} setNum(\textcolor{keywordtype}{int} n) \{brdNum=n;\}  \textcolor{comment}{//Set board number }}
+\DoxyCodeLine{27     \textcolor{keywordtype}{int} getCnt()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} brdCnt;\}   \textcolor{comment}{//Get total number of instances of board  }}
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} getBNum()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} brdNum;\}   \textcolor{comment}{//Get board number}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} display();                     \textcolor{comment}{//Display board}}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} dispBrd();                     \textcolor{comment}{//Displays mini board to screen}}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} brd2Fil(\textcolor{keywordtype}{int});                 \textcolor{comment}{//Output board to a file}}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* BOARD\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,53 @@
+\doxysection{Brd\+Card.\+cpp}
+\label{_brd_card_8cpp_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/BrdCard.cpp@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/BrdCard.cpp}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   BrdCard.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Board Card Class Implementation}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 5, 2022, 12:03 AM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00012 }
+\DoxyCodeLine{00013 BrdCard::BrdCard():Card() \{}
+\DoxyCodeLine{00014     count++;}
+\DoxyCodeLine{00015     xIndx=0;}
+\DoxyCodeLine{00016     yIndx=0;}
+\DoxyCodeLine{00017     found=\textcolor{keyword}{false};}
+\DoxyCodeLine{00018 \}}
+\DoxyCodeLine{00019 }
+\DoxyCodeLine{00020 BrdCard::BrdCard(\textcolor{keywordtype}{int} num, \textcolor{keywordtype}{string} name):Card(num,name) \{}
+\DoxyCodeLine{00021     count++;}
+\DoxyCodeLine{00022     xIndx=0;}
+\DoxyCodeLine{00023     yIndx=0;}
+\DoxyCodeLine{00024     found=\textcolor{keyword}{false};}
+\DoxyCodeLine{00025 \}}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027 BrdCard::\string~BrdCard() \{}
+\DoxyCodeLine{00028     count-\/-\/;}
+\DoxyCodeLine{00029 \}}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031 \textcolor{keywordtype}{void} BrdCard::setXIdx(\textcolor{keywordtype}{int} x) \{}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{if}(x>0\&\&x<ROWS) \{        \textcolor{comment}{//Validate input for X index}}
+\DoxyCodeLine{00033         xIndx=x;}
+\DoxyCodeLine{00034     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00035         cout<<\textcolor{stringliteral}{"{}Invalid X index."{}}<<endl;}
+\DoxyCodeLine{00036         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00037     \}}
+\DoxyCodeLine{00038 \}}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040 \textcolor{keywordtype}{void} BrdCard::setYIdx(\textcolor{keywordtype}{int} y) \{}
+\DoxyCodeLine{00041     \textcolor{keywordflow}{if}(y>0\&\&y<COLS) \{        \textcolor{comment}{//Validate input for Y index}}
+\DoxyCodeLine{00042         yIndx=y;}
+\DoxyCodeLine{00043     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00044         cout<<\textcolor{stringliteral}{"{}Invalid Y index."{}}<<endl;}
+\DoxyCodeLine{00045         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00046     \}}
+\DoxyCodeLine{00047 \}}
+
+\end{DoxyCode}

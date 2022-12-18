@@ -1,0 +1,38 @@
+\doxysection{Caller.\+h}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Caller.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Caller Class Specification}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 7, 2022, 10:45 AM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#ifndef CALLER\_H}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#define CALLER\_H}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include "{}Player.h"{}}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include "{}Deck.h"{}}}
+\DoxyCodeLine{00013 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 \textcolor{keyword}{class }Caller:\textcolor{keyword}{public} Player \{}
+\DoxyCodeLine{00016     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00017         Deck<Card> *deck;}
+\DoxyCodeLine{00018         \textcolor{keywordtype}{string} name;}
+\DoxyCodeLine{00019     \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020         Caller();}
+\DoxyCodeLine{00021         Caller(\textcolor{keywordtype}{string},Board *,fstream \&,\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00022         \string~Caller();}
+\DoxyCodeLine{00023         \textcolor{keywordtype}{int} getCnt() \{ \textcolor{keywordflow}{return} pCnt; \}}
+\DoxyCodeLine{00024         \textcolor{keywordtype}{void} display();}
+\DoxyCodeLine{00025         \textcolor{keywordtype}{void} dispDck();}
+\DoxyCodeLine{00026         \textcolor{keywordtype}{void} dispCrd(\textcolor{keywordtype}{int} \&);}
+\DoxyCodeLine{00027         \textcolor{keywordtype}{void} shuffle();}
+\DoxyCodeLine{00028         Card* pick(\textcolor{keywordtype}{int} \&);}
+\DoxyCodeLine{00029         \textcolor{keywordtype}{void} check(\textcolor{keywordtype}{int} \&);}
+\DoxyCodeLine{00030 \};}
+\DoxyCodeLine{00031 }
+\DoxyCodeLine{00032 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CALLER\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00033 }
+
+\end{DoxyCode}

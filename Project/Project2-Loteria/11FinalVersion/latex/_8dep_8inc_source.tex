@@ -1,0 +1,10 @@
+\doxysection{.dep.\+inc}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\# This code depends on make tool being used}}
+\DoxyCodeLine{00002 DEPFILES=\$(wildcard \$(addsuffix .d, \$\{OBJECTFILES\} \$\{TESTOBJECTFILES\}))}
+\DoxyCodeLine{00003 ifneq (\$\{DEPFILES\},)}
+\DoxyCodeLine{00004 include \$\{DEPFILES\}}
+\DoxyCodeLine{00005 endif}
+
+\end{DoxyCode}

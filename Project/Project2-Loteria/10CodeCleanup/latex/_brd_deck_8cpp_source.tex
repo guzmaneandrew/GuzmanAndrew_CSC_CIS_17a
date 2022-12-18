@@ -1,0 +1,27 @@
+\doxysection{Brd\+Deck.\+cpp}
+\label{_brd_deck_8cpp_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/BrdDeck.cpp@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/BrdDeck.cpp}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   BrdBrdDeck.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * BrdDeck Class Implementation}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 5, 2022, 1:12 AM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include "{}BrdDeck.h"{}}}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014 BrdDeck::\string~BrdDeck() \{}
+\DoxyCodeLine{00015     \textcolor{keyword}{delete} []names;}
+\DoxyCodeLine{00016     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<MAX;i++) \{}
+\DoxyCodeLine{00017         \textcolor{keyword}{delete} cards[i];}
+\DoxyCodeLine{00018     \}}
+\DoxyCodeLine{00019     \textcolor{keyword}{delete} []cards;}
+\DoxyCodeLine{00020     \textcolor{keyword}{delete} []index;}
+\DoxyCodeLine{00021 \}}
+
+\end{DoxyCode}

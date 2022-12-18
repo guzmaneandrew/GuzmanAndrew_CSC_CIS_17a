@@ -1,0 +1,262 @@
+\doxysection{Deck$<$ T $>$ Class Template Reference}
+\label{class_deck}\index{Deck$<$ T $>$@{Deck$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Deck.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Deck} (fstream \&, string)
+\item 
+\textbf{ $\sim$\+Deck} ()
+\item 
+void \textbf{ display} ()
+\item 
+void \textbf{ shuffle} ()
+\item 
+T $\ast$ \textbf{ pick} (int \&)
+\item 
+void \textbf{ check} (int)
+\item 
+T \textbf{ get\+Crd} (int)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ get\+Cnt} ()
+\item 
+string $\ast$ \textbf{ crt\+Arr} (fstream \&, string)
+\item 
+bool \textbf{ open\+Fil} (fstream \&, string)
+\item 
+void \textbf{ fil\+To\+Ar} (fstream \&, string $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string $\ast$ \textbf{ names}
+\item 
+T $\ast$$\ast$ \textbf{ cards}
+\item 
+int $\ast$ \textbf{ index}
+\item 
+bool \textbf{ is\+Empty}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \textbf{ count} =0
+\item 
+static const int \textbf{ MAX} =54
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Deck$<$ T $>$}
+
+
+Definition at line \textbf{ 14} of file \textbf{ Deck.\+h}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_deck_a4c381df1b11ddad20cc0d60bab9fcd2a}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!Deck@{Deck}}
+\index{Deck@{Deck}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{Deck()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\textbf{ Deck}$<$ T $>$\textbf{ \+::\+Deck} (\begin{DoxyParamCaption}\item[{fstream \&}]{file,  }\item[{string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 42} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_ab3294d971f9ecf25fd92d982aa2efad9}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!````~Deck@{$\sim$Deck}}
+\index{````~Deck@{$\sim$Deck}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{$\sim$Deck()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\textbf{ Deck}$<$ T $>$\+::$\sim$\textbf{ Deck}}
+
+
+
+Definition at line \textbf{ 58} of file \textbf{ Deck.\+h}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_deck_a8ecad2917d90339a0c17e16a97b1996a}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!check@{check}}
+\index{check@{check}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{check()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \textbf{ Deck}$<$ T $>$\+::check (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 101} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a814af0fba0dde0ebf571bbd456a1c6d3}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!crtArr@{crtArr}}
+\index{crtArr@{crtArr}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{crtArr()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+string $\ast$ \textbf{ Deck}$<$ T $>$\+::crt\+Arr (\begin{DoxyParamCaption}\item[{fstream \&}]{file,  }\item[{string}]{fil\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 117} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a85468ed5af2a82a574af13101886105d}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!display@{display}}
+\index{display@{display}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{display()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \textbf{ Deck}$<$ T $>$\+::display}
+
+
+
+Definition at line \textbf{ 68} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_aad0382d461388ea315982b12af51f565}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!filToAr@{filToAr}}
+\index{filToAr@{filToAr}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{filToAr()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \textbf{ Deck}$<$ T $>$\+::fil\+To\+Ar (\begin{DoxyParamCaption}\item[{fstream \&}]{file,  }\item[{string $\ast$}]{array }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 140} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a63e664891cd2ef04da9d8d5180a154d1}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!getCnt@{getCnt}}
+\index{getCnt@{getCnt}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{getCnt()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+int \textbf{ Deck}$<$ T $>$\+::get\+Cnt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 39} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_abc281274ff036b1ff135cb913b532e9b}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!getCrd@{getCrd}}
+\index{getCrd@{getCrd}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{getCrd()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T \textbf{ Deck}$<$ T $>$\+::get\+Crd (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 111} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a6d0a289b85f135ecec073518fe246293}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!openFil@{openFil}}
+\index{openFil@{openFil}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{openFil()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \textbf{ Deck}$<$ T $>$\+::open\+Fil (\begin{DoxyParamCaption}\item[{fstream \&}]{file,  }\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 130} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a962f0fd4295dde1bc733e4e9479f9956}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!pick@{pick}}
+\index{pick@{pick}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{pick()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T $\ast$ \textbf{ Deck}$<$ T $>$\+::pick (\begin{DoxyParamCaption}\item[{int \&}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 93} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a64897016baf6e1c48f632dcc807096e7}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{shuffle()}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \textbf{ Deck}$<$ T $>$\+::shuffle}
+
+
+
+Definition at line \textbf{ 76} of file \textbf{ Deck.\+h}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{class_deck_a46616a3839eede1ee4ba58b4c7f72bc2}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!cards@{cards}}
+\index{cards@{cards}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{cards}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T$\ast$$\ast$ \textbf{ Deck}$<$ T $>$\+::cards\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_af96e0b9b56d1183ccd831c8a60d023f6}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!count@{count}}
+\index{count@{count}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{count}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+int \textbf{ Deck}$<$ T $>$\+::count =0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a41ff874601bea655f9dec49c65461d9d}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!index@{index}}
+\index{index@{index}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{index}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+int$\ast$ \textbf{ Deck}$<$ T $>$\+::index\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a5625d364d9c59d854a5a0da9e252d374}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{isEmpty}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \textbf{ Deck}$<$ T $>$\+::is\+Empty\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a0f52be97570ccd5b9d5b0fd822e4b7be}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!MAX@{MAX}}
+\index{MAX@{MAX}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{MAX}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+const int \textbf{ Deck}$<$ T $>$\+::\+MAX =54\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ Deck.\+h}.
+
+\mbox{\label{class_deck_a8c0fd4732da5dfb0c55c9e1de8b12f21}} 
+\index{Deck$<$ T $>$@{Deck$<$ T $>$}!names@{names}}
+\index{names@{names}!Deck$<$ T $>$@{Deck$<$ T $>$}}
+\doxysubsubsection{names}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+string$\ast$ \textbf{ Deck}$<$ T $>$\+::names\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ Deck.\+h}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/andrewguzman/\+Net\+Beans\+Projects/10\+Code\+Cleanup/\textbf{ Deck.\+h}\end{DoxyCompactItemize}

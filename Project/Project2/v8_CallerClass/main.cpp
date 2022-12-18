@@ -69,49 +69,49 @@ int main(int argc, char** argv) {
     }
     
     //2Create a deck of cards
-    cout<<"Original Deck\n";
     deck=new Deck(cards);
-    deck->display();
+    cout<<"Original Deck\n";
+//    deck->display();
     
-    //3 Create pointer to first card in deck and display it
-    topCard=deck->pick(topIndx);
-    cout<<"Top Card of Original Deck\n";
-    topCard->display();
-    
-    //4 Check if deck is empty
-    deck->check(topIndx);
-    
-    //5 Pick top card from the deck successfully until reach end of deck
-    for(int i=topIndx;i<NUMCRDS;i++) {
-        topCard=deck->pick(topIndx);
-    } 
-    
-    //6 Display last card in deck and check if deck is empty
-    cout<<"Last Card of Original Deck\n";
-    topCard->display();
-    deck->check(topIndx);
-    
-    //7 Shuffle the deck of cards and display it
-    cout<<"Shuffled Deck\n";
-    deck->shuffle();
-    deck->display();
-    
-    //8 Display first card in shuffled deck and check if deck is empty
-    topIndx=0;              //Reset topIndx=0
-    topCard=deck->pick(topIndx);
-    cout<<"Top Card of Shuffled Deck\n";
-    topCard->display();
-    deck->check(topIndx);
-    
-    //9 Pick top card from the deck successfully until reach end of deck
-    for(int i=topIndx;i<NUMCRDS;i++) {
-        topCard=deck->pick(topIndx);
-    } 
-    
-    //10 Display last card in shuffled deck and check if deck is empty
-    cout<<"Last Card of Shuffled Deck\n";
-    topCard->display();
-    deck->check(topIndx);
+//    //3 Create pointer to first card in deck and display it
+//    topCard=deck->pick(topIndx);
+//    cout<<"Top Card of Original Deck\n";
+//    topCard->display();
+//    
+//    //4 Check if deck is empty
+//    deck->check(topIndx);
+//    
+//    //5 Pick top card from the deck successfully until reach end of deck
+//    for(int i=topIndx;i<NUMCRDS;i++) {
+//        topCard=deck->pick(topIndx);
+//    } 
+//    
+//    //6 Display last card in deck and check if deck is empty
+//    cout<<"Last Card of Original Deck\n";
+//    topCard->display();
+//    deck->check(topIndx);
+//    
+//    //7 Shuffle the deck of cards and display it
+//    cout<<"Shuffled Deck\n";
+//    deck->shuffle();
+//    deck->display();
+//    
+//    //8 Display first card in shuffled deck and check if deck is empty
+//    topIndx=0;              //Reset topIndx=0
+//    topCard=deck->pick(topIndx);
+//    cout<<"Top Card of Shuffled Deck\n";
+//    topCard->display();
+//    deck->check(topIndx);
+//    
+//    //9 Pick top card from the deck successfully until reach end of deck
+//    for(int i=topIndx;i<NUMCRDS;i++) {
+//        topCard=deck->pick(topIndx);
+//    } 
+//    
+//    //10 Display last card in shuffled deck and check if deck is empty
+//    cout<<"Last Card of Shuffled Deck\n";
+//    topCard->display();
+//    deck->check(topIndx);
     
     //11 Create a deck of cards for boards
     brdDeck=new BrdDeck(brdCrds);    
@@ -121,15 +121,9 @@ int main(int argc, char** argv) {
         brdDeck->shuffle();
         boards[i]=new Board(i+1,brdDeck);
         boards[i]->brd2Fil(i+1);
-//        boards[i]->dispBrd();
     }
     
     //13 Create and print Player objects
-//    Player computr("Computer");
-//    computr.setBrd(boards[10]);
-//    cout<<computr.getName()<<"'s Board\n";
-//    computr.prntBrd();
-    
     for(int i=0;i<MAXPLYRS;i++) {
         string plyrNam="Computer "+to_string(i+1);
         playrs[i]=new Player(plyrNam);

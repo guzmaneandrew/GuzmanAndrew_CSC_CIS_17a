@@ -1,0 +1,164 @@
+\doxysection{Board.\+cpp}
+\label{_board_8cpp_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/Board.cpp@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/Board.cpp}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Board.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Board Class Implementation}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on November 26, 2022, 10:39 PM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include "{}BrdDeck.h"{}}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{00013 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 \textcolor{keywordtype}{int} Board::brdCnt=0;        \textcolor{comment}{//Define static variables outside of the class}}
+\DoxyCodeLine{00016 }
+\DoxyCodeLine{00017 Board::Board() \{}
+\DoxyCodeLine{00018     brdCnt++;}
+\DoxyCodeLine{00019     brdNum=0;}
+\DoxyCodeLine{00020     }
+\DoxyCodeLine{00021     board=\textcolor{keyword}{new} BrdCard*[ROWS];       \textcolor{comment}{//Initialize array of pointers}}
+\DoxyCodeLine{00022     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<ROWS;i++) \{}
+\DoxyCodeLine{00023         board[i]=\textcolor{keyword}{new} BrdCard[COLS]; \textcolor{comment}{//Initialize each pointer}}
+\DoxyCodeLine{00024     \}}
+\DoxyCodeLine{00025 \}}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027 Board::Board(\textcolor{keywordtype}{int} n,Deck<BrdCard> *brdDeck) \{}
+\DoxyCodeLine{00028     brdCnt++;}
+\DoxyCodeLine{00029     brdNum=n;}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     board=\textcolor{keyword}{new} BrdCard*[ROWS];       \textcolor{comment}{//Initialize array of pointers}}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<ROWS;i++) \{}
+\DoxyCodeLine{00033         board[i]=\textcolor{keyword}{new} BrdCard[COLS]; \textcolor{comment}{//Initialize each pointer}}
+\DoxyCodeLine{00034     \}}
+\DoxyCodeLine{00035     }
+\DoxyCodeLine{00036     \textcolor{keywordtype}{int} index=0;}
+\DoxyCodeLine{00037     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} r=0;r<4;r++) \{}
+\DoxyCodeLine{00038         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} c=0;c<4;c++) \{}
+\DoxyCodeLine{00039             BrdCard temp=brdDeck-\/>getCrd(index);    \textcolor{comment}{//Get a card from the deck}}
+\DoxyCodeLine{00040             board[r][c]=temp;                       \textcolor{comment}{//Set card to card at r,c in board}}
+\DoxyCodeLine{00041             index++;                                \textcolor{comment}{//Increment index, ends when index=16}}
+\DoxyCodeLine{00042         \}}
+\DoxyCodeLine{00043     \}        }
+\DoxyCodeLine{00044 \}}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046 Board::\string~Board() \{}
+\DoxyCodeLine{00047     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<ROWS;i++) \{}
+\DoxyCodeLine{00048         \textcolor{keyword}{delete}[] board[i];  \textcolor{comment}{//Delete each individual pointer}}
+\DoxyCodeLine{00049     \}}
+\DoxyCodeLine{00050     \textcolor{keyword}{delete}[] board;         \textcolor{comment}{//Delete array of pointers}}
+\DoxyCodeLine{00051 \}}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054 \textcolor{keywordtype}{void} Board::miniBrd() \{}
+\DoxyCodeLine{00055     cout<<setw(10)<<left;}
+\DoxyCodeLine{00056     cout<<\textcolor{stringliteral}{"{}Board \#"{}}<<getBNum()<<endl;}
+\DoxyCodeLine{00057     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} r=0;r<ROWS;r++) \{}
+\DoxyCodeLine{00058         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} c=0;c<COLS;c++) \{}
+\DoxyCodeLine{00059             \textcolor{keywordflow}{if}(board[r][c].getFnd()==\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{00060                 cout<<\textcolor{stringliteral}{"{}| * |"{}};}
+\DoxyCodeLine{00061             \}}
+\DoxyCodeLine{00062             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00063                 cout<<\textcolor{stringliteral}{"{}|   |"{}};}
+\DoxyCodeLine{00064             \}}
+\DoxyCodeLine{00065         \}}
+\DoxyCodeLine{00066         cout<<endl;}
+\DoxyCodeLine{00067     \}}
+\DoxyCodeLine{00068     cout<<endl;}
+\DoxyCodeLine{00069 \}}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071 \textcolor{keywordtype}{void} Board::display() \{}
+\DoxyCodeLine{00072     \textcolor{keywordtype}{int} brdWdth=60;     \textcolor{comment}{//Set width to 60 variable for width}}
+\DoxyCodeLine{00073     }
+\DoxyCodeLine{00074     cout<<endl;}
+\DoxyCodeLine{00075     cout<<\textcolor{stringliteral}{"{}LOTERIA"{}}<<setw(brdWdth-\/8)<<\textcolor{stringliteral}{"{}BOARD "{}}<<getBNum()<<endl;}
+\DoxyCodeLine{00076     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<4;j++) \{}
+\DoxyCodeLine{00077         \textcolor{comment}{//Print out top border of board}}
+\DoxyCodeLine{00078         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<brdWdth;i++) cout<<\textcolor{stringliteral}{"{}\_"{}};}
+\DoxyCodeLine{00079         cout<<endl;}
+\DoxyCodeLine{00080         \textcolor{comment}{//Print first row containing card numbers of 4 cards in top row}}
+\DoxyCodeLine{00081         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<4;i++) \{}
+\DoxyCodeLine{00082             cout<<setw(brdWdth/4-\/1)<<left<<board[j][i].getNum()}
+\DoxyCodeLine{00083                 <<setw(1)<<right<<\textcolor{stringliteral}{"{}|"{}};       }
+\DoxyCodeLine{00084         \}}
+\DoxyCodeLine{00085         cout<<endl;}
+\DoxyCodeLine{00086         \textcolor{comment}{//Print out rows 2-\/7 containing stars in place of images}}
+\DoxyCodeLine{00087         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} n=0;n<4;n++) \{}
+\DoxyCodeLine{00088             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<4;i++) \{}
+\DoxyCodeLine{00089                 cout<<setw(4)<<left<<\textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{00090                 <<setw(6)<<\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/"{}}}
+\DoxyCodeLine{00091                 <<setw(4)<<left<<\textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{00092                 <<\textcolor{stringliteral}{"{}|"{}};}
+\DoxyCodeLine{00093             \} cout<<endl;}
+\DoxyCodeLine{00094         \}}
+\DoxyCodeLine{00095         \textcolor{comment}{//Print out blank row 9}}
+\DoxyCodeLine{00096         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<4;i++) \{}
+\DoxyCodeLine{00097             cout<<setw(15)<<right<<\textcolor{stringliteral}{"{}|"{}};}
+\DoxyCodeLine{00098         \}}
+\DoxyCodeLine{00099         cout<<endl;        }
+\DoxyCodeLine{00100     \}}
+\DoxyCodeLine{00101     \textcolor{comment}{//Print out bottom border of board}}
+\DoxyCodeLine{00102         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<brdWdth;i++) cout<<\textcolor{stringliteral}{"{}\_"{}};}
+\DoxyCodeLine{00103         cout<<endl;}
+\DoxyCodeLine{00104 }
+\DoxyCodeLine{00105     cout<<endl;}
+\DoxyCodeLine{00106 \}}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108 \textcolor{keywordtype}{void} Board::brd2Fil(\textcolor{keywordtype}{int} num) \{}
+\DoxyCodeLine{00109     ofstream file;}
+\DoxyCodeLine{00110     \textcolor{keywordtype}{string} filName;}
+\DoxyCodeLine{00111     }
+\DoxyCodeLine{00112     filName=\textcolor{stringliteral}{"{}Board"{}}+to\_string(num)+\textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{00113     \textcolor{comment}{// Open the file in output mode.}}
+\DoxyCodeLine{00114     file.open(filName,ios::out);}
+\DoxyCodeLine{00115     }
+\DoxyCodeLine{00116     \textcolor{keywordtype}{int} brdWdth=60;         \textcolor{comment}{//Set width to 60 variable for width}}
+\DoxyCodeLine{00117     file<<endl;}
+\DoxyCodeLine{00118     file<<\textcolor{stringliteral}{"{}LOTERIA"{}}<<setw(brdWdth-\/8)<<\textcolor{stringliteral}{"{}BOARD "{}}<<getBNum()<<endl;}
+\DoxyCodeLine{00119     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<4;j++) \{}
+\DoxyCodeLine{00120         \textcolor{comment}{//Print out top border of board}}
+\DoxyCodeLine{00121         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<brdWdth;i++) file<<\textcolor{stringliteral}{"{}\_"{}};}
+\DoxyCodeLine{00122         file<<endl;}
+\DoxyCodeLine{00123         \textcolor{comment}{//Print first row containing card numbers of 4 cards in top row}}
+\DoxyCodeLine{00124         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<4;i++) \{}
+\DoxyCodeLine{00125             file<<setw(brdWdth/4-\/1)<<left<<board[j][i].getNum()}
+\DoxyCodeLine{00126                 <<setw(1)<<right<<\textcolor{stringliteral}{"{}|"{}};       }
+\DoxyCodeLine{00127         \}}
+\DoxyCodeLine{00128         file<<endl;}
+\DoxyCodeLine{00129         \textcolor{comment}{//Print out rows 2-\/7 containing stars in place of images}}
+\DoxyCodeLine{00130         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} n=0;n<6;n++) \{  \textcolor{comment}{//5 rows}}
+\DoxyCodeLine{00131             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<4;i++) \{}
+\DoxyCodeLine{00132                 file<<setw(4)<<left<<\textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{00133                 <<setw(6)<<\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/"{}}}
+\DoxyCodeLine{00134                 <<setw(4)<<left<<\textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{00135                 <<\textcolor{stringliteral}{"{}|"{}};}
+\DoxyCodeLine{00136             \} file<<endl;         }
+\DoxyCodeLine{00137         \}}
+\DoxyCodeLine{00138         \textcolor{comment}{//Print out blank row 9}}
+\DoxyCodeLine{00139         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<4;i++) \{}
+\DoxyCodeLine{00140             file<<setw(15)<<right<<\textcolor{stringliteral}{"{}|"{}};}
+\DoxyCodeLine{00141         \}}
+\DoxyCodeLine{00142         file<<endl;        }
+\DoxyCodeLine{00143     \}}
+\DoxyCodeLine{00144     \textcolor{comment}{//Print out bottom border of board}}
+\DoxyCodeLine{00145         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<brdWdth;i++) file<<\textcolor{stringliteral}{"{}\_"{}};}
+\DoxyCodeLine{00146         file<<endl;}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148     \textcolor{comment}{//Print the card names and numbers underneath the board}}
+\DoxyCodeLine{00149         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} r=0;r<ROWS;r++) \{}
+\DoxyCodeLine{00150             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} c=0;c<COLS;c++) \{}
+\DoxyCodeLine{00151                 file<<board[r][c].getNum()<<\textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{00152                 file<<board[r][c].getName()<<endl;}
+\DoxyCodeLine{00153             \}}
+\DoxyCodeLine{00154         \}}
+\DoxyCodeLine{00155     file<<endl;}
+\DoxyCodeLine{00156   }
+\DoxyCodeLine{00157     file.close();}
+\DoxyCodeLine{00158 \}}
+
+\end{DoxyCode}

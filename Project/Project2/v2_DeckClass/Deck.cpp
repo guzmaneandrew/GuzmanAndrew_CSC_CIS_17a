@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Card.h"
 #include "Deck.h"
 
@@ -89,4 +90,30 @@ void Deck::shuffle() {
             index[temp]=crd;
         }
     }
+}
+
+bool Deck::openFil(fstream &file,string name) {
+    file.open(name,ios::in);    //Open file for input
+    
+    if(file.fail()) {
+        return false;
+    } else
+        return true;
+}
+
+void Deck::filToAr(fstream &file,string *array) {
+    string line;
+    for(int i=0;i<MAX;i++) {
+        getline(file,line,'\n');    //Get a line from text file
+        *(array+i)=line;            //Add line to array of strings
+    }
+}
+
+void Deck::crtArr(fstream &file,string filName,string *array) {
+    if(openFil(file,filName)) {
+        filToAr(file,array);
+        file.close();
+    } else {
+        cout<<"File open error!"<<endl;
+    } 
 }

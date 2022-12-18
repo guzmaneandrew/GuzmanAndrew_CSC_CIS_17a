@@ -1,0 +1,54 @@
+\doxysection{Caller.\+cpp}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Caller.cpp}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Caller Class Implementation}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 7, 2022, 10:45 AM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include "{}Caller.h"{}}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include "{}Player.h"{}}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include "{}Deck.h"{}}}
+\DoxyCodeLine{00013 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 Caller::Caller():Player()\{}
+\DoxyCodeLine{00016     deck=\textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00017 \}}
+\DoxyCodeLine{00018 Caller::Caller(\textcolor{keywordtype}{string} n,Board *brd,fstream \&file,\textcolor{keywordtype}{string} fileName):Player(n,brd)\{}
+\DoxyCodeLine{00019     name=n;}
+\DoxyCodeLine{00020     deck=\textcolor{keyword}{new} Deck<Card>(file,fileName);}
+\DoxyCodeLine{00021 \}}
+\DoxyCodeLine{00022 Caller::\string~Caller() \{ }
+\DoxyCodeLine{00023     \textcolor{keyword}{delete} deck; }
+\DoxyCodeLine{00024 \}}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026 \textcolor{keywordtype}{void} Caller::display() \{}
+\DoxyCodeLine{00027     cout<<\textcolor{stringliteral}{"{}Player: "{}}<<name<<endl;}
+\DoxyCodeLine{00028     cout<<\textcolor{stringliteral}{"{}The Caller Doesn't Use Tokens Or A Board For The Game."{}}<<endl;}
+\DoxyCodeLine{00029 \}}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031 \textcolor{keywordtype}{void} Caller::dispDck() \{}
+\DoxyCodeLine{00032     deck-\/>display();}
+\DoxyCodeLine{00033 \}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035 \textcolor{keywordtype}{void} Caller::dispCrd(\textcolor{keywordtype}{int} \&index) \{}
+\DoxyCodeLine{00036     deck[index].display();}
+\DoxyCodeLine{00037 \}}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039 \textcolor{keywordtype}{void} Caller::shuffle() \{}
+\DoxyCodeLine{00040     deck-\/>shuffle();}
+\DoxyCodeLine{00041 \}}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043 Card* Caller::pick(\textcolor{keywordtype}{int} \&index) \{}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{return} deck-\/>pick(index);}
+\DoxyCodeLine{00045 \}}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047 \textcolor{keywordtype}{void} Caller::check(\textcolor{keywordtype}{int} \&index) \{}
+\DoxyCodeLine{00048     deck-\/>check(index);}
+\DoxyCodeLine{00049 \}}
+
+\end{DoxyCode}

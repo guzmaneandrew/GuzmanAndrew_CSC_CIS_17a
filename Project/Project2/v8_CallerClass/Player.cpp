@@ -23,6 +23,6 @@ void Player::setBrd(Board *brd) {
 }
 
 void Player::prntBrd() {
-    board->display();
+    board->dispBrd();
 }
 

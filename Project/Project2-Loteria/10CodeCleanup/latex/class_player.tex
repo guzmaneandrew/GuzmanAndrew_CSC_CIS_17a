@@ -1,0 +1,215 @@
+\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+{\ttfamily \#include $<$Player.\+h$>$}
+
+Inheritance diagram for Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_player}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Player} ()
+\item 
+\textbf{ Player} (string, \textbf{ Board} $\ast$)
+\item 
+\textbf{ $\sim$\+Player} ()
+\item 
+void \textbf{ add\+Tkns} ()
+\item 
+int \textbf{ get\+Cnt} ()
+\item 
+string \textbf{ get\+Name} ()
+\item 
+virtual void \textbf{ display} ()
+\item 
+void \textbf{ disp\+MBrd} ()
+\item 
+void \textbf{ chk\+Brd} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ name}
+\item 
+\textbf{ Board} $\ast$ \textbf{ board}
+\item 
+int \textbf{ num\+Tkns}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \textbf{ p\+Cnt} =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \textbf{ 14} of file \textbf{ Player.\+h}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{Player()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 14} of file \textbf{ Player.\+cpp}.
+
+\mbox{\label{class_player_ad3c8470853c9c119c46dde96de395025}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{Player()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}\item[{string}]{n,  }\item[{\textbf{ Board} $\ast$}]{brd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ Player.\+cpp}.
+
+\mbox{\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062}} 
+\index{Player@{Player}!````~Player@{$\sim$Player}}
+\index{````~Player@{$\sim$Player}!Player@{Player}}
+\doxysubsubsection{$\sim$Player()}
+{\footnotesize\ttfamily Player\+::$\sim$\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 28} of file \textbf{ Player.\+cpp}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_player_a3eea95358f4531a36d9ae71af363001a}} 
+\index{Player@{Player}!addTkns@{addTkns}}
+\index{addTkns@{addTkns}!Player@{Player}}
+\doxysubsubsection{addTkns()}
+{\footnotesize\ttfamily void Player\+::add\+Tkns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ Player.\+cpp}.
+
+\mbox{\label{class_player_a8c7842f2690f6207de6cb2ee92cb89a3}} 
+\index{Player@{Player}!chkBrd@{chkBrd}}
+\index{chkBrd@{chkBrd}!Player@{Player}}
+\doxysubsubsection{chkBrd()}
+{\footnotesize\ttfamily void Player\+::chk\+Brd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 50} of file \textbf{ Player.\+cpp}.
+
+\mbox{\label{class_player_ab8027cabb90c600e038fa8f04dd2f38a}} 
+\index{Player@{Player}!display@{display}}
+\index{display@{display}!Player@{Player}}
+\doxysubsubsection{display()}
+{\footnotesize\ttfamily void Player\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Abs\+Player} \doxyref{}{p.}{class_abs_player_ada9320698410e4ea2c252c4f127f2f05}.
+
+
+
+Reimplemented in \textbf{ Caller} \doxyref{}{p.}{class_caller_a031bb281731d0ff45ef8465b9edd0889}.
+
+
+
+Definition at line \textbf{ 36} of file \textbf{ Player.\+cpp}.
+
+\mbox{\label{class_player_ab48709a9cde039c04d348dae289ceec2}} 
+\index{Player@{Player}!dispMBrd@{dispMBrd}}
+\index{dispMBrd@{dispMBrd}!Player@{Player}}
+\doxysubsubsection{dispMBrd()}
+{\footnotesize\ttfamily void Player\+::disp\+MBrd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 42} of file \textbf{ Player.\+cpp}.
+
+\mbox{\label{class_player_a45c53c40fa25135697305f9d0d1eb66c}} 
+\index{Player@{Player}!getCnt@{getCnt}}
+\index{getCnt@{getCnt}!Player@{Player}}
+\doxysubsubsection{getCnt()}
+{\footnotesize\ttfamily int Player\+::get\+Cnt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Abs\+Player} \doxyref{}{p.}{class_abs_player_a4c518cce2de22ee20e78b9de6d04d27f}.
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ Player.\+h}.
+
+\mbox{\label{class_player_af9a6045fa96f736664c4eab4caa5e8e5}} 
+\index{Player@{Player}!getName@{getName}}
+\index{getName@{getName}!Player@{Player}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily string Player\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Abs\+Player} \doxyref{}{p.}{class_abs_player_a3022da0c7eabdd14e7fac7cee28f96e8}.
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ Player.\+h}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{class_player_aeee19518d49696dc4b0a4c5ed1f72638}} 
+\index{Player@{Player}!board@{board}}
+\index{board@{board}!Player@{Player}}
+\doxysubsubsection{board}
+{\footnotesize\ttfamily \textbf{ Board}$\ast$ Player\+::board\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ Player.\+h}.
+
+\mbox{\label{class_player_acf0355128a99ee20ad9931b760fb2de1}} 
+\index{Player@{Player}!name@{name}}
+\index{name@{name}!Player@{Player}}
+\doxysubsubsection{name}
+{\footnotesize\ttfamily string Player\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ Player.\+h}.
+
+\mbox{\label{class_player_aece1cd0db78503f1453fff32922fc0f9}} 
+\index{Player@{Player}!numTkns@{numTkns}}
+\index{numTkns@{numTkns}!Player@{Player}}
+\doxysubsubsection{numTkns}
+{\footnotesize\ttfamily int Player\+::num\+Tkns\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ Player.\+h}.
+
+\mbox{\label{class_player_a7d05d4eda21e69f24cff6a75b17fa30f}} 
+\index{Player@{Player}!pCnt@{pCnt}}
+\index{pCnt@{pCnt}!Player@{Player}}
+\doxysubsubsection{pCnt}
+{\footnotesize\ttfamily int Player\+::p\+Cnt =0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ Player.\+h}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/andrewguzman/\+Net\+Beans\+Projects/10\+Code\+Cleanup/\textbf{ Player.\+h}\item 
+/\+Users/andrewguzman/\+Net\+Beans\+Projects/10\+Code\+Cleanup/\textbf{ Player.\+cpp}\end{DoxyCompactItemize}

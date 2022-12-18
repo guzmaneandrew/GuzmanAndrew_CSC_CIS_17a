@@ -1,0 +1,29 @@
+\doxysection{Abs\+Player.\+h}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   AbsPlayer.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Abstract Player Class Specification}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 6, 2022, 12:10 AM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#ifndef ABSPLAYER\_H}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#define ABSPLAYER\_H}}
+\DoxyCodeLine{00010 }
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{00012 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016 \textcolor{keyword}{class }AbsPlayer \{}
+\DoxyCodeLine{00017 \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018     \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} getCnt() = 0;       \textcolor{comment}{//Get count of Player objects}}
+\DoxyCodeLine{00019     \textcolor{keyword}{virtual} \textcolor{keywordtype}{string} getName() = 0;   \textcolor{comment}{//Get Player's name}}
+\DoxyCodeLine{00020     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} display() = 0;     \textcolor{comment}{//Display board}}
+\DoxyCodeLine{00021 \};}
+\DoxyCodeLine{00022 }
+\DoxyCodeLine{00023 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* ABSPLAYER\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00024 }
+
+\end{DoxyCode}

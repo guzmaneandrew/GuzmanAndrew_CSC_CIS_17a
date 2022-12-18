@@ -1,0 +1,37 @@
+\hypertarget{_player_8h_source}{}\doxysection{Player.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   Player.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Player Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on December 5, 2022, 9:14 PM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}AbsPlayer.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef PLAYER\_H}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define PLAYER\_H}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_player}{Player}}:\textcolor{keyword}{public} \mbox{\hyperlink{class_abs_player}{AbsPlayer}} \{}
+\DoxyCodeLine{15 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{16     \textcolor{keyword}{static} \textcolor{keywordtype}{int} pCnt;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{string} name;}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_board}{Board}} *board;}
+\DoxyCodeLine{19     \textcolor{keywordtype}{int} numTkns;}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_player}{Player}}(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_player}{\string~Player}}();}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} setBrd(\mbox{\hyperlink{class_board}{Board}} *);}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} setTkns(\textcolor{keywordtype}{int} n) \{ numTkns=n; \}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} getPCnt() \{ \textcolor{keywordflow}{return} pCnt; \}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{string} getName()\{ \textcolor{keywordflow}{return} name; \}}
+\DoxyCodeLine{27     \textcolor{keywordtype}{int} getTkns() \{ \textcolor{keywordflow}{return} numTkns; \}}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} prntBrd();}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* PLAYER\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{32 }
+
+\end{DoxyCode}

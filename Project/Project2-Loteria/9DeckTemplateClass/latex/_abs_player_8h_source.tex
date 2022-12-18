@@ -1,0 +1,32 @@
+\hypertarget{_abs_player_8h_source}{}\doxysection{Abs\+Player.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   AbsPlayer.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Abstract Player Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on December 6, 2022, 12:10 AM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef ABSPLAYER\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define ABSPLAYER\_H}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_abs_player}{AbsPlayer}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} addTkns() = 0;     \textcolor{comment}{//Increment number of tokens used by Player}}
+\DoxyCodeLine{19     \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} getCnt() = 0;       \textcolor{comment}{//Get count of Player objects}}
+\DoxyCodeLine{20     \textcolor{keyword}{virtual} \textcolor{keywordtype}{string} getName() = 0;   \textcolor{comment}{//Get Player's name}}
+\DoxyCodeLine{21     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} display() = 0;     \textcolor{comment}{//Display board}}
+\DoxyCodeLine{22     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} dispMBrd() =0;     \textcolor{comment}{//Display mini board}}
+\DoxyCodeLine{23     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} chkBrd() = 0;      \textcolor{comment}{//Check if board is filled}}
+\DoxyCodeLine{24 \};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* ABSPLAYER\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{27 }
+
+\end{DoxyCode}

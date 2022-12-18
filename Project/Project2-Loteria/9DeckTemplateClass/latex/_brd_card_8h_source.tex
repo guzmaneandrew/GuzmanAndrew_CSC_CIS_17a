@@ -1,0 +1,42 @@
+\hypertarget{_brd_card_8h_source}{}\doxysection{Brd\+Card.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   BrdCard.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Board Card Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on December 5, 2022, 12:03 AM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef BRDCARD\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define BRDCARD\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_brd_card}{BrdCard}}:\textcolor{keyword}{public} \mbox{\hyperlink{class_card}{Card}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{private}:}
+\DoxyCodeLine{14     \textcolor{keyword}{static} \textcolor{keywordtype}{int} bCrdCnt;}
+\DoxyCodeLine{15     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} ROWS=4;}
+\DoxyCodeLine{16     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} COLS=4;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} xIndx;     \textcolor{comment}{//X Index in the board}}
+\DoxyCodeLine{18     \textcolor{keywordtype}{int} yIndx;     \textcolor{comment}{//Y Index in the board }}
+\DoxyCodeLine{19     \textcolor{keywordtype}{bool} found;    \textcolor{comment}{//Flag to mark if card is found on board}}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_brd_card}{BrdCard}}();                      \textcolor{comment}{//Default Constructor}}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_brd_card}{BrdCard}}(\textcolor{keywordtype}{int},\textcolor{keywordtype}{string});            \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_brd_card}{BrdCard}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_brd_card}{BrdCard}} \&);       \textcolor{comment}{//Copy constructor }}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_brd_card}{\string~BrdCard}}();                     \textcolor{comment}{//Destructor }}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} setXIdx(\textcolor{keywordtype}{int});              \textcolor{comment}{//Set card X index}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} setYIdx(\textcolor{keywordtype}{int});              \textcolor{comment}{//Set card Y index}}
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} setFnd(\textcolor{keywordtype}{bool} found) \{this-\/>found=found;\}  \textcolor{comment}{//Set found flag}}
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} getCnt()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} bCrdCnt;\}    \textcolor{comment}{//Return count of objects}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{int} getXIdx()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} xIndx;\}     \textcolor{comment}{//Get card X index}}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} getYIdx()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} yIndx;\}     \textcolor{comment}{//Get card Y index}}
+\DoxyCodeLine{31     \textcolor{keywordtype}{bool} getFnd()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} found;\}     \textcolor{comment}{//Get value of found flag}}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* BRDCARD\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 }
+
+\end{DoxyCode}

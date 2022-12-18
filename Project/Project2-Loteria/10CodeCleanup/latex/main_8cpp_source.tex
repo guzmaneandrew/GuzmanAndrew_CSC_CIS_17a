@@ -1,0 +1,129 @@
+\doxysection{main.\+cpp}
+\label{main_8cpp_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/main.cpp@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/main.cpp}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   main.cpp}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: Andrew Guzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Created: December 6, 2022 @ 1:07 PM}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Purpose: v10. Clean up code.}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{comment}{//System Libraries}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <iostream>}  \textcolor{comment}{//Input/output Library}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{00013 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 \textcolor{comment}{//User Libraries}}
+\DoxyCodeLine{00016 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00017 \textcolor{preprocessor}{\#include "{}Deck.h"{}}}
+\DoxyCodeLine{00018 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{00019 \textcolor{preprocessor}{\#include "{}BrdDeck.h"{}}}
+\DoxyCodeLine{00020 \textcolor{preprocessor}{\#include "{}Board.h"{}}}
+\DoxyCodeLine{00021 \textcolor{preprocessor}{\#include "{}Player.h"{}}}
+\DoxyCodeLine{00022 \textcolor{preprocessor}{\#include "{}Caller.h"{}}}
+\DoxyCodeLine{00023 }
+\DoxyCodeLine{00024 \textcolor{comment}{//Global Constants}}
+\DoxyCodeLine{00025 \textcolor{comment}{//Physics/Chemistry/Math/Conversion Higher Dimension Only}}
+\DoxyCodeLine{00026 \textcolor{keyword}{const} \textcolor{keywordtype}{int} NUMCRDS=54;}
+\DoxyCodeLine{00027 \textcolor{keyword}{const} \textcolor{keywordtype}{int} MAXBRDS=20;}
+\DoxyCodeLine{00028 \textcolor{keyword}{const} \textcolor{keywordtype}{int} MAXPLYR=21;}
+\DoxyCodeLine{00029 }
+\DoxyCodeLine{00030 \textcolor{comment}{//Structure Definitions}}
+\DoxyCodeLine{00031 }
+\DoxyCodeLine{00032 \textcolor{comment}{//Function Prototypes}}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034 \textcolor{comment}{//Program Execution Begins Here!!!}}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{}
+\DoxyCodeLine{00037     \textcolor{comment}{//Initialize the Random Number Seed}}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039     \textcolor{comment}{//Declare Variables}}
+\DoxyCodeLine{00040     fstream file;                       \textcolor{comment}{//Input file}}
+\DoxyCodeLine{00041     \textcolor{keywordtype}{int} topIndx=0,                  \textcolor{comment}{//Index of "{}top"{} card}}
+\DoxyCodeLine{00042         numPlyr,                    \textcolor{comment}{//Number of computer players}}
+\DoxyCodeLine{00043         rndBrd;                     \textcolor{comment}{//Random board number}}
+\DoxyCodeLine{00044     vector<int> usedBrd;            \textcolor{comment}{//Vector to hold number of boards used}}
+\DoxyCodeLine{00045     }
+\DoxyCodeLine{00046     \textcolor{comment}{//Initial Variables}}
+\DoxyCodeLine{00047     Board **boards=\textcolor{keyword}{new} Board*[MAXBRDS]; \textcolor{comment}{//Array of Board objects }}
+\DoxyCodeLine{00048     Player **players=\textcolor{keyword}{new} Player*[MAXPLYR]; \textcolor{comment}{//Array of Player objects }}
+\DoxyCodeLine{00049     \textcolor{comment}{//Create Caller for the game -\/ creates deck for game, caller doesn't need a board}}
+\DoxyCodeLine{00050     Caller caller(\textcolor{stringliteral}{"{}Caller"{}},\textcolor{keyword}{nullptr},file,\textcolor{stringliteral}{"{}cardNames.txt"{}});}
+\DoxyCodeLine{00051     caller.display();}
+\DoxyCodeLine{00052     \textcolor{comment}{//Shuffle and display the deck, first and last cards}}
+\DoxyCodeLine{00053     cout<<\textcolor{stringliteral}{"{}Caller will Shuffle and Display the Deck For This Game."{}}<<endl;}
+\DoxyCodeLine{00054     caller.shuffle();}
+\DoxyCodeLine{00055     caller.dispDck();}
+\DoxyCodeLine{00056     }
+\DoxyCodeLine{00057     cout<<\textcolor{stringliteral}{"{}First Card"{}}<<endl;}
+\DoxyCodeLine{00058     caller.pick(topIndx)-\/>display();}
+\DoxyCodeLine{00059     caller.check(topIndx);}
+\DoxyCodeLine{00060     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=topIndx;i<NUMCRDS-\/1;i++) \{}
+\DoxyCodeLine{00061         caller.pick(topIndx);}
+\DoxyCodeLine{00062     \}}
+\DoxyCodeLine{00063     cout<<\textcolor{stringliteral}{"{}Last Card"{}}<<endl;}
+\DoxyCodeLine{00064     caller.pick(topIndx)-\/>display();}
+\DoxyCodeLine{00065     caller.check(topIndx);}
+\DoxyCodeLine{00066     }
+\DoxyCodeLine{00067     \textcolor{comment}{//Create deck}}
+\DoxyCodeLine{00068 \textcolor{comment}{//    Deck deck(file,"{}cardNames.txt"{});}}
+\DoxyCodeLine{00069     \textcolor{comment}{//    deck.display();}}
+\DoxyCodeLine{00070 \textcolor{comment}{//    deck.shuffle();}}
+\DoxyCodeLine{00071 \textcolor{comment}{//    for(int i=0;i<NUMCRDS;i++) \{}}
+\DoxyCodeLine{00072 \textcolor{comment}{//        deck.pick(topIndx)-\/>display();}}
+\DoxyCodeLine{00073 \textcolor{comment}{//    \}}}
+\DoxyCodeLine{00074 \textcolor{comment}{//    deck.check(topIndx);}}
+\DoxyCodeLine{00075     }
+\DoxyCodeLine{00076     \textcolor{comment}{//Create board deck -\/ deck to be used for creating boards}}
+\DoxyCodeLine{00077     Deck<BrdCard> bDeck(file,\textcolor{stringliteral}{"{}cardNames.txt"{}});}
+\DoxyCodeLine{00078 \textcolor{comment}{//    topIndx=0;}}
+\DoxyCodeLine{00079 \textcolor{comment}{//    bDeck.shuffle();}}
+\DoxyCodeLine{00080 \textcolor{comment}{//    for(int i=0;i<NUMCRDS;i++) \{}}
+\DoxyCodeLine{00081 \textcolor{comment}{//        bDeck.pick(topIndx)-\/>display();}}
+\DoxyCodeLine{00082 \textcolor{comment}{//    \}}}
+\DoxyCodeLine{00083 \textcolor{comment}{//    bDeck.check(topIndx);    }}
+\DoxyCodeLine{00084     }
+\DoxyCodeLine{00085     \textcolor{comment}{//Initialize boards in boards array}}
+\DoxyCodeLine{00086     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<MAXBRDS;i++) \{}
+\DoxyCodeLine{00087         bDeck.shuffle();}
+\DoxyCodeLine{00088         boards[i]=\textcolor{keyword}{new} Board(i+1,\&bDeck);}
+\DoxyCodeLine{00089         boards[i]-\/>brd2Fil(i+1);}
+\DoxyCodeLine{00090     \}}
+\DoxyCodeLine{00091     }
+\DoxyCodeLine{00092     \textcolor{comment}{//Create number of players and give each player a random board}}
+\DoxyCodeLine{00093     cout<<\textcolor{stringliteral}{"{}How many players(up to 20): "{}};}
+\DoxyCodeLine{00094     cin>>numPlyr;}
+\DoxyCodeLine{00095     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<numPlyr;i++) \{      }
+\DoxyCodeLine{00096         \textcolor{keywordflow}{do}\{         \textcolor{comment}{//Pick random index to assign a random board}}
+\DoxyCodeLine{00097             rndBrd=rand()\%MAXBRDS;}
+\DoxyCodeLine{00098         \} \textcolor{keywordflow}{while}(count(usedBrd.begin(),usedBrd.end(),rndBrd));}
+\DoxyCodeLine{00099         usedBrd.push\_back(rndBrd);      \textcolor{comment}{//Add index to vector to avoid double assignment}}
+\DoxyCodeLine{00100         \textcolor{keywordtype}{string} plyrNam=\textcolor{stringliteral}{"{}Computer "{}}+to\_string(i+1);}
+\DoxyCodeLine{00101         players[i]=\textcolor{keyword}{new} Player(plyrNam,boards[rndBrd]);}
+\DoxyCodeLine{00102         players[i]-\/>display();}
+\DoxyCodeLine{00103     \}}
+\DoxyCodeLine{00104     players[numPlyr]=\&caller;       \textcolor{comment}{//Polymorphism -\/ Add caller to the array of players}}
+\DoxyCodeLine{00105     players[numPlyr]-\/>display();}
+\DoxyCodeLine{00106     }
+\DoxyCodeLine{00107     \textcolor{comment}{//Map the Inputs to the Outputs}}
+\DoxyCodeLine{00108 }
+\DoxyCodeLine{00109     \textcolor{comment}{//Display the Inputs and Outputs}}
+\DoxyCodeLine{00110     cout<<\textcolor{stringliteral}{"{}Number of Boards: "{}}<<boards[0]-\/>getCnt()<<endl;}
+\DoxyCodeLine{00111     cout<<\textcolor{stringliteral}{"{}Number of Boards Assigned: "{}}<<usedBrd.size()<<endl;}
+\DoxyCodeLine{00112     cout<<\textcolor{stringliteral}{"{}Number of Players(includes Caller): "{}}<<players[0]-\/>getCnt()<<endl;}
+\DoxyCodeLine{00113 }
+\DoxyCodeLine{00114     \textcolor{comment}{//Clean up the dynamic stuff}}
+\DoxyCodeLine{00115     \textcolor{comment}{//Delete players}}
+\DoxyCodeLine{00116     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<numPlyr;i++) \{}
+\DoxyCodeLine{00117         \textcolor{keyword}{delete} players[i];}
+\DoxyCodeLine{00118     \}}
+\DoxyCodeLine{00119     \textcolor{keyword}{delete} []players;}
+\DoxyCodeLine{00120 }
+\DoxyCodeLine{00121     \textcolor{comment}{//Exit the code}}
+\DoxyCodeLine{00122     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{00123 \}}
+
+\end{DoxyCode}

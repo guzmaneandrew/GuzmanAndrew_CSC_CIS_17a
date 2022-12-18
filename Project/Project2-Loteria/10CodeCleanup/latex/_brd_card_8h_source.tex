@@ -1,0 +1,40 @@
+\doxysection{Brd\+Card.\+h}
+\label{_brd_card_8h_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/BrdCard.h@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/BrdCard.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   BrdCard.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Board Card Class Specification}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 5, 2022, 12:03 AM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#ifndef BRDCARD\_H}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#define BRDCARD\_H}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00011 }
+\DoxyCodeLine{00012 \textcolor{keyword}{class }BrdCard:\textcolor{keyword}{public} Card \{}
+\DoxyCodeLine{00013 \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} ROWS=4;    \textcolor{comment}{//Number of rows in board to set location in board}}
+\DoxyCodeLine{00015     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} COLS=4;    \textcolor{comment}{//Number of cols in board to set location in board}}
+\DoxyCodeLine{00016     \textcolor{keywordtype}{int} xIndx;     \textcolor{comment}{//X Index in the board}}
+\DoxyCodeLine{00017     \textcolor{keywordtype}{int} yIndx;     \textcolor{comment}{//Y Index in the board }}
+\DoxyCodeLine{00018     \textcolor{keywordtype}{bool} found;    \textcolor{comment}{//Flag to mark if card is found on board}}
+\DoxyCodeLine{00019 \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020     BrdCard();                      \textcolor{comment}{//Default Constructor}}
+\DoxyCodeLine{00021     BrdCard(\textcolor{keywordtype}{int},\textcolor{keywordtype}{string});            \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{00022     \string~BrdCard();                     \textcolor{comment}{//Destructor }}
+\DoxyCodeLine{00023     \textcolor{keywordtype}{void} setXIdx(\textcolor{keywordtype}{int});              \textcolor{comment}{//Set card X index}}
+\DoxyCodeLine{00024     \textcolor{keywordtype}{void} setYIdx(\textcolor{keywordtype}{int});              \textcolor{comment}{//Set card Y index}}
+\DoxyCodeLine{00025     \textcolor{keywordtype}{void} setFnd(\textcolor{keywordtype}{bool} found) \{this-\/>found=found;\}  \textcolor{comment}{//Set found flag}}
+\DoxyCodeLine{00026     \textcolor{keywordtype}{int} getXIdx()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} xIndx;\}     \textcolor{comment}{//Get card X index}}
+\DoxyCodeLine{00027     \textcolor{keywordtype}{int} getYIdx()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} yIndx;\}     \textcolor{comment}{//Get card Y index}}
+\DoxyCodeLine{00028     \textcolor{keywordtype}{bool} getFnd()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} found;\}     \textcolor{comment}{//Get value of found flag}}
+\DoxyCodeLine{00029 \};}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* BRDCARD\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034 }
+
+\end{DoxyCode}

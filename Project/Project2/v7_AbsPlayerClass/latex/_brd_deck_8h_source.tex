@@ -1,0 +1,36 @@
+\hypertarget{_brd_deck_8h_source}{}\doxysection{Brd\+Deck.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   BrdDeck.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ *}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on December 5, 2022, 1:12 AM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef BRDDECK\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define BRDDECK\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}Deck.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_brd_deck}{BrdDeck}}:\textcolor{keyword}{public} \mbox{\hyperlink{class_deck}{Deck}} \{}
+\DoxyCodeLine{15     \textcolor{keyword}{private}:}
+\DoxyCodeLine{16         \textcolor{keyword}{static} \textcolor{keywordtype}{int} \textcolor{keyword}{const} MAX=54;}
+\DoxyCodeLine{17         \textcolor{keyword}{static} \textcolor{keywordtype}{int} bDckCnt;}
+\DoxyCodeLine{18         \mbox{\hyperlink{class_brd_card}{BrdCard}} bDeck[MAX];}
+\DoxyCodeLine{19         \textcolor{keywordtype}{bool} isEmpty;}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{21         \mbox{\hyperlink{class_brd_deck}{BrdDeck}}();                      \textcolor{comment}{//Default Constructor}}
+\DoxyCodeLine{22         \mbox{\hyperlink{class_brd_deck}{BrdDeck}}(\mbox{\hyperlink{class_brd_card}{BrdCard}} **);           \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{23         \textcolor{keywordtype}{void} setDeck(\mbox{\hyperlink{class_brd_card}{BrdCard}} **);      \textcolor{comment}{//Create deck of cards from cards}}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} getCnt()\{ \textcolor{keywordflow}{return} bDckCnt;\}\textcolor{comment}{//Get count of Deck objects}}
+\DoxyCodeLine{25         \textcolor{keywordtype}{void} display();                   \textcolor{comment}{//Display board card}}
+\DoxyCodeLine{26         \mbox{\hyperlink{class_brd_card}{BrdCard}} getCrd(\textcolor{keywordtype}{int});             \textcolor{comment}{//Gets a card from deck for boards}}
+\DoxyCodeLine{27         \textcolor{keywordtype}{void} shuffle();                 \textcolor{comment}{//shuffles the deck of board cards}}
+\DoxyCodeLine{28 \};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* BRDDECK\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{31 }
+
+\end{DoxyCode}

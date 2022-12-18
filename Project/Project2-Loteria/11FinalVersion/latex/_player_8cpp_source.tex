@@ -1,0 +1,67 @@
+\doxysection{Player.\+cpp}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Player.cpp}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Player Class Implementation}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 5, 2022, 9:14 PM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include "{}Player.h"{}}}
+\DoxyCodeLine{00011 }
+\DoxyCodeLine{00012 \textcolor{keywordtype}{int} Player::pCnt=0;        \textcolor{comment}{//Define static variables outside of the class}}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014 Player::Player() \{}
+\DoxyCodeLine{00015     pCnt++;}
+\DoxyCodeLine{00016     name=\textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{00017     board=\textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00018     numTkns=0;}
+\DoxyCodeLine{00019 \}}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021 Player::Player(\textcolor{keywordtype}{string} n,Board *brd) \{}
+\DoxyCodeLine{00022     pCnt++;}
+\DoxyCodeLine{00023     name=n;}
+\DoxyCodeLine{00024     board=brd;}
+\DoxyCodeLine{00025     numTkns=0;}
+\DoxyCodeLine{00026 \}}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028 Player::\string~Player() \{}
+\DoxyCodeLine{00029     \textcolor{keyword}{delete} board;}
+\DoxyCodeLine{00030 \}}
+\DoxyCodeLine{00031 }
+\DoxyCodeLine{00032 \textcolor{keywordtype}{void} Player::addTkns() \{}
+\DoxyCodeLine{00033     numTkns++;}
+\DoxyCodeLine{00034 \}}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036 \textcolor{keywordtype}{void} Player::display() \{}
+\DoxyCodeLine{00037     cout<<\textcolor{stringliteral}{"{}Player: "{}}<<name<<endl;}
+\DoxyCodeLine{00038     cout<<\textcolor{stringliteral}{"{}Number of Tokens Used: "{}}<<numTkns<<endl;}
+\DoxyCodeLine{00039     board-\/>display();        }
+\DoxyCodeLine{00040 \}}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00042 \textcolor{keywordtype}{void} Player::dispMBrd() \{}
+\DoxyCodeLine{00043     cout<<name<<endl;}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{if}(board!=\textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{00045         cout<<\textcolor{stringliteral}{"{}Number of Tokens Used: "{}}<<numTkns<<endl;}
+\DoxyCodeLine{00046         board-\/>miniBrd();        }
+\DoxyCodeLine{00047     \}}
+\DoxyCodeLine{00048 \}}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050 \textcolor{keywordtype}{bool} Player::chkWin() \{}
+\DoxyCodeLine{00051     \textcolor{keywordflow}{if}(numTkns==16) \{}
+\DoxyCodeLine{00052         cout<<name<<\textcolor{stringliteral}{"{}: LOTERÍA!"{}}<<endl;}
+\DoxyCodeLine{00053         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00054     \}}
+\DoxyCodeLine{00055     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00056 \}}
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{00058 \textcolor{keywordtype}{void} Player::chkBrd(\textcolor{keywordtype}{string} name) \{}
+\DoxyCodeLine{00059     \textcolor{keywordflow}{if}(board-\/>srchCrd(name)) \{}
+\DoxyCodeLine{00060         numTkns++;}
+\DoxyCodeLine{00061     \}}
+\DoxyCodeLine{00062 \}}
+
+\end{DoxyCode}

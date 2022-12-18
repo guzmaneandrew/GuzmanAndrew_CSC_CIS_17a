@@ -1,0 +1,37 @@
+\hypertarget{_deck_8h_source}{}\doxysection{Deck.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   Deck.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Deck Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on November 25, 2022, 3:24 PM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef DECK\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define DECK\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_deck}{Deck}} \{}
+\DoxyCodeLine{14     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{15         \textcolor{keyword}{static} \textcolor{keywordtype}{int} deckCnt;}
+\DoxyCodeLine{16         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} MAX=54;}
+\DoxyCodeLine{17         \textcolor{keywordtype}{int} *index;}
+\DoxyCodeLine{18         \mbox{\hyperlink{class_card}{Card}} deck[MAX];}
+\DoxyCodeLine{19         \textcolor{keywordtype}{bool} isEmpty;}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{21         \mbox{\hyperlink{class_deck}{Deck}}();                     \textcolor{comment}{//Default constructor}}
+\DoxyCodeLine{22         \mbox{\hyperlink{class_deck}{Deck}}(\mbox{\hyperlink{class_card}{Card}} **);              \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{23         \textcolor{keywordtype}{void} setDeck(\mbox{\hyperlink{class_card}{Card}} **);      \textcolor{comment}{//Create deck of cards from cards}}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} getCnt()\{ \textcolor{keywordflow}{return} deckCnt; \}\textcolor{comment}{//Get count of Deck objects}}
+\DoxyCodeLine{25         \textcolor{keywordtype}{void} display();             \textcolor{comment}{//Display deck}}
+\DoxyCodeLine{26         \mbox{\hyperlink{class_card}{Card}}* pick(\textcolor{keywordtype}{int} \&);           \textcolor{comment}{//Returns pointer to top card of the deck}}
+\DoxyCodeLine{27         \textcolor{keywordtype}{void} check(\textcolor{keywordtype}{int} \&);          \textcolor{comment}{//Check if deck is empty}}
+\DoxyCodeLine{28         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} shuffle();      \textcolor{comment}{//Shuffle the deck}}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DECK\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{32 }
+
+\end{DoxyCode}

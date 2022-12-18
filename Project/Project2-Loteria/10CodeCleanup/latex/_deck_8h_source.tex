@@ -1,0 +1,153 @@
+\doxysection{Deck.\+h}
+\label{_deck_8h_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/Deck.h@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/Deck.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Deck.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Deck Class Specification}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 6, 2022, 1:32 PM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#ifndef DECK\_H}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#define DECK\_H}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{00012 }
+\DoxyCodeLine{00013 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00014 \textcolor{keyword}{class }Deck \{}
+\DoxyCodeLine{00015     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00016         \textcolor{keyword}{static} \textcolor{keywordtype}{int} count;           \textcolor{comment}{//Count of Deck objects}}
+\DoxyCodeLine{00017         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} MAX=54;    \textcolor{comment}{//Max size of deck}}
+\DoxyCodeLine{00018         \textcolor{keywordtype}{string} *names;              \textcolor{comment}{//Array of names for creating cards in deck}}
+\DoxyCodeLine{00019         T **cards;                  \textcolor{comment}{//Array of cards}}
+\DoxyCodeLine{00020         \textcolor{keywordtype}{int} *index;                 \textcolor{comment}{//Array of indexes}}
+\DoxyCodeLine{00021         \textcolor{keywordtype}{bool} isEmpty;               \textcolor{comment}{//Flag to check if deck is empty}}
+\DoxyCodeLine{00022         \textcolor{keywordtype}{int} getCnt();               \textcolor{comment}{//Get count of Deck objects}}
+\DoxyCodeLine{00023         \textcolor{keywordtype}{string} *crtArr(fstream \&,\textcolor{keywordtype}{string});       \textcolor{comment}{//Create arrays from file input}}
+\DoxyCodeLine{00024         \textcolor{keywordtype}{bool} openFil(fstream \&,\textcolor{keywordtype}{string});         \textcolor{comment}{//Opens a file for input}}
+\DoxyCodeLine{00025         \textcolor{keywordtype}{void} filToAr(fstream \&,\textcolor{keywordtype}{string} *);       \textcolor{comment}{//Saves file contents to memory}}
+\DoxyCodeLine{00026     \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027         Deck(fstream \&,\textcolor{keywordtype}{string}); \textcolor{comment}{//Constructor -\/ uses file to construct cards in deck}}
+\DoxyCodeLine{00028         \string~Deck();                \textcolor{comment}{//Destructor}}
+\DoxyCodeLine{00029         \textcolor{keywordtype}{void} display();         \textcolor{comment}{//Display the deck}}
+\DoxyCodeLine{00030         \textcolor{keywordtype}{void} shuffle();         \textcolor{comment}{//Shuffle the deck}}
+\DoxyCodeLine{00031         T* pick(\textcolor{keywordtype}{int} \&);         \textcolor{comment}{//Return pointer to card to the "{}top"{} of the deck}}
+\DoxyCodeLine{00032         \textcolor{keywordtype}{void} check(\textcolor{keywordtype}{int});        \textcolor{comment}{//Check if the deck is empty}}
+\DoxyCodeLine{00033         T getCrd(\textcolor{keywordtype}{int});          \textcolor{comment}{//Returns a card from the deck}}
+\DoxyCodeLine{00034 \};}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036 \textcolor{keyword}{template}<\textcolor{keyword}{class} T> \textcolor{keywordtype}{int} Deck<T>::count=0;}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00039 \textcolor{keywordtype}{int} Deck<T>::getCnt() \{ \textcolor{keywordflow}{return} count; \}     \textcolor{comment}{//Get count of Deck objects}}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00042 Deck<T>::Deck(fstream \&file,\textcolor{keywordtype}{string} fileName) \{}
+\DoxyCodeLine{00043     \textcolor{comment}{//Set the random number seed}}
+\DoxyCodeLine{00044     srand(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}\textcolor{keyword}{>}(time(0)));}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046     count++;}
+\DoxyCodeLine{00047     names=crtArr(file,fileName);}
+\DoxyCodeLine{00048     cards=\textcolor{keyword}{new} T*[MAX];}
+\DoxyCodeLine{00049     index=\textcolor{keyword}{new} \textcolor{keywordtype}{int}[MAX];}
+\DoxyCodeLine{00050     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<MAX;i++) \{}
+\DoxyCodeLine{00051         cards[i]=\textcolor{keyword}{new} T(i+1,*(names+i)); \textcolor{comment}{//Initialize Card using names array}}
+\DoxyCodeLine{00052         index[i]=i;}
+\DoxyCodeLine{00053     \}}
+\DoxyCodeLine{00054     isEmpty=\textcolor{keyword}{false};}
+\DoxyCodeLine{00055 \}}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00058 Deck<T>::\string~Deck() \{}
+\DoxyCodeLine{00059     \textcolor{keyword}{delete} []names;}
+\DoxyCodeLine{00060     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<MAX;i++) \{ \textcolor{comment}{//Delete each instance of a card}}
+\DoxyCodeLine{00061         \textcolor{keyword}{delete} cards[i];}
+\DoxyCodeLine{00062     \}}
+\DoxyCodeLine{00063     \textcolor{keyword}{delete} []cards;         \textcolor{comment}{//Delete array of card pointers}}
+\DoxyCodeLine{00064     \textcolor{keyword}{delete} []index;}
+\DoxyCodeLine{00065 \}}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00068 \textcolor{keywordtype}{void} Deck<T>::display() \{}
+\DoxyCodeLine{00069     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<MAX;i++) \{}
+\DoxyCodeLine{00070         cards[i]-\/>display();        \textcolor{comment}{//Display card one by one}}
+\DoxyCodeLine{00071     \}}
+\DoxyCodeLine{00072     cout<<endl;}
+\DoxyCodeLine{00073 \}}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00076 \textcolor{keywordtype}{void} Deck<T>::shuffle() \{}
+\DoxyCodeLine{00077     \textcolor{keywordtype}{int} rndIndx;        \textcolor{comment}{//Random card index}}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} shffl=1;shffl<7;shffl++) \{}
+\DoxyCodeLine{00080         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} index=0;index<MAX;index++) \{}
+\DoxyCodeLine{00081             \textcolor{keywordflow}{do} \{        \textcolor{comment}{//Random index must not equal to current index}}
+\DoxyCodeLine{00082                 rndIndx=rand()\%MAX;}
+\DoxyCodeLine{00083             \}\textcolor{keywordflow}{while}(index==rndIndx);}
+\DoxyCodeLine{00084             \textcolor{comment}{//Swap card at current index with card at random index}}
+\DoxyCodeLine{00085             T *temp=cards[index];}
+\DoxyCodeLine{00086             cards[index]=cards[rndIndx];}
+\DoxyCodeLine{00087             cards[rndIndx]=temp;}
+\DoxyCodeLine{00088         \}}
+\DoxyCodeLine{00089     \}}
+\DoxyCodeLine{00090 \}}
+\DoxyCodeLine{00091 }
+\DoxyCodeLine{00092 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00093 T* Deck<T>::pick(\textcolor{keywordtype}{int} \&index) \{}
+\DoxyCodeLine{00094     T *crdPtr=cards[index];         \textcolor{comment}{//Set pointer equal to pointer to card at index}}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096     index++;                        \textcolor{comment}{//Increment index to pick next card }}
+\DoxyCodeLine{00097     \textcolor{keywordflow}{return} crdPtr;                  \textcolor{comment}{//Return pointer}}
+\DoxyCodeLine{00098 \}}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00101 \textcolor{keywordtype}{void} Deck<T>::check(\textcolor{keywordtype}{int} index) \{ }
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if}(index==MAX) \{}
+\DoxyCodeLine{00103         isEmpty=\textcolor{keyword}{true};}
+\DoxyCodeLine{00104         cout<<\textcolor{stringliteral}{"{}The deck is empty.\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00105     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00106         cout<<\textcolor{stringliteral}{"{}The deck is not empty.\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00107     \}}
+\DoxyCodeLine{00108 \}}
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00111 T Deck<T>::getCrd(\textcolor{keywordtype}{int} index) \{}
+\DoxyCodeLine{00112     T card=*(*(cards+index));  \textcolor{comment}{//De-\/reference pointer to pointer to card to get card}}
+\DoxyCodeLine{00113     \textcolor{keywordflow}{return} card;               \textcolor{comment}{//Return the card}}
+\DoxyCodeLine{00114 \}}
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00117 \textcolor{keywordtype}{string}* Deck<T>::crtArr(fstream \&file,\textcolor{keywordtype}{string} filName) \{}
+\DoxyCodeLine{00118     \textcolor{keywordtype}{string} *array=\textcolor{keyword}{new} \textcolor{keywordtype}{string}[MAX];}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120     \textcolor{keywordflow}{if}(openFil(file,filName)) \{}
+\DoxyCodeLine{00121         filToAr(file,array);}
+\DoxyCodeLine{00122         file.close();}
+\DoxyCodeLine{00123     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00124         cout<<\textcolor{stringliteral}{"{}File open error!"{}}<<endl;}
+\DoxyCodeLine{00125     \} }
+\DoxyCodeLine{00126     \textcolor{keywordflow}{return} array;}
+\DoxyCodeLine{00127 \}}
+\DoxyCodeLine{00128 }
+\DoxyCodeLine{00129 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00130 \textcolor{keywordtype}{bool} Deck<T>::openFil(fstream \&file,\textcolor{keywordtype}{string} name) \{}
+\DoxyCodeLine{00131     file.open(name,ios::in);    \textcolor{comment}{//Open file for input}}
+\DoxyCodeLine{00132 }
+\DoxyCodeLine{00133     \textcolor{keywordflow}{if}(file.fail()) \{}
+\DoxyCodeLine{00134         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00135     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00136         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00137 \}}
+\DoxyCodeLine{00138 }
+\DoxyCodeLine{00139 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{00140 \textcolor{keywordtype}{void} Deck<T>::filToAr(fstream \&file,\textcolor{keywordtype}{string} *array) \{}
+\DoxyCodeLine{00141     \textcolor{keywordtype}{string} line;}
+\DoxyCodeLine{00142     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<MAX;i++) \{}
+\DoxyCodeLine{00143         getline(file,line,\textcolor{charliteral}{'\(\backslash\)n'});    \textcolor{comment}{//Get a line from text file}}
+\DoxyCodeLine{00144         *(array+i)=line;            \textcolor{comment}{//Add line to array of strings}}
+\DoxyCodeLine{00145     \}}
+\DoxyCodeLine{00146 \}}
+\DoxyCodeLine{00147 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DECK\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

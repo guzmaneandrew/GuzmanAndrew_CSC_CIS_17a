@@ -1,0 +1,37 @@
+\hypertarget{_card_8h_source}{}\doxysection{Card.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* }}
+\DoxyCodeLine{2 \textcolor{comment}{ * File:   Card.h}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Card Class Specification}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Created on December 6, 2022, 1:07 PM}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef CARD\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define CARD\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{11 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_card}{Card}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{15     \textcolor{keyword}{static} \textcolor{keywordtype}{int} crdCnt;      \textcolor{comment}{//count of Card objects}}
+\DoxyCodeLine{16     \textcolor{keywordtype}{string} name;            \textcolor{comment}{//Card name}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} num;                \textcolor{comment}{//Card number}}
+\DoxyCodeLine{18 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_card}{Card}}() \{name=\textcolor{stringliteral}{"{} "{}},num=0;\}        \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{20     \mbox{\hyperlink{class_card}{Card}}(\textcolor{keywordtype}{int},\textcolor{keywordtype}{string});       \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} setName(\textcolor{keywordtype}{string} n) \{ name=n; \}      \textcolor{comment}{//Setters}}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} setNum(\textcolor{keywordtype}{int} n) \{ num=n; \}   }
+\DoxyCodeLine{23     \textcolor{keywordtype}{string} getName() \{ \textcolor{keywordflow}{return} name; \}       \textcolor{comment}{//Getters}}
+\DoxyCodeLine{24     \textcolor{keywordtype}{int} getNum() \{ \textcolor{keywordflow}{return} num; \}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} getCnt()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} crdCnt; \} \textcolor{comment}{//Get count of card objects}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} display();                 \textcolor{comment}{//Display Card data}}
+\DoxyCodeLine{27 \};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* CARD\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{32 }
+
+\end{DoxyCode}

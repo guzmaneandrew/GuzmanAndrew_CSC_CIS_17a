@@ -1,0 +1,45 @@
+\doxysection{Card.\+cpp}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Card.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Card Class Implementation}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on December 6, 2022, 1:07 PM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include "{}Card.h"{}}}
+\DoxyCodeLine{00011 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{00012 }
+\DoxyCodeLine{00013 \textcolor{keywordtype}{int} Card::count=0;}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 Card::Card(\textcolor{keywordtype}{int} num,\textcolor{keywordtype}{string} name) \{}
+\DoxyCodeLine{00016     count++;}
+\DoxyCodeLine{00017     this-\/>num=num;}
+\DoxyCodeLine{00018     this-\/>name=name;}
+\DoxyCodeLine{00019 \}}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021 \textcolor{keywordtype}{void} Card::display()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{00022     \textcolor{comment}{//Print out top border of the card}}
+\DoxyCodeLine{00023     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<14;i++) \{}
+\DoxyCodeLine{00024         cout<<\textcolor{stringliteral}{"{}\_"{}};}
+\DoxyCodeLine{00025     \}}
+\DoxyCodeLine{00026     \textcolor{comment}{//Print out starting where an image would be (represented by -\/)}}
+\DoxyCodeLine{00027     cout<<endl<<\textcolor{stringliteral}{"{} "{}}<<setw(14);}
+\DoxyCodeLine{00028     cout<<setw(3)<<right<<num<<endl;}
+\DoxyCodeLine{00029     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<5;i++) \{}
+\DoxyCodeLine{00030         cout<<setw(4)<<left<<\textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{00031         cout<<\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/"{}}<<endl;}
+\DoxyCodeLine{00032         \textcolor{keywordflow}{if}(i==5) cout<<endl;}
+\DoxyCodeLine{00033     \}}
+\DoxyCodeLine{00034     \textcolor{comment}{//Print out the name}}
+\DoxyCodeLine{00035     cout<<getName()<<endl;}
+\DoxyCodeLine{00036     \textcolor{comment}{//Print out bottom border of the card}}
+\DoxyCodeLine{00037     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<14;i++) \{}
+\DoxyCodeLine{00038         cout<<\textcolor{stringliteral}{"{}\_"{}};}
+\DoxyCodeLine{00039     \}cout<<endl;}
+\DoxyCodeLine{00040 \}}
+
+\end{DoxyCode}

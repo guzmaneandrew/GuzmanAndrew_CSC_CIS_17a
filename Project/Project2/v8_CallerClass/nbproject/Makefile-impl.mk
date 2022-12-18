@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=v8_DealerClass
+PROJECTNAME=v8_CallerClass
 
 # Active Configuration
 DEFAULTCONF=Debug

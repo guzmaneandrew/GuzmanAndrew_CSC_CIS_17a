@@ -1,0 +1,39 @@
+\doxysection{Board.\+h}
+\label{_board_8h_source}\index{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/Board.h@{/Users/andrewguzman/NetBeansProjects/10CodeCleanup/Board.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{comment}{/* }}
+\DoxyCodeLine{00002 \textcolor{comment}{ * File:   Board.h}}
+\DoxyCodeLine{00003 \textcolor{comment}{ * Author: andrewguzman}}
+\DoxyCodeLine{00004 \textcolor{comment}{ * Board Class Specification}}
+\DoxyCodeLine{00005 \textcolor{comment}{ * Created on November 26, 2022, 10:39 PM}}
+\DoxyCodeLine{00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#ifndef BOARD\_H}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#define BOARD\_H}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include "{}BrdCard.h"{}}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include "{}BrdDeck.h"{}}}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014 \textcolor{keyword}{class }Board \{}
+\DoxyCodeLine{00015 \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016     \textcolor{keyword}{static} \textcolor{keywordtype}{int} brdCnt;}
+\DoxyCodeLine{00017     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} ROWS=4;}
+\DoxyCodeLine{00018     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} COLS=4;}
+\DoxyCodeLine{00019     \textcolor{keywordtype}{int} brdNum;                         \textcolor{comment}{//Number printed on the board}}
+\DoxyCodeLine{00020     BrdCard **board;                    \textcolor{comment}{//Board is dynamically allocated 2d array of cards}}
+\DoxyCodeLine{00021 \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022     Board();                             \textcolor{comment}{//Default Board constructor}}
+\DoxyCodeLine{00023     Board(\textcolor{keywordtype}{int},Deck<BrdCard> *);          \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{00024     \string~Board();                            \textcolor{comment}{//Destructor}}
+\DoxyCodeLine{00025     \textcolor{keywordtype}{void} setNum(\textcolor{keywordtype}{int} n) \{brdNum=n;\}       \textcolor{comment}{//Set board number }}
+\DoxyCodeLine{00026     \textcolor{keywordtype}{int} getCnt()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} brdCnt;\}  \textcolor{comment}{//Get total number of instances of board  }}
+\DoxyCodeLine{00027     \textcolor{keywordtype}{int} getBNum()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} brdNum;\} \textcolor{comment}{//Get board number}}
+\DoxyCodeLine{00028     \textcolor{keywordtype}{void} display();                      \textcolor{comment}{//Display board}}
+\DoxyCodeLine{00029     \textcolor{keywordtype}{void} miniBrd();                      \textcolor{comment}{//Displays mini board to screen}}
+\DoxyCodeLine{00030     \textcolor{keywordtype}{void} brd2Fil(\textcolor{keywordtype}{int});                   \textcolor{comment}{//Output board to a file}}
+\DoxyCodeLine{00031 \};}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* BOARD\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
